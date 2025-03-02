@@ -69,24 +69,6 @@ html, body {
     transition: opacity 1s ease-in-out;
 }
 
-
-
-
-
-.under-construction-container {
-    min-width: 100vw;
-    min-height: 100dvh;
-    background-color: black;
-    background: url(asstets/images/img-qtz-bg.svg) no-repeat center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow-y: hidden;
-}
-
 .container {
     margin: auto;
     padding: 0 1rem;
