@@ -134,7 +134,7 @@ html, body {
  * STYLE CTA - WHATSAPP / EMAIL
  */
 
- .cta {
+.cta {
     position: relative;
     padding: 10px 14px;
     border-radius: 7px;
@@ -159,11 +159,6 @@ html, body {
     transition: all 0.2s ease-out;
 }
 
-.cta:hover::before {
-    -webkit-animation: sh02 0.5s 0s linear;
-    -moz-animation: sh02 0.5s 0s linear;
-    animation: sh02 0.5s 0s linear;
-}
 
 .cta::before {
     content: '';
@@ -183,6 +178,11 @@ html, body {
     transform: skewX(-20deg);
 }
 
+.cta:hover::before {
+    -webkit-animation: sh02 0.5s 0s linear;
+    -moz-animation: sh02 0.5s 0s linear;
+    animation: sh02 0.5s 0s linear;
+}
 @keyframes sh02 {
     from {
         opacity: 0;
