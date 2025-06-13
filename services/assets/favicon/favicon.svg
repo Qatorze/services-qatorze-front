@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><style>
+    #light-icon {
+      display: inline;
+    }
+    #dark-icon {
+      display: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      #light-icon {
+        display: none;
+      }
+      #dark-icon {
+        display: inline;
+      }
+    }
+  </style><g id="light-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><g clip-path="url(#SvgjsClipPath1052)"><rect width="1000" height="1000" fill="#00653c"></rect><g transform="matrix(15.625,0,0,15.625,0,0)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0H64V64H0V0Z" fill="#00653C"></path>
+<path d="M34.732 27.635L33.9032 33.995L36.7605 27.635H42.7145C43.4002 27.635 43.8093 28.3993 43.4289 28.9699L29.1033 50.4582C28.5986 51.2153 27.4176 50.7704 27.5378 49.8685L30.4029 28.3802C30.4598 27.9536 30.8237 27.635 31.254 27.635H34.732Z" fill="white"></path>
+<path d="M33.7086 35.4911C33.6528 35.9188 33.2885 36.2388 32.8572 36.2388H21.3942C20.7094 36.2388 20.3002 35.4763 20.6787 34.9056L34.9457 13.3908C35.4484 12.6327 36.6303 13.0743 36.5127 13.9763L33.7086 35.4911Z" fill="white"></path>
+</svg></svg></g></g><defs><clipPath id="SvgjsClipPath1052"><rect width="1000" height="1000" x="0" y="0" rx="500" ry="500"></rect></clipPath></defs></svg></g><g id="dark-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><g clip-path="url(#SvgjsClipPath1053)"><rect width="1000" height="1000" fill="#00653c"></rect><g transform="matrix(15.625,0,0,15.625,0,0)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0H64V64H0V0Z" fill="#00653C"></path>
+<path d="M34.732 27.635L33.9032 33.995L36.7605 27.635H42.7145C43.4002 27.635 43.8093 28.3993 43.4289 28.9699L29.1033 50.4582C28.5986 51.2153 27.4176 50.7704 27.5378 49.8685L30.4029 28.3802C30.4598 27.9536 30.8237 27.635 31.254 27.635H34.732Z" fill="white"></path>
+<path d="M33.7086 35.4911C33.6528 35.9188 33.2885 36.2388 32.8572 36.2388H21.3942C20.7094 36.2388 20.3002 35.4763 20.6787 34.9056L34.9457 13.3908C35.4484 12.6327 36.6303 13.0743 36.5127 13.9763L33.7086 35.4911Z" fill="white"></path>
+</svg></svg></g></g><defs><clipPath id="SvgjsClipPath1053"><rect width="1000" height="1000" x="0" y="0" rx="500" ry="500"></rect></clipPath></defs></svg></g></svg>

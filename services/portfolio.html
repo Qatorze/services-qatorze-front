@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Réalisations | Qatôrze Services</title>
+    <link rel="stylesheet" href="/services/assets/styles/style.css">
+
+    <!-- Preload image -->
+    <link rel="preload" href="assets/images/img-afmat-1.png" as="image" type="image/png">
+    <link rel="preload" href="assets/images/img-p2s-3.svg" as="image" type="image/svg">
+    <link rel="preload" href="assets/images/img-liftyparts-1.png" as="image" type="image/png">
+
+        <!-- IMPORT DU FAVICON -->
+    <link rel="icon" type="image/png" href="/services/assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/services/assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/services/assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/services/assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Qatôrze Services" />
+    <link rel="manifest" href="/services/assets/favicon/site.webmanifest" />
+
+    <style>
+        /* ===================
+         * VARIABLES CSS
+         * =================== */
+        :root {
+            /* Couleurs*/
+            --primary-color: #4CAF50; /* Vert principal */
+            --primary-light: #81C784; /* Vert clair */
+            --primary-dark: #388E3C; /* Vert foncé */
+            --accent-color: #FFC900; /* Jaune pour les CTA */
+            --secondary-color: #007e4bbb;
+            --secondary-color-2: #00ff9956;
+            --white: #ffffff;
+            --black: #000000;
+            --gray-200: #e5e7eb;
+            --gray-400: #b9bcba;
+            --gray-900: #555555;
+            --neutral-700: #404040;
+            /* Font Family */
+            --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, Roboto, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+                "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
+                "Source Han Sans CN", sans-serif;
+            --ff-titre: "IBM Plex Sans", sans-serif;
+            --ff-titre-2: "Plus Jakarta Sans", sans-serif;
+            /* Blur */
+            --backdrop-blur: 9px;
+            /* Box Shadow */
+            --shadow-1: -10px 0 10px rgba(0, 0, 0, 0.1);
+            /* Font Size */
+            --fs-1: 12px;
+            --fs-2: 14px;
+            --fs-3: 16px;
+            --fs-4: 18px;
+            --fs-5: 20px;
+            --fs-6: 24px;
+            --fs-7: 26px;
+            --fs-8: 32px;
+            /* Font Weight */
+            --fw-1: 100;
+            --fw-2: 200;
+            --fw-3: 300;
+            --fw-4: 400;
+            --fw-5: 500;
+            --fw-6: 600;
+            --fw-7: 700;
+            --fw-8: 800;
+            /* Transitions */
+            --tr-1: all 0.3s ease-in-out;
+            /* Espacement - Gap */
+            --gap-1: 1vw;
+            --gap-2: 2vw;
+            --gap-3: 3vw;
+            --gap-4: 4vw;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--default-font-family);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        body {
+            color: var(--white);
+
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+        
+        header {
+            background-color: rgba(7, 7, 7, 0.95);
+            backdrop-filter: blur(var(--backdrop-blur));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        #canvas-2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            max-width: 1740px;
+        }
+
+        .hero-portfolio {
+            min-height: 25em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Blur Overlay */
+        .hero-portfolio::before {
+            content: "";
+            background: hsla(0, 0%, 0%, 0.772);
+            backdrop-filter: blur(50px);
+            -webkit-backdrop-filter: blur(700px);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 89vh;
+            z-index: 2;
+        }
+        
+        .hero-portfolio div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .full-width_btn {
+            width: 100%;
+        }
+        /* Secondary Button Styles */
+        .secondary-button,
+        .modal-link {
+            display: inline-block;
+            background: rgba(15, 15, 15, 0.1);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: var(--fw-6);
+            cursor: pointer;
+            transition: var(--tr-1);
+            margin-top: 1rem;
+            /* Ensure no default underline on link */
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        .secondary-button:hover,
+        .secondary-button:focus,
+        .modal-link:hover,
+        .modal-link:focus {
+            color: var(--accent-color);
+            background: rgba(255, 201, 0, 0.2);
+            border-color: rgba(255, 201, 0, 0.5);
+            opacity: 1;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: var(--fw-7);
+            color: var(--primary-color);
+            text-decoration: none;
+            font-family: var(--ff-titre);
+        }
+        
+        .hero-portfolio {
+            padding: 8rem 0 6rem 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(7, 7, 7, 0.95) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-portfolio::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(14, 16, 14, 0.407) 0%, transparent 65%);
+        }
+        
+        .hero-portfolio h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+            font-weight: 400;
+            font-family: var(--ff-titre);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-portfolio p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--gray-400);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .main-content {
+            display: flex;
+            padding: 4rem 0;
+            gap: 2rem;
+        }
+        
+        .sidebar-portfolio {
+            width: 300px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+            padding: 2rem;
+            background: rgba(7, 7, 7, 0.8);
+            backdrop-filter: blur(var(--backdrop-blur));
+            border-radius: 15px;
+            border: 1px solid  rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .sidebar-portfolio h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.7;
+        }
+        
+        .filter-group {
+            margin-bottom: 2rem;
+        }
+        
+        .filter-title {
+            font-weight: var(--fw-6);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            position: relative;
+            padding: 0.75rem;
+            background: rgba(76, 175, 80, 0.05);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--tr-1);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+        }
+        
+        .filter-title:hover {
+            background: rgba(76, 175, 80, 0.1);
+            border-color: rgba(76, 175, 80, 0.4);
+        }
+        
+        .filter-title::after {
+            content: '▼';
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .filter-title.active::after {
+            transform: rotate(180deg);
+        }
+        
+        .filter-options {
+            display: none;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-options.show {
+            display: flex;
+            opacity: 1;
+            max-height: 300px;
+        }
+        
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: var(--tr-1);
+        }
+        
+        .filter-option:hover {
+            background: rgba(76, 175, 80, 0.05);
+        }
+        
+        .filter-option input {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+        }
+
+        .filter-option input[type="checkbox"] {
+            accent-color: var(--black);
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .filter-option label {
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #ccc;
+        }
+        
+        .case-studies {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .case-study {
+            background: #070707;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            min-height: 400px;
+            cursor: pointer;
+        }
+        
+        .case-study:hover {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .case-study-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .case-study-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .case-study-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--white);
+            font-weight: 400;
+            font-family: var(--ff-titre);
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 1.4; /* Hauteur d'une ligne */
+            height: 65px;
+        }
+        
+        .case-study-description {
+            color: #ccc;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            flex-grow: 1;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            line-clamp: 4;
+            -webkit-box-orient: vertical;
+            line-height: 1.6; /* Hauteur d'une ligne */
+            max-height: 95px;
+        }
+        
+        .case-study-meta {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 0.5rem 0 0.5rem;
+            margin-top: auto;
+            max-height: 90px;
+            overflow: hidden;
+        }
+        
+        .case-study-meta .tag {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: var(--fw-5);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            display: inline-block;
+            margin-right: 0.5rem;
+            margin-bottom: 0.7rem;
+            transition: var(--tr-1);
+        }
+        
+        .tag:hover {
+            background: rgba(76, 175, 80, 0.2);
+        }
+        
+        .service-tag {
+            background: rgba(76, 175, 80, 0.15);
+            color: var(--primary-color);
+            border: 1px solid rgba(76, 175, 80, 0.4);
+        }
+        
+        .tool-tag {
+            background: rgba(0, 255, 153, 0.1);
+            color: var(--secondary-color-2);
+            border: 1px solid rgba(0, 255, 153, 0.3);
+        }
+        
+        .case-study-link {
+            display: inline-block;
+            margin-top: 0.75rem;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--tr-1);
+            padding: 0.5rem 0;
+            opacity: 0.7;
+        }
+        
+        .case-study-link:hover {
+            color: var(--accent-color);
+            opacity: 1;
+        }
+        
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            background: rgba(7, 7, 7, 0.5);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .no-results h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+            font-family: var(--ff-titre);
+        }
+        
+        .no-results p {
+            color: #ccc;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 200;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-container {
+            background: rgba(7, 7, 7, 0.95);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 1200px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 50px rgba(78, 78, 78, 0.1);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.781);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-content {
+            padding: 0;
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--black);
+        }
+
+        .modal-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-header h2 {
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .modal-body {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+        }
+
+        .modal-main {
+            padding: 1rem;
+            flex: 1;
+        }
+
+        .modal-aside {
+            position: sticky;
+            top: 0;
+            padding: 0.5rem;
+            height: 100vh;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Styles pour la modal-aside */
+        .modal-aside {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .company-logo-container {
+            text-align: center;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .company-logo {
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .project-metrics {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .metrics-title {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-family: var(--ff-titre);
+        }
+
+        .metric-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .metric-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .metric-info {
+            flex: 1;
+        }
+
+        .metric-value {
+            color: var(--white);
+            font-weight: var(--fw-6);
+            font-size: 1.1rem;
+        }
+
+        .metric-label {
+            color: var(--gray-400);
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+            opacity: 0.7;
+        }
+
+        .cta-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .cta-text {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: var(--fw-5);
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: var(--fw-6);
+            margin-bottom: 0.8rem;
+            transition: var(--tr-1);
+            text-align: center;
+            text-decoration: none;
+        }
+
+        /* Boutton pour nous contacter sur Whatsapp */
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Boutton de call to action (demander un devis) */
+        .cta {
+            min-width: 200px;
+            position: relative;
+            padding: 0.8rem;
+            border-radius: 7px;
+            border: 1px solid #FFC900;
+            font-size: 14px;
+            letter-spacing: 1px;
+            background: transparent;
+            color: var(--white);
+            overflow: hidden;
+            -webkit-transition: all 0.2s ease-in;
+            -moz-transition: all 0.2s ease-in;
+            transition: all 0.2s ease-in;
+            text-transform: uppercase;
+        }
+
+        .cta:hover {
+            background: #FFC900;
+            box-shadow: 0 0 12px 2px rgba(255, 201, 0, 0.6);
+            /* Réduction de l'effet néon */
+            color: black;
+            -webkit-transition: all 0.2s ease-out;
+            -moz-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+        }
+
+        /* Les éléments ci-dessous permettent l'animation en hover */
+
+        .cta::before {
+            content: '';
+            display: block;
+            width: 0px;
+            height: 86%;
+            position: absolute;
+            top: 7%;
+            left: 0%;
+            opacity: 0;
+            background: #fff;
+            box-shadow: 0 0 25px 10px #fff;
+            /* Effet plus contenu */
+            -webkit-transform: skewX(-20deg);
+            -moz-transform: skewX(-20deg);
+            -ms-transform: skewX(-20deg);
+            -o-transform: skewX(-20deg);
+            transform: skewX(-20deg);
+        }
+
+        .cta:hover::before {
+            -webkit-animation: sh02 0.5s 0s linear;
+            -moz-animation: sh02 0.5s 0s linear;
+            animation: sh02 0.5s 0s linear;
+        }
+
+        @keyframes sh02 {
+            from {
+                opacity: 0;
+                left: 0%;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+                left: 100%;
+            }
+        }
+
+        .icon {
+            margin-right: 0.5rem;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .modal-summary {
+            background: #141414;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-summary p {
+            color: var(--gray-400);
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-family: var(--ff-titre);
+            font-weight: 400;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .modal-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+
+        .modal-section p {
+            color: var(--gray-400);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .modal-results {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .modal-result-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid var(--primary-color);
+            padding: 1rem;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .modal-result-item h4 {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .modal-result-item p {
+            color: var(--gray-400);
+            margin-bottom: 0;
+        }
+
+        .modal-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .modal-meta .tag {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--primary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: var(--fw-5);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            display: inline-block;
+        }
+
+        .modal-recommendations {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-recommendations h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-family: var(--ff-titre);
+            font-weight: 400;
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .recommendation-card {
+            background: rgba(7, 7, 7, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--tr-1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+
+        .recommendation-card:hover {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .recommendation-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .recommendation-content {
+            padding: 1rem;
+        }
+
+        .recommendation-title {
+            font-size: 1rem;
+            color: var(--white);
+            font-weight: var(--fw-6);
+            margin-bottom: 0 !important;
+        }
+
+        @media (min-width: 992px) {
+            .modal-body {
+                flex-direction: row;
+            }
+
+            .modal-main {
+                flex: 2;
+            }
+
+            .modal-aside {
+                flex: 1;
+                border-top: none;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .sidebar-portfolio {
+                width: 100%;
+                position: static;
+                margin-bottom: 2rem;
+            }
+            
+            .filter-options {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .modal-aside {
+                height: max-content;
+            }
+            .modal-main {
+                margin-bottom: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-portfolio h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-portfolio p {
+                font-size: 1rem;
+            }
+
+            .modal-overlay {
+                padding: 1rem;
+            }
+
+            .modal-image {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .filter-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .case-studies {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-portfolio {
+                padding: 6rem 0 4rem 0;
+            }
+
+            .modal-header {
+                padding: 1.5rem 1.5rem 1rem;
+            }
+
+            .modal-main, .modal-aside {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <nav>
+        <!-- NAVBAR - VERSION MOBILE -->
+        <ul class="container sidebar hide-lg">
+
+            <li onclick=hideSidebar()  class="hide-sidebar">
+                <a href="#" class="ctn-logo-qtz-mobile"><img class="logo-qtz-mobile" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a>
+                <a href="index.html">
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M18 6l-12 12" />
+                        <path d="M6 6l12 12" />
+                    </svg>
+                </a>
+            </li>
+            <li class="btn-hover-bg"><a href="index.html" class="link">Accueil</a></li>
+            <li class="btn-hover-bg">
+                <details>
+                    <summary>
+                        Services
+                        <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </summary>
+                    <ul>
+                        <li>
+                            <a href="services_web-&-ecom.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                                </svg>
+                                <span>Sites Web & E-com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_web-app.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                    <path d="M3 9h18"/>
+                                    <path d="M9 21V9"/>
+                                </svg>
+                                <span>Web Apps</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_mobile-app.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                                    <path d="M12 18h.01"/>
+                                  </svg>
+                                <span>Apps Mobiles</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_installation-logiciels.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                  </svg>
+                                <span>Installation Logiciels</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_audit-conseil.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                                  </svg>
+                                <span>Audit & Conseil</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="nos-services-&-produits.html" class="texte-autres-services">
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M12 5l0 14" />
+                                    <path d="M5 12l14 0" />
+                                </svg>
+                                <span>Nos services et produits</span>
+                            </a>
+                            <div class="img-ctn">
+                            </div>
+                        </li>
+                    </ul>
+                </details>
+            </li>
+            <!-- TO-DO : Activer lorsque la page Nos outils sera faite -->
+            <!-- <li class="btn-hover-bg"><a href="#" class="link">Outils</a></li> -->
+            <li class="btn-hover-bg"><a href="portfolio.html" class="link">Portfolio</a></li>
+            <li class="link-yellow-underline"><a href="#">info@qatorze.com</a></li>
+        </ul>
+        <!-- NAVBAR VERSION GRANDS ECRANTS -->
+        <ul class="container">
+            <li><a href="index.html"><img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a></li>
+            <li class="hideOnMobile"><a href="index.html" class="link">Accueil</a></li>
+
+            <li class="hideOnMobile dropdown">
+                <a href="#" class="link">Services 
+                    <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </a>
+                <div class="dropdown-menu row">
+                    <div class="row">
+                        <div class="left-section">
+                            <h4 class="cat-service-titre">Services principaux</h4>
+                            <div class="megamenu-grid">
+        
+                                <a href="services_web-&-ecom.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Sites Web & E-com</p>
+                                      <p class="desc-service">Développement de sites vitrines et e-commerce sur mesure</p>
+                                    </div>
+                                </a>
+        
+                                <a href="service_web-app.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                        <path d="M3 9h18"/>
+                                        <path d="M9 21V9"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Web Apps</p>
+                                      <p class="desc-service">Développement d'applications web progressives</p>
+                                    </div>
+                                </a>
+        
+                                <a href="service_mobile-app.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                                        <path d="M12 18h.01"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Apps Mobiles</p>
+                                      <p class="desc-service">Développement d'applications natifs Android/iOS et hybrides</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="services_design-&-conception-graphique.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                                            <path d="M2 2l7.586 7.586"/>
+                                            <circle cx="11" cy="11" r="2"/>
+                                        </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Design</p>
+                                      <p class="desc-service">Création d'interfaces UI/UX et d'identité visuelle</p>
+                                    </div>
+                                </a>
+
+                                <a href="service_installation-logiciels.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Logiciels</p>
+                                      <p class="desc-service">Installation et configuration logiciels métiers</p>
+                                    </div>
+                                </a>
+
+        
+                                <a href="service_audit-conseil.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Audit & Conseil</p>
+                                      <p class="desc-service">Expertise technique et informatique</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="service_accompagnement-cm.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                            <circle cx="9" cy="7" r="4"/>
+                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                          </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Accompagnement CM</p>
+                                      <p class="desc-service">Optimisation et gestion réseaux sociaux</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="right-section ali_flex-start">
+                            <h4 class="cat-service-titre">Autres services</h4>
+                            <p class="desc-autres-services">Découvrez tous les services et produits proposés par Qatôrze</p>
+                            <a href="nos-services-&-produits.html" class="col disabled">
+                                <div class="img-dropdown-ctn  disabled">
+
+                                </div>
+                                <p>Voir plus</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="hideOnMobile"><a href="portfolio.html" class="link">Portfolio</a></li>
+            <li class="hideOnMobile"><a href="contact.html" class="link">Contact</a></li>
+            <li class="hideOnMobile"><a href="#" class="link-yellow-line-left">info@qatorze.com</a></li>
+            <li onclick=showSidebar() class="menu-button"><a href="#">
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M4 6h16" />
+                    <path d="M7 12h13" />
+                    <path d="M10 18h10" />
+                </svg>
+            </a></li>
+        </ul>
+    </nav>
+
+    <section class="hero-portfolio">
+        <canvas id="canvas-2" width="500" height="500"></canvas>
+        <div class="container">
+            <h1 class="hero-portfolio_titre animate-element slide-up">Découvrez nos réalisations</h1>
+            <p class="animate-element slide-up-2">Découvrez quelques-uns des projets les plus marquants que nous avons mené à bien et les défis relevés pour nos clients à travers le monde.</p>
+        </div>
+    </section>
+
+    <!-- -------------------
+    SECTION N°2 - DEFILEMENT DE LOGOS
+    -------------------- -->
+    
+    <section class="ctn-scroll">
+        <div class="container-2">
+            <div class="content-container-2">
+                <div class="wrapper">
+                    <div class="item item1">Propulsé par</div>
+                    <div class="item item2 no-text"><img src="/services/assets/images/logo-qonto-blanc.png" alt="Logo Qonto Blanc"></div>
+                    <div class="item item3 no-text"><img src="/services/assets/images/logo-pepite-eca.png" alt="Logo Pépite ECA"></div>
+                    <div class="item item4 no-text"><img src="/services/assets/images/logo-stripe-blanc.png" alt="Logo Stripe"></div>
+                    <div class="item item5">Nos technologies</div>
+                    <div class="item item6 no-text"><img src="/services/assets/images/logo-angular-white.png" alt="Logo Astro Js"></div>
+                    <div class="item item7 no-text"><img src="/services/assets/images/logo-astrojs.svg" alt="Logo Astro Js"></div>
+                    <div class="item item8 no-text"><img src="/services/assets/images/logo-android-blanc.svg" alt="Logo Android"></div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="image-container">
+            <img class="qtz-bg-image" src="/services/assets/images/img-qtz-bg-down-tr.svg" alt="">
+        </div> -->
+    </section>
+
+    
+    <div class="container">
+        <div class="main-content">
+            <aside class="sidebar-portfolio">
+                <h3>Filtrer les case studies</h3>
+
+                <div class="filter-group">
+                    <span class="filter-title" data-target="service-filters">Services</span>
+                    <div class="filter-options" id="service-filters">
+                        <div class="filter-option">
+                            <input type="checkbox" id="dev-web" value="Développement Web">
+                            <label for="dev-web">Développement Web</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="dev-mobile" value="Développement Mobile">
+                            <label for="dev-mobile">Développement Mobile</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="design" value="Design graphique">
+                            <label for="design">Design graphique</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="cm" value="Accompagnement CM">
+                            <label for="cm">Accompagnement CM</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="ux-ui" value="UX/UI Design">
+                            <label for="ux-ui">UX/UI Design</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="seo" value="SEO">
+                            <label for="seo">SEO</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <span class="filter-title" data-target="tool-filters">Outils</span>
+                    <div class="filter-options" id="tool-filters">
+                        <div class="filter-option">
+                            <input type="checkbox" id="angular" value="Angular">
+                            <label for="angular">Angular</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="astro" value="Astro JS">
+                            <label for="astro">Astro JS</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="javascript" value="Javascript">
+                            <label for="javascript">Javascript</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="typescript" value="Typescript">
+                            <label for="typescript">Typescript</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="scss" value="SCSS">
+                            <label for="scss">SCSS</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="android" value="Android">
+                            <label for="android">Android</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="wordpress" value="Wordpress">
+                            <label for="wordpress">Wordpress</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="figma" value="Figma">
+                            <label for="figma">Figma</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="java" value="Java">
+                            <label for="java">Java</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="hostinger" value="Hostinger">
+                            <label for="hostinger">Hostinger</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="secondary-button full-width_btn" id="reset-filters">Réinitialiser les filtres</button>
+            </aside>
+            
+            <div class="case-studies" id="case-studies-container">
+                <!-- Les case studies seront ajoutés ici dynamiquement via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Template -->
+    <div id="case-study-modal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close">X</button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">P2S-TDE - Agence Immobilière Africaine</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-main">
+                        <img id="modal-image" src="https://via.placeholder.com/1200x600/070707/FFC900?text=Huly+Project" alt="Huly Project" class="modal-image">
+                        
+                        <div class="modal-summary">
+                            <p id="modal-summary">
+                                <!-- Contenu Summary ICI -->
+                            </p>
+                            <a href="#" id="modal-link" class="modal-link" target="_blank">Explorer →</a>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>A propos du project</h3>
+                            <div id="modal-about">
+                                <!-- Contenu About ICI -->
+                            </div>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Résulats clés attendus</h3>
+                            <div class="modal-results" id="modal-results">
+                                <div class="modal-result-item">
+                                    <h4>
+                                        <!-- Titre de Premier résultat -->
+                                    </h4>
+                                    <p>
+                                        <!-- Texte de la description du résultat -->
+                                    </p>
+                                </div>
+                                <div class="modal-result-item">
+                                    <h4>
+                                        <!-- Titre du deuxième résultat -->
+                                    </h4>
+                                    <p>
+                                        <!-- Texte de la description du deuxième résulat -->
+                                    </p>
+                                </div>
+                                <div class="modal-result-item">
+                                    <h4>
+                                        <!-- Titre du troisième résultat -->
+                                    </h4>
+                                    <p>
+                                        <!-- Texte de la description du troisième résultat -->
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-recommendations">
+                            <h3>Projets Similaires</h3>
+                            <div class="recommendations-grid" id="recommendations-grid">
+                                <!-- Les projets recommandés seront ajouté ici dynamiquement -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-aside">
+                        <!-- Logo de l'entreprise -->
+                        <div class="company-logo-container">
+                            <!-- Le logo sera rempli ici dynamiquement -->
+                        </div>
+
+                        <!-- Services fournis -->
+                        <div class="services-section">
+                            <h3 class="section-title">Services fournis</h3>
+                            <div class="modal-meta" id="modal-services">
+                                <!-- Les tags services seront ajoutés ici dynamiquement -->
+                            </div>
+                        </div>
+
+                        <!-- Stack technologique -->
+                        <div class="tech-stack-section">
+                            <h3 class="section-title">Stack Technologique</h3>
+                            <div class="modal-meta" id="modal-tools">
+                                <!-- Les tags outils seront ajoutés ici dynamiquement -->
+                            </div>
+                        </div>
+
+                        <!-- Call to action -->
+                        <div class="cta-container">
+                            <p class="section-title">Un projet à nous soumettre ?</p>
+                            <!-- <a href="https://wa.me/message/ULZITK5PFZDLK1" class="full-width_btn whatsapp-btn" target="_blank" style="margin-top: 1rem; display: flex; justify-content: center;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.888 3.488"/>
+                                </svg>
+                                Discuter sur WhatsApp
+                            </a> -->
+                            <br>
+                            <a href="contact.html" class="cta-button cta" id="request-quote" style="margin-top: 0rem;">Demander un devis</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/services/assets/js/portfolio.js"></script>
+    
+
+        
+    <!-- SECTION REVEAL QR CODE WHATSAPP -->
+    <div class="sections-mt qr-reveal" style="text-align:center;">
+        <!-- Exemple avec contenu WhatsApp -->
+        <p class="info" style="padding-bottom: 1rem;">Survolez la zone ci-dessous et scannez le QR code</p>
+        <div class="reveal-container" id="whatsappReveal">
+            <div class="reveal-content">
+                <div class="text-content">Discuttons en live<br>sur WhatsApp</div>
+                
+                <div class="qr-code">
+                    <img src="assets/images/qr-code-chat-whatsapp-qtz.svg" alt="">
+                </div>
+                
+                <a href="https://wa.me/message/ULZITK5PFZDLK1" class="whatsapp-btn" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.888 3.488"/>
+                    </svg>
+                    Discuter sur WhatsApp
+                </a>
+            </div>
+            
+            <!-- Flèche directionnelle -->
+            <div class="direction-arrow" id="directionArrow">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12h14m0 0l-7-7m7 7l-7 7" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <!-- Grille principale -->
+        <div class="footer-grid container">
+            <!-- Section brand (visible uniquement sur desktop) -->
+            <div class="footer-brand" style="margin-right: 3rem; flex: 1; min-width: 250px;">
+                <div>
+                    <a href="#" class="footer-brand_img" aria-label="Brand">
+                        <img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
+                    </a>
+                    <p class="footer-message"><em>Notre mission, mettre à disposition notre expertise Tech au service de vos ambitions. Nous combinons innovation, savoir-faire technique et compréhension de vos enjeux métier pour développer des outils numériques qui optimisent votre performance et accélèrent votre développement.</em></p>
+                </div>
+                <p class="footer-brand-copyright">© 2025 Qatôrze - Tous droits réservés.</p>
+            </div>
+
+            <!-- Colonne Services -->
+            <div class="footer-column">
+                <p class="footer-title">Services</p>
+                <div class="footer-links">
+                    <p><a href="services_web-&-ecom.html" class="footer-link">Sites Web & E-com</a></p>
+                    <p><a href="service_web-app.html" class="footer-link">Web Apps</a></p>
+                    <p><a href="service_mobile-app.html" class="footer-link">Apps Mobiles</a></p>
+                    <p><a href="services_design-&-conception-graphique.html" class="footer-link">Design</a></p>
+                    <p><a href="service_installation-logiciels.html" class="footer-link">Installation Logiciels</a></p>
+                    <p><a href="service_audit-conseil.html" class="footer-link">Audit & Conseil</a></p>
+                    <p><a href="service_accompagnement-cm.html" class="footer-link">Accompagnement CM</a></p>
+                </div>
+            </div>
+
+            <!-- Colonne Ressources -->
+            <div class="footer-column">
+                <p class="footer-title">Ressources</p>
+                <div class="footer-links">
+                    <p><a href="portfolio.html" class="footer-link">Portfolio</a></p>
+                    <p><a href="#" class="footer-link disabled">Nos outils</a></p>
+                    <p><a href="#" class="footer-link disabled">Nos offres d'emplois</a> <span class="footer-special-text">— On recrute</span></p>
+                    <p><a href="#" class="footer-link disabled">Blog</a></p>
+                </div>
+            </div>
+
+            <!-- Colonne Liens utiles -->
+            <div class="footer-column">
+                <p class="footer-title">Liens utiles</p>
+                <div class="footer-links">
+                    <p><a href="contact.html" class="footer-link">Nous contacter</a></p>
+                    <p><a href="#" class="footer-link disabled">Demande de devis</a></p>
+                    <p><a href="#" class="footer-link disabled">Aide et assistance</a></p>
+                </div>
+            </div>
+
+            <!-- Colonne Aller plus loin -->
+            <div class="footer-column">
+                <p class="footer-title">Aller plus loin</p>
+                <div class="footer-links">
+                    <p><a href="#" class="footer-link disabled">Api</a></p>
+                    <p><a href="#" class="footer-link disabled">Status</a></p>
+                    <p><a href="#" class="footer-link disabled">GitHub</a> <span class="footer-special-text">— New</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section bottom du footer -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content  container">
+                <!-- Section gauche -->
+                <div class="footer-bottom-left">
+                    <!-- Dropdown de langue -->
+                    <!-- <div class="language-dropdown" id="languageDropdown">
+                        <button class="language-dropdown-button" id="languageButton" aria-haspopup="menu" aria-expanded="false">
+                            <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <g fill-rule="evenodd">
+                                    <g stroke-width="1pt">
+                                        <path fill="#bd3d44" d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                        <path fill="#fff" d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                    </g>
+                                    <path fill="#192f5d" d="M0 0h98.8v70H0z" transform="scale(3.9385)"/>
+                                </g>
+                            </svg>
+                            English (US)
+                            <svg class="language-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m18 15-6-6-6 6"/>
+                            </svg>
+                        </button>
+
+                        <div class="language-dropdown-menu" role="menu">
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <g fill-rule="evenodd">
+                                        <g stroke-width="1pt">
+                                            <path fill="#bd3d44" d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                            <path fill="#fff" d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                        </g>
+                                        <path fill="#192f5d" d="M0 0h98.8v70H0z" transform="scale(3.9385)"/>
+                                    </g>
+                                </svg>
+                                English (US)
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="#ffce00" d="M0 341.3h512V512H0z"/>
+                                    <path d="M0 0h512v170.7H0z"/>
+                                    <path fill="#d00" d="M0 170.7h512v170.6H0z"/>
+                                </svg>
+                                Deutsch
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="#c8102e" d="M0 0h512.1v512H0z"/>
+                                    <path fill="#fff" d="M144 0h73.1v512H144z"/>
+                                    <path fill="#fff" d="M0 219.4h512.1v73.2H0z"/>
+                                </svg>
+                                Dansk
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <g fill-rule="evenodd" stroke-width="1pt">
+                                        <path fill="#fff" d="M0 0h512v512H0z"/>
+                                        <path fill="#009246" d="M0 0h170.7v512H0z"/>
+                                        <path fill="#ce2b37" d="M341.3 0H512v512H341.3z"/>
+                                    </g>
+                                </svg>
+                                Italiano
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
+                                    <defs>
+                                        <path id="a" fill="#ffde00" d="M1-.3L-.7.8 0-1 .6.8-1-.3z"/>
+                                    </defs>
+                                    <path fill="#de2910" d="M0 0h512v512H0z"/>
+                                    <use width="30" height="20" transform="matrix(76.8 0 0 76.8 128 128)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="rotate(-121 142.6 -47) scale(25.5827)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="rotate(-98.1 198 -82) scale(25.6)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="rotate(-74 272.4 -114) scale(25.6137)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="matrix(16 -19.968 19.968 16 256 230.4)" xlink:href="#a"/>
+                                </svg>
+                                中文 (繁體)
+                            </a>
+                        </div>
+                    </div> -->
+
+                    <!-- Liens légaux -->
+                    <div class="footer-legal-links">
+                        <p></p>
+                        <a href="cgps.html" class="footer-legal-link">Conditions générales</a>
+                        <a href="#" class="footer-legal-link disabled">Politique de confidentialité</a>
+                        <a href="#" class="footer-legal-link disabled">Utilisation Cookies</a>
+                    </div>
+                </div>
+
+                <!-- Section droite -->
+                <div class="footer-bottom-right">
+                    <!-- Brand mobile (visible uniquement sur mobile) -->
+                    <div class="footer-brand-mobile">
+                        <a href="index.html" class="footer-brand-mobile-title" aria-label="Brand">
+                            <img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
+                        </a>
+                        <p class="footer-brand-mobile-copyright">© 2025 - Tous droits réservés.</p>
+                    </div>
+
+                    <!-- Réseaux sociaux -->
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/qatorze" class="footer-social-link" aria-label="Social Media 1">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M8 11v5" />
+                                <path d="M8 8v.01" />
+                                <path d="M12 16v-5" />
+                                <path d="M16 16v-3a2 2 0 1 0 -4 0" />
+                                <path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/qatorze.services/" class="footer-social-link" aria-label="Social Media 2">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+                                <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                                <path d="M16.5 7.5v.01" />
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/qatorze14" class="footer-social-link" aria-label="Social Media 3">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-facebook">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@qatorze.services" class="footer-social-link" aria-label="Social Media 3">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-tiktok">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" />
+                            </svg>
+                        </a>
+                        <a href="https://g.co/kgs/2utkKce" class="footer-social-link" aria-label="Social Media 3">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-google">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M20.945 11a9 9 0 1 1 -3.284 -5.997l-2.655 2.392a5.5 5.5 0 1 0 2.119 6.605h-4.125v-3h7.945z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="/services/assets/js/effets.js"></script>
+
+    <script>
+        // ===================
+        // CODE DE LA SECTION FAQ
+        // ===================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Fermer tous les autres items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Basculer l'item actuel
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+
+    <script>
+        // ===================
+        // CODE DU REVEAL DU QR CODE AU SURVOL
+        // ===================
+        // Fonction pour suivre la position de la souris
+        function updateMousePosition(container, event) {
+            const rect = container.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width) * 100;
+            const y = ((event.clientY - rect.top) / rect.height) * 100;
+            
+            const content = container.querySelector('.reveal-content');
+            content.style.setProperty('--x', x + '%');
+            content.style.setProperty('--y', y + '%');
+            
+            // Mettre à jour aussi la position pour l'effet de lueur
+            container.style.setProperty('--x', x + '%');
+            container.style.setProperty('--y', y + '%');
+        }
+
+        // Appliquer l'effet au conteneur WhatsApp
+        const container = document.getElementById('whatsappReveal');
+        container.addEventListener('mousemove', (e) => {
+            updateMousePosition(container, e);
+        });
+
+        // Réinitialiser au centre quand la souris sort
+        container.addEventListener('mouseleave', () => {
+            const content = container.querySelector('.reveal-content');
+            content.style.setProperty('--x', '50%');
+            content.style.setProperty('--y', '50%');
+            container.style.setProperty('--x', '50%');
+            container.style.setProperty('--y', '50%');
+        });
+        
+    </script>
+
+    <script src="/services/assets/js/script.js"></script>
+</body>
+</html>

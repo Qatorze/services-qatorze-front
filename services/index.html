@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QTZ - Services</title>
+
+    <!-- Style CSS principal -->
+    <link rel="stylesheet" href="assets/styles/style.css">
+
+    <!-- Preload CSS -->
+    <link rel="preload" href="assets/styles/style.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/styles/style.css"></noscript>
+
+    <!-- Preload JS -->
+    <link rel="preload" href="assets/js/effets.js" as="script">
+
+    <!-- Preload image -->
+    <link rel="preload" href="assets/images/qtz-ligne-jaune.png" as="image" type="image/png">
+
+    <!-- Preload font -->
+    <link rel="preload" href="assets/fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+
+
+    <!-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+
+
+
+    <!-- IMPORT DU FAVICON -->
+    <link rel="icon" type="image/png" href="/services/assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/services/assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/services/assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/services/assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Qatôrze Services" />
+    <link rel="manifest" href="/services/assets/favicon/site.webmanifest" />
+
+    <!-- Script de Metricool : Mesure du trafic sur le site -->
+    <script>
+        function loadScript(a) {
+            var b = document.getElementsByTagName("head")[0],
+            c = document.createElement("script");
+            (c.type = "text/javascript"),
+            (c.src = "https://tracker.metricool.com/resources/be.js"),
+            (c.onreadystatechange = a),
+            (c.onload = a),
+            b.appendChild(c);
+        }
+        loadScript(function () {
+            beTracker.t({ hash: "1c122004afea53291e5d3ca537b99c1e" });
+        });
+    </script>
+</head>
+<body>
+
+    <nav>
+        <!-- NAVBAR - VERSION MOBILE -->
+        <ul class="container sidebar hide-lg">
+
+            <li onclick=hideSidebar()  class="hide-sidebar">
+                <a href="#" class="ctn-logo-qtz-mobile"><img class="logo-qtz-mobile" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a>
+                <a href="index.html">
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M18 6l-12 12" />
+                        <path d="M6 6l12 12" />
+                    </svg>
+                </a>
+            </li>
+            <li class="btn-hover-bg"><a href="index.html" class="link">Accueil</a></li>
+            <li class="btn-hover-bg">
+                <details>
+                    <summary>
+                        Services
+                        <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </summary>
+                    <ul>
+                        <li>
+                            <a href="services_web-&-ecom.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                                </svg>
+                                <span>Sites Web & E-com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_web-app.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                    <path d="M3 9h18"/>
+                                    <path d="M9 21V9"/>
+                                </svg>
+                                <span>Web Apps</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_mobile-app.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                                    <path d="M12 18h.01"/>
+                                  </svg>
+                                <span>Apps Mobiles</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_installation-logiciels.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                  </svg>
+                                <span>Installation Logiciels</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_audit-conseil.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                                  </svg>
+                                <span>Audit & Conseil</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="nos-services-&-produits.html" class="texte-autres-services">
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M12 5l0 14" />
+                                    <path d="M5 12l14 0" />
+                                </svg>
+                                <span>Nos services et produits</span>
+                            </a>
+                            <div class="img-ctn">
+                            </div>
+                        </li>
+                    </ul>
+                </details>
+            </li>
+            <!-- TO-DO : Activer lorsque la page Nos outils sera faite -->
+            <!-- <li class="btn-hover-bg"><a href="#" class="link">Outils</a></li> -->
+            <li class="btn-hover-bg"><a href="portfolio.html" class="link">Portfolio</a></li>
+            <li class="link-yellow-underline"><a href="#">info@qatorze.com</a></li>
+        </ul>
+        <!-- NAVBAR VERSION GRANDS ECRANTS -->
+        <ul class="container">
+            <li><a href="index.html"><img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a></li>
+            <li class="hideOnMobile"><a href="index.html" class="link">Accueil</a></li>
+
+            <li class="hideOnMobile dropdown">
+                <a href="#" class="link">Services 
+                    <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </a>
+                <div class="dropdown-menu row">
+                    <div class="row">
+                        <div class="left-section">
+                            <h4 class="cat-service-titre">Services principaux</h4>
+                            <div class="megamenu-grid">
+        
+                                <a href="services_web-&-ecom.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Sites Web & E-com</p>
+                                      <p class="desc-service">Développement de sites vitrines et e-commerce sur mesure</p>
+                                    </div>
+                                </a>
+        
+                                <a href="service_web-app.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                        <path d="M3 9h18"/>
+                                        <path d="M9 21V9"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Web Apps</p>
+                                      <p class="desc-service">Développement d'applications web progressives</p>
+                                    </div>
+                                </a>
+        
+                                <a href="service_mobile-app.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                                        <path d="M12 18h.01"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Apps Mobiles</p>
+                                      <p class="desc-service">Développement d'applications natifs Android/iOS et hybrides</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="services_design-&-conception-graphique.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                                            <path d="M2 2l7.586 7.586"/>
+                                            <circle cx="11" cy="11" r="2"/>
+                                        </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Design</p>
+                                      <p class="desc-service">Création d'interfaces UI/UX et d'identité visuelle</p>
+                                    </div>
+                                </a>
+
+                                <a href="service_installation-logiciels.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Logiciels</p>
+                                      <p class="desc-service">Installation et configuration logiciels métiers</p>
+                                    </div>
+                                </a>
+
+        
+                                <a href="service_audit-conseil.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Audit & Conseil</p>
+                                      <p class="desc-service">Expertise technique et informatique</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="service_accompagnement-cm.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                            <circle cx="9" cy="7" r="4"/>
+                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                          </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Accompagnement CM</p>
+                                      <p class="desc-service">Optimisation et gestion réseaux sociaux</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="right-section ali_flex-start">
+                            <h4 class="cat-service-titre">Autres services</h4>
+                            <p class="desc-autres-services">Découvrez tous les services et produits proposés par Qatôrze</p>
+                            <a href="nos-services-&-produits.html" class="col disabled">
+                                <div class="img-dropdown-ctn  disabled">
+
+                                </div>
+                                <p>Voir plus</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="hideOnMobile"><a href="portfolio.html" class="link">Portfolio</a></li>
+            <li class="hideOnMobile"><a href="contact.html" class="link">Contact</a></li>
+            <li class="hideOnMobile"><a href="#" class="link-yellow-line-left">info@qatorze.com</a></li>
+            <li onclick=showSidebar() class="menu-button"><a href="#">
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M4 6h16" />
+                    <path d="M7 12h13" />
+                    <path d="M10 18h10" />
+                </svg>
+            </a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <canvas id="canvas" width="500" height="500"></canvas>
+
+        <div class="container">
+            <!-- Announcement Banner -->
+            <div class="announcement-banner">
+                <a href="https://wa.me/message/ULZITK5PFZDLK1" class="whatsapp-button">
+                    <span>Ecrivez nous en live sur Whatsapp</span> <span class="whatsapp-button__icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="whatsapp-button__icon">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+                            <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 .5 0 0 0 0 1" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
+            <!-- End Announcement Banner -->
+
+            <span class="animate-element slide-up">
+                <h1 class="hero-headline">Avec vous <br class="tab-sm">  pour réaliser, <br> vos projets <span class="tech-word">Tech
+                    <img class="tech-underline-mb" src="/services/assets/images/qtz-ligne-jaune.png" alt="Ligne Jaune">
+                </span>
+                    <img class="tech-underline" src="/services/assets/images/qtz-ligne-jaune.png" alt="Ligne Jaune">
+                </h1>
+            </span>
+
+            <span  class="animate-element slide-up-2">
+                <p class="hero-texte">
+                    Propulsez votre entreprise avec les outils numériques qu'il vous faut. <span class="hidden-mb">Nous transformons vos idées de site, web app, mobile app, logiciel... en réalité.</span>
+                </p>
+                <ul class="hero-btn-ctn">
+                    <li><a href="contact.html" class="cta">Nous contacter</a></li>
+                    <li><a href="portfolio.html" class="secondary-button">nos réalisations <span aria-hidden="true">→</span></a></li>
+                </ul>
+            </span>
+        </div>
+    </section>
+
+    <!-- -------------------
+    SECTION N°2 - DEFILEMENT DE LOGOS
+    -------------------- -->
+    
+    <section class="ctn-scroll">
+        <div class="container-2">
+            <div class="content-container-2">
+                <div class="wrapper">
+                    <div class="item item1">Propulsé par</div>
+                    <div class="item item2 no-text"><img src="/services/assets/images/logo-qonto-blanc.png" alt="Logo Qonto Blanc"></div>
+                    <div class="item item3 no-text"><img src="/services/assets/images/logo-pepite-eca.png" alt="Logo Pépite ECA"></div>
+                    <div class="item item4 no-text"><img src="/services/assets/images/logo-stripe-blanc.png" alt="Logo Stripe"></div>
+                    <div class="item item5">Nos technologies</div>
+                    <div class="item item6 no-text"><img src="/services/assets/images/logo-angular-white.png" alt="Logo Astro Js"></div>
+                    <div class="item item7 no-text"><img src="/services/assets/images/logo-astrojs.svg" alt="Logo Astro Js"></div>
+                    <div class="item item8 no-text"><img src="/services/assets/images/logo-android-blanc.svg" alt="Logo Android"></div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="image-container">
+            <img class="qtz-bg-image" src="/services/assets/images/img-qtz-bg-down-tr.svg" alt="">
+        </div> -->
+    </section>
+    
+    <!-- -------------------
+    SECTION N°2 - DEFILEMENT DE LOGOS
+    -------------------- -->
+
+    <section id="services" class="container sections-mt">
+        <p class="petit-titre-section">Pour vos projets Tech</p>
+        <h2 class="titre-service animate-element blur-letters" 
+            data-text="Développement de sites, logiciels, d'applications web et mobiles sur mesure, optimisés pour vous et votre entreprise">Développement de sites, logiciels, d'applications web et mobiles sur mesure, optimisés pour vous et votre entreprise
+        </h2>
+        <p class="text-service">
+            Avoir une présence en ligne est indispensable aujourd’hui, mais ce n’est pas suffisant. Pour réussir, vous avez besoin d’outils numériques adaptés à votre façon de travailler et à vos objectifs. C’est là que nous intervenons et créons des outils de qualité qui optimisent votre manière de travailler.
+        </p>
+
+        <!-- Version Grid (tablette + desktop) -->
+        <!-- <div class="parent animate-element slide-up">
+            <div class="div1">Contenu 1</div>
+            <div class="div2">Contenu 2</div>
+            <div class="div3">Contenu 3</div>
+            <div class="div4">Contenu 4</div>
+        </div> -->
+
+        <!-- Version Grid (tablette + desktop) -->
+        <div class="bento-grid">
+            
+            <!-- Mobile friendly -->
+            <div class="div1">
+                <article class="card-bento">
+                    <header class="card-header">
+                        <h3 class="card-title">Adaptés au Mobiles</h3>
+                        <p class="card-description">
+                            Vos clients utilisent leur smartphone partout et à tout moment. Nos solutions s'adaptent parfaitement à tous les écrans pour offrir une expérience fluide et intuitive, que ce soit sur mobile, tablette ou ordinateur.
+                        </p>
+                    </header>
+                    <div class="card-visual card-visual_mobile">
+                        <img src="/services/assets/images/img-p2s-mobile.png" alt="Mobile friendly illustration">
+                    </div>
+                </article>
+            </div>
+
+            <!-- Performance -->
+            <div class="div2">
+                <article class="card-bento-2">
+                    <header class="card-header">
+                        <h3 class="card-title">Apps et Sites performants</h3>
+                        <p class="card-description">Qatôrze transforme votre site lent en expérience ultra-rapide grâce à une optimisation technique avancée.</p>
+                    </header>
+                    <div class="card-visual_centered" id="visualContainer">
+                        <div class="performance-container" id="performanceContainer">
+                            <div class="state-indicator before" id="stateIndicator">Site Lent</div>
+                            
+                            <div class="optimisation_main-content">
+                                <div class="left-section-2">
+                                    <div class="loading-time slow" id="loadingTime">3.45s</div>
+                                    <div class="loading-bars" id="loadingBars">
+                                        <div class="bar slow-loading"></div>
+                                        <div class="bar slow-loading"></div>
+                                        <div class="bar slow-loading"></div>
+                                        <div class="bar slow-loading"></div>
+                                        <div class="bar slow-loading"></div>
+                                        <div class="bar slow-loading"></div>
+                                        <div class="bar slow-loading"></div>
+                                        <div class="bar slow-loading"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="right-section-2">
+                                    <div class="website-animation" id="websiteAnimation">
+                                        <div class="website-header">
+                                            <div class="website-dot"></div>
+                                            <div class="website-dot"></div>
+                                            <div class="website-dot"></div>
+                                        </div>
+                                        <div class="website-content">
+                                            <div class="website-element"></div>
+                                            <div class="website-element"></div>
+                                            <div class="website-element"></div>
+                                            <div class="website-element"></div>
+                                            <div class="website-element"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="optimization-process" id="optimizationProcess">
+                                        <div class="optimization-rings">
+                                            <div class="optimization-ring"></div>
+                                            <div class="optimization-ring"></div>
+                                            <div class="optimization-ring"></div>
+                                        </div>
+                                        <div class="qatorze-logo"></div>
+                                    </div>
+                                    
+                                    <div class="improvement-badge" id="improvementBadge">75% plus rapide</div>
+                                </div>
+                            </div>
+                            
+                            <div class="performance-metrics" style="visibility: hidden;">
+                                <div class="metric">
+                                    <div class="metric-label">Avant</div>
+                                    <div class="metric-value" style="color: #ef4444;" id="beforeValue">3.45s</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-label">Score</div>
+                                    <div class="metric-value" style="color: #fbbf24;" id="score">32</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-label">Après</div>
+                                    <div class="metric-value" style="color: #10b981;" id="afterValue">0.86s</div>
+                                </div>
+                            </div>
+                            
+                            <div class="interactive-hint" id="interactiveHint">Cliquez pour relancer</div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Security -->
+            <div class="div3">
+                <article class="card-bento">
+                    <header class="card-header">
+                        <h3 class="card-title">Security</h3>
+                        <p class="card-description">La sécurité de vos données et celles de vos clients est notre priorité absolue. Nous intégrons les meilleures pratiques de sécurité dès la conception : chiffrement des données, protection contre les cyberattaques et sauvegardes automatiques.</p>
+                    </header>
+                    <div class="card-visual card-visual_wide">
+                        <img src="/services/assets/images/img-security.jpg" alt="Security illustration" style="max-height: 153px; object-fit: cover;">
+                    </div>
+                </article>
+            </div>
+
+            <!-- Powerful APIs -->
+            <div class="div4">
+                <article class="card-bento bento-voir_content col_onTablette">
+                    <header class="card-header reduced-card-header_onTablette">
+                        <h3 class="card-title">Code propre et de qualité</h3>
+                        <p class="card-description">Un code bien structuré garantit des outils durables et performants.</p>
+                    </header>
+                    <div class="card-visual card-visual_code">
+                        <div class="code-tabs">
+                            <div class="code-tab active">NotificationSetting.jsx</div>
+                            <div class="code-tab">App.jsx</div>
+                        </div>
+                        <div class="code-content">
+                            <pre class="code-block"><code class="typescript" id="typewriter-code"></code></pre>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- Version Carrousel (mobile) -->
+        <!-- <div class="carousel-btn-ctn hide-md">
+            <button  id="prev"  class="carousel-btn prev-btn-2">&#10094;</button>
+            <button  id="next" class="carousel-btn next-btn-2">&#10095;</button>
+        </div>
+
+        <div class="carousel-container">
+            <div class="carousel" id="carousel">
+                <div class="carousel-item" style="background-color: #ff7675;">Contenu 1</div>
+                <div class="carousel-item" style="background-color: #74b9ff;">Contenu 2</div>
+                <div class="carousel-item" style="background-color: #55efc4;">Contenu 3</div>
+                <div class="carousel-item" style="background-color: #a29bfe;">Contenu 4</div>
+            </div>
+        </div> -->
+        
+    </section>
+
+
+    <!-- -------------------
+    SECTION N°3 - TOUS NOS SERVICES
+    -------------------- -->
+
+    <section id="all-services" class="container sections-mt">
+        <p class="petit-titre-section">Tous nos services</p>
+        <div class="all-services-text gap-1">
+            <h2 class="titre-service  animate-element blur-letters">Une panoplie de services pour tous vos besoins</h2>
+            <p class="text-service">Avoir une présence en ligne est indispensable aujourd'hui, mais ce n'est pas suffisant. Pour réussir, vous avez besoin d'outils numériques adaptés à votre façon de travailler et à vos objectifs. C'est là que nous intervenons et créons des outils de qualité qui optimisent votre manière de travailler.</p>
+        </div>
+        <div class="container carousel-btn-ctn">
+            <button class="carousel-btn prev-btn">&#10094;</button>
+            <button class="carousel-btn next-btn">&#10095;</button>
+        </div>
+    
+        <div class="slideshow-container">
+            <div class="slideshow">
+                <div class="slide s1">
+                    <div class="overlay"></div>
+                    <h2>Site Web & E-commerce</h2>
+                    <a href="services_web-&-ecom.html">Explorer</a>
+                </div>
+                <div class="slide s2">
+                    <div class="overlay"></div>
+                    <h2>Web App</h2>
+                    <a href="service_web-app.html">Explorer</a>
+                </div>
+                <div class="slide s3">
+                    <div class="overlay"></div>
+                    <h2>Application Mobile</h2>
+                    <a href="service_mobile-app.html">Explorer</a>
+                </div>
+                <div class="slide s4">
+                    <div class="overlay"></div>
+                    <h2>Design & Conception graphique</h2>
+                    <a href="services_design-&-conception-graphique.html">Explorer</a>
+                </div>
+                <div class="slide s5">
+                    <div class="overlay"></div>
+                    <h2>Audit & Conseil Tech</h2>
+                    <a href="service_audit-conseil.html">Explorer</a>
+                </div>
+                <div class="slide s6">
+                    <div class="overlay"></div>
+                    <h2>Installation Logiciels</h2>
+                    <a href="service_installation-logiciels.html">Explorer</a>
+                </div>
+                <div class="slide s7">
+                    <div class="overlay"></div>
+                    <h2>Accompagnement CM</h2>
+                    <a href="service_accompagnement-cm.html">Explorer</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- -------------------
+    SECTION N°4 - TOUTES NOS TECHNOLOGIES
+    -------------------- -->
+
+    <section id="Nos outils" class="container sections-mt">
+
+        <div class="half-width-lg_ctn">
+            <p class="petit-titre-section">Nos outils</p>
+            <div class="all-services-text gap-1">
+                <h2 class="titre-service  animate-element blur-letters">Une expertise technique avancée sur plusieur outils</h2>
+                <p class="text-service">Avoir une présence en ligne est indispensable aujourd'hui, mais ce n'est pas suffisant. Pour réussir, vous avez besoin d'outils numériques adaptés à votre façon de travailler et à vos objectifs. C'est là que nous intervenons et créons des outils de qualité qui optimisent votre manière de travailler.</p>
+            </div>
+        </div>
+
+        <div class="container-drop-l container">
+            <div class="logos-grid" id="logosGrid">
+                <!-- Ligne 1 -->
+                <div class="logo-item">
+                    <p class="logo-text">Angular</p>
+                    <img  class="logo-image" src="/services/assets/images/icone-angular.png" alt="Icône Angular">
+                </div>
+                <div class="logo-item">
+                    <p class="logo-text">Astro JS</p>
+                    <img  class="logo-image" src="/services/assets/images/icone-astrojs.svg" alt="Icône Astro JS">
+                </div>
+                <div class="logo-item">
+                    <p class="logo-text">Java</p>
+                    <img  class="logo-image" src="/services/assets/images/logo-java.svg" alt="Logo Java">
+                </div>
+                <div class="logo-item">
+                    <p class="logo-text">Spring Boot</p>
+                    <img  class="logo-image" src="/services/assets/images/icone-spring-boot.svg" alt="Icône Spring Boot">
+                </div>
+                
+                <!-- Ligne 2 -->
+                <div class="logo-item">
+                    <p class="logo-text">Kotlin</p>
+                    <img  class="logo-image" src="/services/assets/images/icone-kotlin.svg" alt="">
+                </div>
+                <div class="logo-item">
+                    <p class="logo-text">Android</p>
+                    <img  class="logo-image" src="/services/assets/images/icone-android.svg" alt="">
+                </div>
+                <div class="logo-item">
+                    <p class="logo-text">Swift</p>
+                    <img  class="logo-image" src="/services/assets/images/icone-swift.svg" alt="">
+                </div>
+                <div class="logo-item">
+                    <p class="logo-text">React</p>
+                    <img  class="logo-image" src="/services/assets/images/icone-react.svg" alt="">
+                </div>
+
+
+                <!-- Ligne 3 -->
+                <div class="logo-item" style="display: none;">
+                    <p class="logo-text">Figma</p>
+                    <img  class="logo-image" src="/services/assets/images/icone-figma.svg" alt="Icône Figma">
+                </div>
+                <div class="logo-item" style="display: none;">
+                    <p class="logo-text">Adobe Illustrator</p>
+                    <img  class="logo-image" src="/services/assets/images/icone-adobe-illustrator.svg" alt="Icône Adobe Illustrator">
+                </div>
+                <div class="logo-item" style="display: none;">
+                    <p class="logo-text">Tailwind</p>
+                    <img  class="logo-image" src="/services/assets/images/icone-tailwindcss.svg" alt="Icône Tailwindcss">
+                </div>
+                <div class="logo-item" style="display: none;">
+                    <p class="logo-text">Bootstrap</p>
+                    <img  class="logo-image" src="/services/assets/images/icone-bootstrap.svg" alt="Icône Bootstrapp">
+                </div>
+                
+                <!-- Lignes supplémentaires (cachées initialement) -->
+                <div class="logo-item">
+                    <p class="logo-text">JavaScript</p>
+                    <img  class="logo-image" src="/services/assets/images/icone-javascript.png" alt="">
+                </div>
+                <div class="logo-item">
+                    <p class="logo-text">PHP</p>
+                    <img  class="logo-image" src="/services/assets/images/logo-php.svg" alt="">
+                </div>
+                <div class="logo-item">
+                    <p class="logo-text">Magento</p>
+                    <img  class="logo-image" src="/services/assets/images/icone-magento.svg" alt="">
+                </div>
+                <div class="logo-item">
+                    <p class="logo-text">Shopify</p>
+                    <img  class="logo-image" src="/services/assets/images/icone-shopify.svg" alt="">
+                </div>
+            </div>
+            
+            <!-- <button class="load-more" id="loadMore">Voir plus</button> -->
+        </div>
+        
+    </section>
+
+
+    <!-- -------------------
+    SECTION N°5 - NOTRE PORTFOLIO
+    -------------------- -->
+
+
+    <section id="portfolio" class="container sections-mt">
+        <p class="petit-titre-section">Notre portfolio</p>
+        <h2 class="titre-service  animate-element blur-letters">Notre équipe aime les projets à fort impact. Nous avons designé, développé et contribué à plusieurs projets.</h2>
+        <p class="text-service">Projets innovants, à impact sociétale, ambitieux... Nous avons à coeur d'être le partenaire tech des entreprises et entrepreuneurs d'aujourd'hui et de demain. Découvrez dès maintenant les sites, applications, logiciels que nous avons développé, les projets que nous avons mis en place ou accompagné.</p>
+
+        <div class="projects-portfolio_ctn">
+            <div class="element" 
+                data-message="Agence Immobilière" 
+                data-media-type="text" 
+                data-title="Agence Immobilière Africaine : P2S-TDE" 
+                data-description="P2S-TDE l'agence immobilière de la zone équatoriale. Gabon, Guinnée-Equatoriale, Cameroun et plus à venir. Dans l'optique d'affirmer leur présence en ligne et structurer leur activitée de gestion immobilière ont fait appel aux Services de Qatôrze pour le développement de leur Application Web. Publication des biens immobiliers à la vente ou à la location. Gestion de parc immobilier et locatif. Une application web complète, performante, sécurisée et ergonomique qui a permis à P2S-TDE d'être précurseur sur son marché sur la prise du virage de la dif=gitalisation."
+                data-images='["/services/assets/images/img-p2s-3.svg", "/services/assets/gifs/SHOWUP - P2S - gif.gif", "/services/assets/images/img-p2s-2.png"]'>
+                P2S-TDE
+            </div>
+            <div class="element" 
+                data-message="Centrale d'achat" 
+                data-media-type="text" 
+                data-title="Site vitrine pour une PME Internationale : AFMAT" 
+                data-description="Centrale d'achat africaine de produits industriels et manufacturiers en charge de l'approvisionnement de pièces industrielles à l'international pour ses clients privés et institutionnels tels qu'Olam, GSEZ, AGL, Owendo Containeur Port, la Société du Patrimoine, la SEEG et bien d'autres. Fort d'un réseau de fournisseurs à l'international (Europe, Chine, Turquie, Emirates Arabes Unis, Turquie...). Pour affirmer leur présence en ligne, et la numérisation de leur activitée opérationnel se sont doté d'un site vitrine simple et sobre, intégrant leur branding et présentant succintement leur activité, à leur différents partis prenants : prospects, nouveaux fournisseurs, clients et tous leurs différents partis prenantes."
+                data-images='["/services/assets/images/img-afmat-1.png", "/services/assets/images/img-afmat-2.png", "/services/assets/images/img-afmat-3.png"]'>
+                AFMAT
+            </div>
+            <div class="element" 
+                data-message="Créer" 
+                data-media-type="image" 
+                data-media-src="/services/assets/images/logo-attimino.png" 
+                data-title="Des évènements pour découvrir l'Italie autrement : ATTIMINO" 
+                data-description="Une plteforme de de réservation d'évènements (pièce de théâtre, tickets de concert, Entrées dans des musés, visites guidées), suggestion de lieux authentiques à visiter. Pensée et développé avec amour par l'équipe Qatôrze, pour le monde. Pour une expérience originale et authentique lors de votre séjour en Italie et ses alentours, ayez le reflexe ATTIMINO, pour passer de bon petits moments."
+                data-images='["/services/assets/images/img-attimino-1.png", "/services/assets/images/img-attimino-2.png", "/services/assets/images/img-attimino-3.png"]'>
+                ATTIMINO
+            </div>
+            <div class="element" 
+                data-message="Créer" 
+                data-media-type="image" 
+                data-media-src="/services/assets/images/logo-wwa.png" 
+                data-title="Démmarrez vos études à l'étranger dans les meilleurs conditions : World Wise Admission" 
+                data-description="Wold Wise Admission (WWA) est une start-up panafricaine qui a pour vocation d'accompagner les étudiant dans les démarches de candidatures dans des université et établissements d'enseignement supérieur situés à l'étranger. Après avoir accompagnés quelques Lycéens ayant obtenus leur baccalauréat dans les démarches de candidature, principalement dans des université en Chine, l'équipe WWA a décidé d'emboîter le pas et d'officialiser leur activité. Visant une clientèle jeune l'équipe WWA a très tôt compris l'importance d'avoir une forte présence en ligne et a fait appel au services de Qatôrze. Ainsi, après un rapide audit et des conseils stratégiques nous les avons accompagné dans la mise en place de leur projet. Du naming (Bourse en Chine -> World Wise Admission), à la création de leur site internet en passant par l'accompagnement sur les réseaux sociaux et la conception des ressources graphiques et supports marketing nécéssaires pour donner de l'inertie à leur activitée."
+                data-images='["/services/assets/images/img-wwa-1.png", "/services/assets/images/img-wwa-2.png", "/services/assets/images/img-wwa-3.png"]'>
+                WWA
+            </div>
+        </div>
+
+        <div class="hover-message" id="hover-message"></div>
+        <div class="hover-media" id="hover-media">
+            <img id="media-content" src="/services/assets/images/img-devis.jpg" alt="Aperçu">
+            <img id="media-content" src="/services/assets/images/" alt="Aperçu">
+        </div>
+        
+        <div class="blur-container" id="blur-container">
+            <div class="modal-content">
+                <h2 class="modal-title" id="modal-title"></h2>
+                <p class="modal-description" id="modal-description"></p>
+                <div class="image-gallery" id="image-gallery"></div>
+            </div>
+            <button class="close-btn">X</button>
+        </div>
+        
+    </section>
+
+
+    <!-- -------------------
+    SECTION N°6 - NOUS CONTACTER
+    -------------------- -->
+
+    <section class="ctn-scroll">
+        <div class="content-container-2">
+
+            <div id="contact-us" class="sections-mt">
+
+                <div class="logo-box container">
+                    <video loop playsinline autoplay muted poster="/services/assets/images/img-qtz-metalique-logo.png">
+                        <source type="video/mp4" src="/services/assets/videos/QTZ - LOGO VERT + LOGO METAL LIQUIDE.mp4">
+                    </video>
+
+                    <h2 class="titre-service">
+                        Qatôrze Services, <br>
+                        votre partenaire Tech <br>
+                        pour vos projets : <br>
+                        <span class="text-changing" data-index="0" style="background-color:#00753d">
+                            <span class="text-output">Dev. Sites web et E-com</span>
+                        </span>
+                    </h2>
+                </div>
+
+                <div class="contact-us_ctn container animate-element slide-up">
+
+                                    
+                    <div class="contact-us_devis">
+                        <div class="overlay"></div>
+                        <img class="contact-us_img" src="/services/assets/images/img-devis-qtz-4.png" alt="">
+
+                        <div class="blurred-bottom">
+                            <p class="petit-titre-section">Prêt à commencer</p>
+                            <h2 class="sous-titre">Demander un devis</h2>
+                            <a href="contact.html" class="cta">Obtenir un devis</a>
+                        </div>
+                    </div>
+
+        
+                    <div class="contact-us_talk">
+                        <div class="overlay"></div>
+                        <img class="contact-us_img" src="/services/assets/images/img-egerie-qtz.jpg" alt="">
+
+                        <div class="blurred-bottom">
+                            <p class="petit-titre-section">Un projet à nous confier...</p>
+                            <h2 class="sous-titre">Et si nous discutions ?</h2>
+                            <a href="contact.html" class="cta">Nous contacter</a>
+                        </div>
+                    </div>
+        
+                    <div class="contact-us_see-portfolio">
+                        <div class="overlay"></div>
+                        <img class="contact-us_img" src="/services/assets/images/img-study-cases.svg" alt="">
+
+                        <div class="blurred-bottom">
+                            <p class="petit-titre-section">Notre portfolio</p>
+                            <h2 class="sous-titre">Study cases</h2>
+                            <a href="portfolio.html" class="cta">Nos réalisations</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+
+        </div>
+        <!-- <div class="image-container">
+            <img class="qtz-bg-image" src="/services/assets/images/img-qtz-bg-down-tr.svg" alt="">
+        </div> -->
+    </section>
+
+
+    <!-- SECTION REVEAL QR CODE WHATSAPP -->
+    <div class="sections-mt qr-reveal" style="text-align:center;">
+        <!-- Exemple avec contenu WhatsApp -->
+        <p class="info" style="padding-bottom: 1rem;">Survolez la zone ci-dessous et scannez le QR code</p>
+        <div class="reveal-container" id="whatsappReveal">
+            <div class="reveal-content">
+                <div class="text-content">Discuttons en live<br>sur WhatsApp</div>
+                
+                <div class="qr-code">
+                    <img src="assets/images/qr-code-chat-whatsapp-qtz.svg" alt="">
+                </div>
+                
+                <a href="https://wa.me/message/ULZITK5PFZDLK1" class="whatsapp-btn" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.888 3.488"/>
+                    </svg>
+                    Discuter sur WhatsApp
+                </a>
+            </div>
+            
+            <!-- Flèche directionnelle -->
+            <div class="direction-arrow" id="directionArrow">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12h14m0 0l-7-7m7 7l-7 7" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <!-- Grille principale -->
+        <div class="footer-grid container">
+            <!-- Section brand (visible uniquement sur desktop) -->
+            <div class="footer-brand" style="margin-right: 3rem; flex: 1; min-width: 250px;">
+                <div>
+                    <a href="#" class="footer-brand_img" aria-label="Brand">
+                        <img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
+                    </a>
+                    <p class="footer-message"><em>Notre mission, mettre à disposition notre expertise Tech au service de vos ambitions. Nous combinons innovation, savoir-faire technique et compréhension de vos enjeux métier pour développer des outils numériques qui optimisent votre performance et accélèrent votre développement.</em></p>
+                </div>
+                <p class="footer-brand-copyright">© 2025 Qatôrze - Tous droits réservés.</p>
+            </div>
+
+            <!-- Colonne Services -->
+            <div class="footer-column">
+                <p class="footer-title">Services</p>
+                <div class="footer-links">
+                    <p><a href="services_web-&-ecom.html" class="footer-link">Sites Web & E-com</a></p>
+                    <p><a href="service_web-app.html" class="footer-link">Web Apps</a></p>
+                    <p><a href="service_mobile-app.html" class="footer-link">Apps Mobiles</a></p>
+                    <p><a href="services_design-&-conception-graphique.html" class="footer-link">Design</a></p>
+                    <p><a href="service_installation-logiciels.html" class="footer-link">Installation Logiciels</a></p>
+                    <p><a href="service_audit-conseil.html" class="footer-link">Audit & Conseil</a></p>
+                    <p><a href="service_accompagnement-cm.html" class="footer-link">Accompagnement CM</a></p>
+                </div>
+            </div>
+
+            <!-- Colonne Ressources -->
+            <div class="footer-column">
+                <p class="footer-title">Ressources</p>
+                <div class="footer-links">
+                    <p><a href="portfolio.html" class="footer-link">Portfolio</a></p>
+                    <p><a href="#" class="footer-link disabled">Nos outils</a></p>
+                    <p><a href="#" class="footer-link disabled">Nos offres d'emplois</a> <span class="footer-special-text">— On recrute</span></p>
+                    <p><a href="#" class="footer-link disabled">Blog</a></p>
+                </div>
+            </div>
+
+            <!-- Colonne Liens utiles -->
+            <div class="footer-column">
+                <p class="footer-title">Liens utiles</p>
+                <div class="footer-links">
+                    <p><a href="contact.html" class="footer-link">Nous contacter</a></p>
+                    <p><a href="#" class="footer-link disabled">Demande de devis</a></p>
+                    <p><a href="#" class="footer-link disabled">Aide et assistance</a></p>
+                </div>
+            </div>
+
+            <!-- Colonne Aller plus loin -->
+            <div class="footer-column">
+                <p class="footer-title">Aller plus loin</p>
+                <div class="footer-links">
+                    <p><a href="#" class="footer-link disabled">Api</a></p>
+                    <p><a href="#" class="footer-link disabled">Status</a></p>
+                    <p><a href="#" class="footer-link disabled">GitHub</a> <span class="footer-special-text">— New</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section bottom du footer -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content  container">
+                <!-- Section gauche -->
+                <div class="footer-bottom-left">
+                    <!-- Dropdown de langue -->
+                    <!-- <div class="language-dropdown" id="languageDropdown">
+                        <button class="language-dropdown-button" id="languageButton" aria-haspopup="menu" aria-expanded="false">
+                            <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <g fill-rule="evenodd">
+                                    <g stroke-width="1pt">
+                                        <path fill="#bd3d44" d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                        <path fill="#fff" d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                    </g>
+                                    <path fill="#192f5d" d="M0 0h98.8v70H0z" transform="scale(3.9385)"/>
+                                </g>
+                            </svg>
+                            English (US)
+                            <svg class="language-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m18 15-6-6-6 6"/>
+                            </svg>
+                        </button>
+
+                        <div class="language-dropdown-menu" role="menu">
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <g fill-rule="evenodd">
+                                        <g stroke-width="1pt">
+                                            <path fill="#bd3d44" d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                            <path fill="#fff" d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                        </g>
+                                        <path fill="#192f5d" d="M0 0h98.8v70H0z" transform="scale(3.9385)"/>
+                                    </g>
+                                </svg>
+                                English (US)
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="#ffce00" d="M0 341.3h512V512H0z"/>
+                                    <path d="M0 0h512v170.7H0z"/>
+                                    <path fill="#d00" d="M0 170.7h512v170.6H0z"/>
+                                </svg>
+                                Deutsch
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="#c8102e" d="M0 0h512.1v512H0z"/>
+                                    <path fill="#fff" d="M144 0h73.1v512H144z"/>
+                                    <path fill="#fff" d="M0 219.4h512.1v73.2H0z"/>
+                                </svg>
+                                Dansk
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <g fill-rule="evenodd" stroke-width="1pt">
+                                        <path fill="#fff" d="M0 0h512v512H0z"/>
+                                        <path fill="#009246" d="M0 0h170.7v512H0z"/>
+                                        <path fill="#ce2b37" d="M341.3 0H512v512H341.3z"/>
+                                    </g>
+                                </svg>
+                                Italiano
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
+                                    <defs>
+                                        <path id="a" fill="#ffde00" d="M1-.3L-.7.8 0-1 .6.8-1-.3z"/>
+                                    </defs>
+                                    <path fill="#de2910" d="M0 0h512v512H0z"/>
+                                    <use width="30" height="20" transform="matrix(76.8 0 0 76.8 128 128)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="rotate(-121 142.6 -47) scale(25.5827)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="rotate(-98.1 198 -82) scale(25.6)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="rotate(-74 272.4 -114) scale(25.6137)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="matrix(16 -19.968 19.968 16 256 230.4)" xlink:href="#a"/>
+                                </svg>
+                                中文 (繁體)
+                            </a>
+                        </div>
+                    </div> -->
+
+                    <!-- Liens légaux -->
+                    <div class="footer-legal-links">
+                        <p></p>
+                        <a href="cgps.html" class="footer-legal-link">Conditions générales</a>
+                        <a href="#" class="footer-legal-link disabled">Politique de confidentialité</a>
+                        <a href="#" class="footer-legal-link disabled">Utilisation Cookies</a>
+                    </div>
+                </div>
+
+                <!-- Section droite -->
+                <div class="footer-bottom-right">
+                    <!-- Brand mobile (visible uniquement sur mobile) -->
+                    <div class="footer-brand-mobile">
+                        <a href="index.html" class="footer-brand-mobile-title" aria-label="Brand">
+                            <img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
+                        </a>
+                        <p class="footer-brand-mobile-copyright">© 2025 - Tous droits réservés.</p>
+                    </div>
+
+                    <!-- Réseaux sociaux -->
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/qatorze" class="footer-social-link" aria-label="Social Media 1">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M8 11v5" />
+                                <path d="M8 8v.01" />
+                                <path d="M12 16v-5" />
+                                <path d="M16 16v-3a2 2 0 1 0 -4 0" />
+                                <path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/qatorze.services/" class="footer-social-link" aria-label="Social Media 2">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+                                <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                                <path d="M16.5 7.5v.01" />
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/qatorze14" class="footer-social-link" aria-label="Social Media 3">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-facebook">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@qatorze.services" class="footer-social-link" aria-label="Social Media 3">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-tiktok">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" />
+                            </svg>
+                        </a>
+                        <a href="https://g.co/kgs/2utkKce" class="footer-social-link" aria-label="Social Media 3">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-google">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M20.945 11a9 9 0 1 1 -3.284 -5.997l-2.655 2.392a5.5 5.5 0 1 0 2.119 6.605h-4.125v-3h7.945z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </footer>
+
+
+    <script src="/services/assets/js/effets.js"></script>
+
+    <script>
+        // ===================
+        // CODE DU REVEAL DU QR CODE AU SURVOL
+        // ===================
+        // Fonction pour suivre la position de la souris
+        function updateMousePosition(container, event) {
+            const rect = container.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width) * 100;
+            const y = ((event.clientY - rect.top) / rect.height) * 100;
+            
+            const content = container.querySelector('.reveal-content');
+            content.style.setProperty('--x', x + '%');
+            content.style.setProperty('--y', y + '%');
+            
+            // Mettre à jour aussi la position pour l'effet de lueur
+            container.style.setProperty('--x', x + '%');
+            container.style.setProperty('--y', y + '%');
+        }
+
+        // Appliquer l'effet au conteneur WhatsApp
+        const container = document.getElementById('whatsappReveal');
+        container.addEventListener('mousemove', (e) => {
+            updateMousePosition(container, e);
+        });
+
+        // Réinitialiser au centre quand la souris sort
+        container.addEventListener('mouseleave', () => {
+            const content = container.querySelector('.reveal-content');
+            content.style.setProperty('--x', '50%');
+            content.style.setProperty('--y', '50%');
+            container.style.setProperty('--x', '50%');
+            container.style.setProperty('--y', '50%');
+        });
+        
+    </script>
+
+    <!-- LE SCRIPT POUR L'ANIMATION DU CODE DANS LE BENTO GRID -->
+    <script>
+        // Code AstroJS/TypeScript drôle pour Qatôrze Services
+        // PS : Ne pas factoriser ou indenter le code ci-dessous
+        const codeText = `<span class="comment">// 🚀 Besoin d'une app qui déchire ?</span>
+<span class="comment">// Contactez Qatôrze Services !</span>
+<span class="comment">// Designer, Front-end, Back-end, DevOps, QA, PM... au service de votre projet Tech</span>
+
+<span class="keyword">import</span> <span class="keyword">type</span> <span class="punctuation">{</span> <span class="type">APIRoute</span> <span class="punctuation">}</span> <span class="keyword">from</span> <span class="string">'astro'</span><span class="punctuation">;</span>
+<span class="keyword">import</span> <span class="punctuation">{</span> <span class="function">useState</span> <span class="punctuation">}</span> <span class="keyword">from</span> <span class="string">'react'</span><span class="punctuation">;</span>
+
+<span class="keyword">interface</span> <span class="type">QatorzeProject</span> <span class="punctuation">{</span>
+  <span class="property">clientName</span><span class="punctuation">:</span> <span class="type">string</span><span class="punctuation">;</span>
+  <span class="property">needsHelp</span><span class="punctuation">:</span> <span class="type">boolean</span><span class="punctuation">;</span>
+  <span class="property">budget</span><span class="punctuation">:</span> <span class="type">number</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+
+<span class="keyword">function</span> <span class="function">ContactQatorzeServices</span><span class="punctuation">()</span> <span class="punctuation">{</span>
+  <span class="keyword">const</span> <span class="punctuation">[</span><span class="variable">project</span><span class="punctuation">,</span> <span class="variable">setProject</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="function">useState</span><span class="operator">&lt;</span><span class="type">QatorzeProject</span><span class="operator">&gt;</span><span class="punctuation">({</span>
+    <span class="property">clientName</span><span class="punctuation">:</span> <span class="string">'Vous ! Oui, vous...'</span><span class="punctuation">,</span>
+    <span class="property">needsHelp</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span> <span class="comment">// Évidemment !</span>
+    <span class="property">budget</span><span class="punctuation">:</span> <span class="variable">Infinity</span> <span class="comment">// La qualité a un prix 💸</span>
+  <span class="punctuation">});</span>
+
+  <span class="keyword">return</span> <span class="punctuation">(</span>
+    <span class="operator">&lt;</span><span class="keyword">form</span> <span class="property">action</span><span class="operator">=</span><span class="string">"/contact-qatorze"</span> <span class="property">method</span><span class="operator">=</span><span class="string">"post"</span><span class="operator">&gt;</span>
+      <span class="operator">&lt;</span><span class="keyword">h2</span><span class="operator">&gt;</span>Prêt pour un projet de folie ?<span class="operator">&lt;/</span><span class="keyword">h2</span><span class="operator">&gt;</span>
+      <span class="operator">&lt;</span><span class="keyword">button</span> <span class="property">type</span><span class="operator">=</span><span class="string">"submit"</span><span class="operator">&gt;</span>
+        Appelez les 14 ! 📞
+      <span class="operator">&lt;/</span><span class="keyword">button</span><span class="operator">&gt;</span>
+    <span class="operator">&lt;/</span><span class="keyword">form</span><span class="operator">&gt;</span>
+  <span class="punctuation">);</span>
+<span class="punctuation">}</span>
+
+<span class="comment">// 💡 Astuce pro : Qatôrze Services = Solutions techniques sur mesure</span>`;
+
+        let currentIndex = 0;
+        const codeElement = document.getElementById('typewriter-code');
+        
+        // Fonction pour calculer la vitesse de frappe réaliste
+        function getTypingSpeed(char, nextChar) {
+            // Vitesse de base plus rapide
+            let baseSpeed = 18;
+            
+            // Variations réalistes basées sur le contexte
+            if (char === ' ') {
+                // Espace : rapide
+                return baseSpeed + Math.random() * 5;
+            } else if (char === '\n') {
+                // Nouvelle ligne : pause plus longue (réflexion)
+                return baseSpeed + 50 + Math.random() * 100;
+            } else if (char === '{' || char === '}' || char === '(' || char === ')') {
+                // Symboles : légèrement plus lent (réflexion)
+                return baseSpeed + 10 + Math.random() * 15;
+            } else if (char === ';' || char === ',') {
+                // Ponctuation : pause courte
+                return baseSpeed + 5 + Math.random() * 10;
+            } else if (/[A-Z]/.test(char)) {
+                // Majuscules : plus lent (shift)
+                return baseSpeed + 8 + Math.random() * 12;
+            } else if (/[0-9]/.test(char)) {
+                // Chiffres : légèrement plus lent
+                return baseSpeed + 3 + Math.random() * 8;
+            } else if (char === '<' && nextChar === 's') {
+                // Début de balise HTML : pause de réflexion
+                return baseSpeed + 20 + Math.random() * 30;
+            } else if (char.match(/[a-zA-Z]/)) {
+                // Lettres normales : vitesse variable selon la fréquence
+                const commonLetters = 'etaoinshrdlu';
+                if (commonLetters.includes(char.toLowerCase())) {
+                    // Lettres communes : plus rapide
+                    return baseSpeed - 3 + Math.random() * 8;
+                } else {
+                    // Lettres moins communes : plus lent
+                    return baseSpeed + 2 + Math.random() * 12;
+                }
+            }
+            
+            // Caractères spéciaux : pause de réflexion
+            return baseSpeed + 8 + Math.random() * 18;
+        }
+        
+        // Fonction pour détecter si on doit faire une pause (comme un humain qui réfléchit)
+        function shouldPause(currentText, index) {
+            const recentText = currentText.substring(Math.max(0, index - 20), index);
+            
+            // Pause après certains mots-clés (réflexion)
+            if (recentText.match(/(function|interface|const|import)$/)) {
+                return 100 + Math.random() * 200;
+            }
+            
+            // Pause avant les commentaires (réflexion sur quoi écrire)
+            if (currentText.charAt(index) === '/' && currentText.charAt(index + 1) === '/') {
+                return 200 + Math.random() * 300;
+            }
+            
+            // Pause aléatoire occasionnelle (hésitation humaine)
+            if (Math.random() < 0.02) { // 2% de chance
+                return 100 + Math.random() * 400;
+            }
+            
+            return 0;
+        }
+        
+        function typeWriter() {
+            if (currentIndex < codeText.length) {
+                const currentChar = codeText.charAt(currentIndex);
+                const nextChar = codeText.charAt(currentIndex + 1);
+                const currentText = codeText.substring(0, currentIndex);
+                
+                // Afficher le texte avec le curseur
+                codeElement.innerHTML = codeText.substring(0, currentIndex + 1) + '<span class="cursor">|</span>';
+                currentIndex++;
+                
+                // Calculer le délai réaliste
+                let delay = getTypingSpeed(currentChar, nextChar);
+                
+                // Ajouter des pauses de réflexion
+                const pauseDelay = shouldPause(currentText, currentIndex);
+                if (pauseDelay > 0) {
+                    delay += pauseDelay;
+                }
+                
+                // Variation supplémentaire pour éviter la régularité
+                delay += (Math.random() - 0.5) * 8;
+                
+                setTimeout(typeWriter, Math.max(5, delay)); // Minimum 5ms
+            } else {
+                // Animation terminée, garder le curseur qui clignote
+                codeElement.innerHTML = codeText + '<span class="cursor">|</span>';
+            }
+        }
+
+        // Démarrer l'animation quand l'élément devient visible
+        function startTypingWhenVisible() {
+            const codeContainer = document.querySelector('.card-visual_code');
+            
+            // Configuration de l'Intersection Observer
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.3 // 30% de l'élément doit être visible
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && currentIndex === 0) {
+                        // L'élément est visible et l'animation n'a pas encore commencé
+                        setTimeout(() => {
+                            typeWriter();
+                        }, 500); // Petit délai pour l'effet
+                        
+                        // Arrêter d'observer une fois l'animation démarrée
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Commencer à observer l'élément
+            if (codeContainer) {
+                observer.observe(codeContainer);
+            }
+        }
+
+        // Initialiser l'observer quand le DOM est prêt
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startTypingWhenVisible);
+        } else {
+            startTypingWhenVisible();
+        }
+    </script>
+
+    <script src="/services/assets/js/script.js"></script>
+    <script src="/services/assets/js/site-optimisation.js"></script>
+
+</body>
+</html>

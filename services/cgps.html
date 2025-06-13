@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QTZ - CGPS</title>
+
+    <link rel="stylesheet" href="/services/assets/styles/style.css">
+
+    <!-- IMPORT DU FAVICON -->
+    <link rel="icon" type="image/png" href="/services/assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/services/assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/services/assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/services/assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Qatôrze Services" />
+    <link rel="manifest" href="/services/assets/favicon/site.webmanifest" />
+
+
+    <!-- Je mets le style propre à cette page directement ici car en prod ça cause un bug quand le style est dans le fichier CSS général -->
+    <style>
+        /* ===================
+        * STYLE PAGE CONDITIONS GENERALES
+        * =================== */
+
+        /* Styles spécifiques pour les CGPS */
+        .cgps-container {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .cgps-content {
+            flex: 3;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cgps-toc {
+            flex: 1;
+            position: sticky;
+            top: 5rem;
+            height: fit-content;
+            background-color: #070707;
+            padding: 1rem 1rem 1rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .cgps-toc_scroll {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            max-height: 80vh;
+            overflow: auto;
+        }
+
+        .cgps_sommaire {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .cgps-toc h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--primary-color);
+        }
+
+        .cgps-toc li {
+            margin-bottom: 0.8rem;
+            list-style-type: none;
+            text-decoration: none;
+            position: relative;
+            padding-right: 1rem;
+            text-align: left;
+            width: 100%;
+        }
+
+        .cgps-toc a {
+            color: var(--white);
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .cgps-toc a:hover,
+        .cgps-toc a.active {
+            opacity: 1;
+            color: var(--primary-color);
+        }
+
+        .cgps-section {
+            padding-bottom: 2rem;
+        }
+
+        .cgps-section:last-child {
+            border-bottom: none;
+        }
+
+        .cgps-section h2 {
+            color: var(--white);
+            font-size: var(--fs-6);
+            font-weight: 400;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cgps-section h3 {
+            color: var(--white);
+            font-size: var(--fs-5);
+            font-weight: 400;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .cgps-section p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            opacity: 0.7;
+        }
+
+        .cgps-section ul, 
+        .cgps-section ol {
+            display: flex !important;
+            flex-direction: column !important;
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        .cgps-section li {
+            margin-bottom: 0.5rem;
+            list-style-type: circle;
+            color: var(--gray-400);
+            width: 100%;
+        }
+
+        .cgps-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cgps-header h1 {
+            color: var(--white);
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .cgps-header h2 {
+            color: var(--white);
+            font-size: var(--fs-6);
+            margin-bottom: 1rem;
+        }
+
+        .cgps-header p {
+            color: var(--gray-400);
+            font-size: var(--fs-3);
+        }
+
+        .version-info {
+            background-color: rgba(0, 126, 76, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .annexe-section {
+            background-color: rgba(30, 30, 30, 0.6);
+            padding: 0 1rem;
+            border-radius: 0px;
+            margin-top: 2rem;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .annexe-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+            color: var(--white);
+            font-weight: var(--fw-6);
+        }
+
+        @media (max-width: 992px) {
+            .cgps-container {
+                flex-direction: column;
+            }
+            
+            .cgps-toc {
+                position: relative;
+                top: 0;
+                margin-bottom: 2rem;
+            }
+
+            .cgps-header h1 {
+                line-height: 1.2;
+                margin-top: 3rem;
+            }
+            .cgps-toc_scroll {
+                max-height: 40vh;
+            }
+        }
+    </style>
+</head>
+<body style="display: flex; flex-direction: column; justify-content: space-between;">
+
+    <nav>
+        <!-- NAVBAR - VERSION MOBILE -->
+        <ul class="container sidebar hide-lg">
+
+            <li onclick=hideSidebar()  class="hide-sidebar">
+                <a href="#" class="ctn-logo-qtz-mobile"><img class="logo-qtz-mobile" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a>
+                <a href="index.html">
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M18 6l-12 12" />
+                        <path d="M6 6l12 12" />
+                    </svg>
+                </a>
+            </li>
+            <li class="btn-hover-bg"><a href="index.html" class="link">Accueil</a></li>
+            <li class="btn-hover-bg">
+                <details>
+                    <summary>
+                        Services
+                        <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </summary>
+                    <ul>
+                        <li>
+                            <a href="services_web-&-ecom.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                                </svg>
+                                <span>Sites Web & E-com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_web-app.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                    <path d="M3 9h18"/>
+                                    <path d="M9 21V9"/>
+                                </svg>
+                                <span>Web Apps</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_mobile-app.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                                    <path d="M12 18h.01"/>
+                                  </svg>
+                                <span>Apps Mobiles</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_installation-logiciels.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                  </svg>
+                                <span>Installation Logiciels</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_audit-conseil.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                                  </svg>
+                                <span>Audit & Conseil</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="nos-services-&-produits.html" class="texte-autres-services">
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M12 5l0 14" />
+                                    <path d="M5 12l14 0" />
+                                </svg>
+                                <span>Nos services et produits</span>
+                            </a>
+                            <div class="img-ctn">
+                            </div>
+                        </li>
+                    </ul>
+                </details>
+            </li>
+            <!-- TO-DO : Activer lorsque la page Nos outils sera faite -->
+            <!-- <li class="btn-hover-bg"><a href="#" class="link">Outils</a></li> -->
+            <li class="btn-hover-bg"><a href="portfolio.html" class="link">Portfolio</a></li>
+            <li class="link-yellow-underline"><a href="#">info@qatorze.com</a></li>
+        </ul>
+        <!-- NAVBAR VERSION GRANDS ECRANTS -->
+        <ul class="container">
+            <li><a href="index.html"><img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a></li>
+            <li class="hideOnMobile"><a href="index.html" class="link">Accueil</a></li>
+
+            <li class="hideOnMobile dropdown">
+                <a href="#" class="link">Services 
+                    <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </a>
+                <div class="dropdown-menu row">
+                    <div class="row">
+                        <div class="left-section">
+                            <h4 class="cat-service-titre">Services principaux</h4>
+                            <div class="megamenu-grid">
+        
+                                <a href="services_web-&-ecom.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Sites Web & E-com</p>
+                                      <p class="desc-service">Développement de sites vitrines et e-commerce sur mesure</p>
+                                    </div>
+                                </a>
+        
+                                <a href="service_web-app.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                        <path d="M3 9h18"/>
+                                        <path d="M9 21V9"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Web Apps</p>
+                                      <p class="desc-service">Développement d'applications web progressives</p>
+                                    </div>
+                                </a>
+        
+                                <a href="service_mobile-app.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                                        <path d="M12 18h.01"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Apps Mobiles</p>
+                                      <p class="desc-service">Développement d'applications natifs Android/iOS et hybrides</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="services_design-&-conception-graphique.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                                            <path d="M2 2l7.586 7.586"/>
+                                            <circle cx="11" cy="11" r="2"/>
+                                        </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Design</p>
+                                      <p class="desc-service">Création d'interfaces UI/UX et d'identité visuelle</p>
+                                    </div>
+                                </a>
+
+                                <a href="service_installation-logiciels.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Logiciels</p>
+                                      <p class="desc-service">Installation et configuration logiciels métiers</p>
+                                    </div>
+                                </a>
+
+        
+                                <a href="service_audit-conseil.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Audit & Conseil</p>
+                                      <p class="desc-service">Expertise technique et informatique</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="service_accompagnement-cm.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                            <circle cx="9" cy="7" r="4"/>
+                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                          </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Accompagnement CM</p>
+                                      <p class="desc-service">Optimisation et gestion réseaux sociaux</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="right-section ali_flex-start">
+                            <h4 class="cat-service-titre">Autres services</h4>
+                            <p class="desc-autres-services">Découvrez tous les services et produits proposés par Qatôrze</p>
+                            <a href="nos-services-&-produits.html" class="col disabled">
+                                <div class="img-dropdown-ctn  disabled">
+
+                                </div>
+                                <p>Voir plus</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="hideOnMobile"><a href="portfolio.html" class="link">Portfolio</a></li>
+            <li class="hideOnMobile"><a href="contact.html" class="link">Contact</a></li>
+            <li class="hideOnMobile"><a href="#" class="link-yellow-line-left">info@qatorze.com</a></li>
+            <li onclick=showSidebar() class="menu-button"><a href="#">
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M4 6h16" />
+                    <path d="M7 12h13" />
+                    <path d="M10 18h10" />
+                </svg>
+            </a></li>
+        </ul>
+    </nav>
+
+    <div class="container sections-mt">
+        <header class="cgps-header">
+            <h1>Conditions Générales de Prestations de Services</h1>
+            <p class="version-info">Version 1.0 du 21 Novembre 2024</p>
+        </header>
+
+        <div class="cgps-container">
+            <aside class="cgps-toc">
+                <h3>Table des Matières</h3>
+                <div class="cgps-toc_scroll">
+                    <ul class="cgps_sommaire">
+                        <li><a href="#preamble">Préambule</a></li>
+                        <li><a href="#definitions">1. Définitions</a></li>
+                        <li><a href="#objet">2. Objet et champ d'application</a></li>
+                        <li><a href="#formation">3. Formation du contrat - date d'effet</a></li>
+                        <li><a href="#resiliation">4. Résiliation - effets</a></li>
+                        <li><a href="#description">5. Description des prestations de services</a></li>
+                        <li><a href="#modalites">6. Modalités d'exécution des prestations de services</a></li>
+                        <li><a href="#prix">7. Prix et conditions de règlement</a></li>
+                        <li><a href="#delais">8. Délais</a></li>
+                        <li><a href="#non-conformite">9. Non-conformité et retour</a></li>
+                        <li><a href="#declarations">10. Déclarations</a></li>
+                        <li><a href="#garanties">11. Garanties</a></li>
+                        <li><a href="#responsabilite">12. Responsabilité de la société</a></li>
+                        <li><a href="#legislation">13. Législation et réglementation</a></li>
+                        <li><a href="#exoneration">14. Clause exonératoire</a></li>
+                        <li><a href="#propriete">15. Propriété intellectuelle et industrielle</a></li>
+                        <li><a href="#confidentialite">16. Confidentialité - non-usage</a></li>
+                        <li><a href="#donnees">17. Informations nominatives - données personnelles</a></li>
+                        <li><a href="#offres">18. Offres commerciales - références</a></li>
+                        <li><a href="#modification">19. Modification des CGPS</a></li>
+                        <li><a href="#invalidite">20. Invalidité</a></li>
+                        <li><a href="#renonciation">21. Non renonciation</a></li>
+                        <li><a href="#litiges">22. Litiges</a></li>
+                        <li><a href="#annexes">Annexes</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="cgps-content">
+                <!-- Préambule -->
+                <section id="preamble" class="cgps-section">
+                    <h2>PRÉAMBULE</h2>
+                    <p>La société QATORZE est une Société à Responsabilité Limitée (SARL), au capital de 14 euros, dont le siège social est situé 24 Avenue de la Division Leclerc – 92310 Sèvres, et immatriculée au registre du commerce et des sociétés sous le numéro 982939552 RCS NANTERRE, représentée par son gérant et associé unique. Madame ADONG Thalie Estelle - Courriel électronique : info@qatorze.com (la « Société »).</p>
+                    <p>La Société a pour objet, tant en France qu’à l’étranger, directement comme indirectement : Développement de sites internet et d’applications mobiles. Formations dans le numérique. La mise à disposition, la location, la sous-location de tous biens mobiliers comme immobiliers. Et plus généralement toute opération de nature commerciale, artisanale, industrielle, financière, exercée tant en France qu’à l’étranger, de manière directe ou par l’intermédiaire d’une autre société, et se rapportant à l’objet sus- indiqué. Dans ce cadre, la Société propose plus spécialement aux sociétés des services de création de plateformes web sur-mesure en Angular, AstroJS, React, Tailwind, NextJS, Bootstrap, Vue.js, Node.js, Mango DB, MySQL, Java, Des plateformes web et e-commerce développées via des CMS tels que Magento, Prestashop, Drupal, WordPress, Woodommerce, Shopify, des applications mobiles Android et statuts associés, de l’idée à la mise en ligne.</p>
+                </section>
+
+                <!-- Section 1: Définitions -->
+                <section id="definitions" class="cgps-section">
+                    <h2>1. DÉFINITIONS</h2>
+                    <p>Pour l’interprétation des présentes conditions générales de prestations de services, les termes suivants auront les significations indiquées ci-après :</p>
+                    <ul>
+                        <li><span class="highlight">CGPS</span> : désignent les présentes conditions générales de prestations de Services ;</li>
+                        <li><span class="highlight">Client</span> : désigne le client professionnel, qui bénéficie des Prestations de Services, suivant passation de Commande ;</li>
+                        <li><span class="highlight">Commande</span> : désigne toute commande passée par le Client en Prestations de Services et se matérialisant par le datage et la signature de l’Offre par le Client ou son acceptation en ligne via la solution de l’intermédiaire technique auquel la Société fait appel à ce titre, accessible depuis le Site Internet de la Société ;</li>
+                        <li><span class="highlight">Contrat</span> : désigne l’ensemble des documents contractuels qui régiront les rapports de droits et d’obligations entre les Parties, en ce compris les présentes CGPS et l’Offre signée ;</li>
+                        <li><span class="highlight">Intermédiaire(s) technique(s)</span> : désignent(e) le cas internénalaires techniques auquel(s) la Société a recours, tel(s) qu’indiqué(s) en Annexe 1, pour les besoins de solutions d’acceptation en ligne des Offres par les Clients et de suivi des Prestations de Services ;</li>
+                        <li><span class="highlight">Offre</span> : désigne l’offre de Prestations de Services faite par la Société, notamment, par voie de devis ou de brochure commerciale ;</li>
+                        <li><span class="highlight">Parties</span> : désignent le Client et la Société.</li>
+                        <li><span class="highlight">Prestations de Services</span> : désignent les prestations de services suivantes, objets de l’Offre de la Société, dont les principales caractéristiques sont reprises en Annexe 2 :
+                            <ol>
+                                <li>Prestations de Services d’audit et de cadrage technique,</li>
+                                <li>Prestations de Services de créations graphiques et maquettes,</li>
+                                <li>Prestations de Services de développement de création sur mesure,</li>
+                                <li>Prestations de Services de développement en sous-traitance,</li>
+                                <li>Prestations de Services d’assistance à mise en place et configuration de serveur(s),</li>
+                                <li>Prestations de Services de maintenance ;</li>
+                            </ol>
+                        </li>
+                        <li><span class="highlight">Site Internet</span> : désigne le site Internet de la Société, accessible à l’adresse https://services.qatorze.com/ et/ou tous champs d’accès et/ou suffixes qui renverraient à cette adresse.</li>
+                    </ul>
+                    <p>Les mots au singulier peuvent s’entendre au pluriel et réciproquement.</p>
+                </section>
+
+                <!-- Section 2: Objet et champ d'application -->
+                <section id="objet" class="cgps-section">
+                    <h2>2. OBJET ET CHAMP D’APPLICATION</h2>
+                    <p>2.1. Les CGPS représentent le Contrat conclu entre la Société et le Client. Elles sont applicables à toutes les ventes de Prestations de Services. L’Offre est soumise aux clauses et conditions des CGPS qui en forment partie intégrante. Les CGPS sont jointes à toute Offre transmise au Client. Le Client reconnaît en conséquence avoir disposé du temps nécessaire pour réfléchir aux termes de celles-ci.</p>
+                    <p>2.2. Les CGPS prévalent sur toute condition d’achat ou tout autre document émanant du Client, sauf dérogation préalable expresse et écrite des Parties. En conséquence, toute condition contraire sera inopposable aux Parties, sauf acceptation écrite et préalable de celles-ci.</p>
+                    <p>2.3. La Société communique au Client, en amont de la conclusion du Contrat, les CGPS, ainsi que :</p>
+                    <ul>
+                        <li>Les principales caractéristiques du Contrat et des Prestations de Services proposées, dont celles du service numérique ou du contenu numérique, compte tenu de leur nature et du support de communication utilisé, et notamment les fonctionnalités, la comptabilité, et l’interopérabilité des livrables comportant des éléments numériques, du contenu numérique ou du service numérique, ainsi que l’existence de toute restriction d’installation de logiciel,</li>
+                        <li>L’identité de la Société, ses coordonnées postales, téléphoniques et électroniques et ses activités,</li>
+                        <li>Le barème des prix unitaire, le prix total des Prestations de Services, toutes taxes comprises ou lorsque le prix ne peut pas être raisonnablement calculé à l’avance, du fait de la nature du service, le mode de calcul du prix et s’il y a lieu, tous frais supplémentaires ou lorsque ces frais ne peuvent être raisonnablement calculés à l’avance, la mention que ces frais ne peuvent être exigibles, les éventuelles réductions de prix et conditions d’excomptes,</li>
+                        <li>Les informations sur la méthode Agile retenue par la Société au titre des Prestations de Services (i) de développement de création sur mesure, et (ii) de mise en place et de configuration de serveur(s), pour le besoin de l’estimation des niveaux de complexité associés à la demande du Client,</li>
+                        <li>Les conditions de règlement des Prestations de Services (notamment, les délais de paiement, les pénalités de retard et le montant des indemnités pour frais de recouvrement),</li>
+                        <li>Les garanties légales attachées aux Prestations de Services,</li>
+                        <li>La durée des Offres.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 3: Formation du contrat - date d'effet -->
+                <section id="formation" class="cgps-section">
+                    <h2>3. FORMATION DU CONTRAT – DATE D’EFFET</h2>
+                    <p>3.1. Dans le cadre de l’établissement de l’Offre, le Client communiquera à la Société, par tous moyens, ses informations propres (notamment, sa dénomination sociale, numéro d’identification SIRET, forme sociale, capital, siège social, numéro d’immatriculation au registre du commerce et des sociétés, extrait Kbis de moins de trois (3) mois, identité et adresse du représentant légal, courriel électronique, coordonnées téléphoniques, données techniques, comptables, etc.). La Société peut demander au Client des informations complémentaires nécessaires pour lui permettre d’établir son Offre. Si les informations transmises par le Client ne répondent pas aux demandes de la Société et/ou sont insuffisantes dans le cadre de l’établissement de l’Offre, la Société se réserve le droit, après avoir demandé toutes explications utiles ou éléments complémentaires au Client, de ne pas établir d’Offre dédiée. Le Client s’engage à se rapprocher de la Société, pour toute demande personnalisée au regard de l’Offre. Dans une telle hypothèse, la Société établira, à réception des spécifications corrélativement transmises, un devis adapté.</p>
+                    <p>3.2. Toutes les informations formulées par le Client lors de la prise de Commande engagent ce dernier et la Société ne saurait être tenue pour responsable des conséquences induites en cas d’erreur. Toute demande de modification de la Commande du Client sera prise en considération avec l’accord exprès de la Société et, en tout état de cause, sauf motif légitime, tel que précisé ci-après, que si elle est parvenue par écrit avant le début de réalisation des Prestations de Services.</p>
+                    <p>3.3. La durée de l’Offre de la Société est fixée dans l’Offre préalablement transmise par la Société au Client. La date d’effet du Contrat est sa date de conclusion, qui se matérialise par la souscription d’une Offre par le Client. Toute souscription d’une Offre par le Client vaut Commande fermer et définitive auprès de la Société. Le Client reconnaît disposer de la pleine capacité civile et bancaire pour souscrire à l’Offre. Le Contrat est conclu pour la durée de fourniture des Prestations de Services objets de la Commande.</p>
+                    <p>3.4. L’acceptation des CGPS par le Client est requise, afin de souscrire aux Services inclus dans l’Offre. De même, seule la Commande en Services auprès de la Société, dans les conditions des CGPS, permet au Client d’en bénéficier. Le Client est informé qu’il peut accepter l’Offre soit en la retournant datée et signée à la Société, par tout moyen écrit, soit par la procédure en ligne via l’intermédiaire technique. <span class="highlight">DANS CE DERNIER CAS, LE CLIENT RECONNAIT ET ACCEPTE EXPRESSEMENT QUE CELA IMPLIQUE JURIDIQUEMENT, POUR LUI, QU’IL ACCEPTE EXPRESSEMENT LES CONDITIONS GÉNÉRALES DE L’INTERMÉDIAIRE TECHNIQUE POUR CE QUI CONCERNE LE SERVICE D’ACCEPTATION EN LIGNE DE L’OFFRE</span> (pour information, reproduites en Annexe 1). En aucun cas, la Société ne saurait être responsable à ce titre, n’assurant aucune intermédiation à ce titre. Le Client autorise expressément la communication à l’intermédiaire technique de toutes informations personnelles utiles le concernant, pour les besoins de l’acceptation en ligne de l’Offre.</p>
+                    <p>3.5. La Société transmet par courriel électronique au Client une confirmation de Commande, à laquelle seront jointes les CGPS datées et acceptées par le Client.</p>
+                    <p>3.6. Pour toute question, et notamment relative à une Commande, son suivi ou son exécution, le Client est invité à joindre la Société à l’adresse électronique info@qatorze.com.</p>
+                </section>
+
+                <!-- Section 4: Résiliation - effets -->
+                <section id="resiliation" class="cgps-section">
+                    <h2>4. RESILIATION – EFFETS</h2>
+                    <p>4.1. Toute Partie sera fondée à résilier le Contrat, sans préjudice de toute action en dommages et intérêts et/ou action en paiement forcé de l’intégralité des sommes dues au titre d’une Commande non réglée par le Client, en cas de manquement de l’autre Partie à l’une quelconque de ses obligations et/ou de comportement contraire à la bonne exécution du Contrat ou à l’ordre public ou aux bonnes mœurs, s’il n’y est pas remédié dans un délai de trente (30) jours suivant la première présentation d’une notification énonçant le/les manquement(s) en cause, adressée par lettre recommandée avec demande d’avis de réception ; la résiliation prendra alors effet au terme du délai de trente jours (30) susvisé, sans formalisme complémentaire. À ce titre, sans toutefois s’y limiter, la Société pourra résilier le Contrat en cas de non-règlement, dans les délais impartis, de tout ou partie de la rémunération qui lui est due au titre du Contrat, d’agissement contraire à la morale, en cas d’incorrection répétée, d’attitude agressive, violence verbale et/ou physique et plus largement, tout acte ou omission constitutif d’une infraction pénale, quel qu’en soit la victime, et/ou nuisible, préjudiciable et/ou encore déloyal envers la Société.</p>
+                    <p>4.2. La Société pourra valablement renoncer et/ou retarder les Prestations de Services commandées et/ou résilier le Contrat en cas de motif légitime, entendu comme tout événement hors de la volonté de la Partie concernée qui a pour objet ou pour effet d’empêcher la Société d’exécuter le Contrat conformément à ses termes et conditions.</p>
+                    <p>4.3. Chacune des Parties pourra également valablement résilier le Contrat en cas d’événement ayant les caractéristiques de la force majeure, telle que cette notion est visée à l’article 14 ci-après.</p>
+                    <p>4.4. Toute terminaison du Contrat entraînera la perte, pour le Client, du bénéfice des Prestations de Services à date effective de celle-ci. En cas de terminaison du Contrat, la Société conservera l’ensemble des sommes versées par le Client au titre du Contrat. Sans préjudice de ce qui précède, le solde de la rémunération convenu entre les Parties demeurera exigible en cas de terminaison du Contrat pour manquement du Client à ses obligations contractuelles, ce à quoi le Client s’oblige. Les dispositions des articles 7, et 15 à 17 ci-après survivront à la terminaison du Contrat, pour les durées respectives fixées à ces articles.</p>
+                </section>
+
+                <!-- Section 5: Description des prestations de services -->
+                <section id="description" class="cgps-section">
+                    <h2>5. DESCRIPTION DES PRESTATIONS DE SERVICES</h2>
+                    <p>5.1. L’Offre de Services de la Société est valable pour le contenu qui y est décrit au jour de la Commande. Toute modification et/ou évolutions des Services souhaitée par le Client après la Commande devra faire l’objet d’une nouvelle Commande, selon devis séparé, sauf autre accord de la Société. La Société s’engage à exécuter des Prestations de Services conformes aux spécifications décrites dans l’Offre.</p>
+                    <p>5.2. La liste des Prestations de Services figure sur le Site Internet de la Société. Le détail des Prestations de Services figure en Annexe 2. Les Prestations de Services proposées par la Société se décomposent en six (6) Prestations de Services d’ordre technique, que le Client peut retenir en tout ou partie :</p>
+                    <ol>
+                        <li>Prestations de Services d’audit et de cadrage technique,</li>
+                        <li>Prestations de Services de créations graphiques et maquettes,</li>
+                        <li>Prestations de Services de développement de création sur mesure,</li>
+                        <li>Prestations de Services de développement en sous-traitance,</li>
+                        <li>Prestations de Services d’assistance à mise en place et configuration de serveur(s),</li>
+                        <li>Prestations de Services de maintenance.</li>
+                    </ol>
+                    <p>L’offre de Prestations de Services proposée par la Société est modifiable par cette dernière, sous réserve d’en informer le Client préalablement. Dans l’hypothèse où toute modification viendrait à impacter substantiellement la nature des Prestations de Services commandées par la Commande du Client, la Société lui adressera une notification par tous moyens écrits, au moins sept (7) jours avant la date d’effet des modifications entreprises. L’information qui sera portée à la connaissance du Client précisera la date d’effet des modifications et la faculté de ce dernier de résilier le Contrat sans pénalité et sans droit à dédommagement.</p>
+                </section>
+
+                <!-- Section 6: Modalités d'exécution des prestations de services -->
+                <section id="modalites" class="cgps-section">
+                    <h2>6. MODALITES D’EXECUTION DES PRESTATIONS DE SERVICES</h2>
+                    <p>6.1. La Société exécutera les Prestations de Services conformément aux règles de l’art, en qualité de prestataire indépendant. La Société demeurez dans ce cadre seule des données des moyens à mobiliser dans le cadre de la réalisation des Prestations de Services.</p>
+                    <p>6.2. La Société veillera à informer régulièrement le Client du déroulement des Prestations de Services, conformément aux termes de l’Offre, et à minimiser les lois par mois. L’information se fera par tous moyens. Le Client pourra par ailleurs suivre l’état d’exécution des Prestations de Services via les intermédiaires techniques auxquels la Société a recours, en se concentrant aux outils dédiés de ceux-ci, dans les conditions de l’article 3.4, alinéa 3 ci-avant. Le Client autorise expressément à ce titre la communication aux intermédiaires techniques de toutes informations personnelles utiles le concernant, pour les besoins de suivi des Prestations de Services.</p>
+                    <p>Le Client s’engage, pendant toute la durée d’exécution des Prestations de Services, à désigner une personne compétente de son entreprise qui sera l’interlocuteur de la Société. À chaque fin de phase technique (telles que décrites dans l’Offre), un rendez-vous entre le Client et la Société est organisé par tous moyens pour permettre au Client de suivre les avancées des Prestations de Services. La liste des Développements réalisés sur la période de phase écoulée est disponible en ligne, via un outil de gestion de projet Tiers, auquel le Client a accès pendant toute la durée d’exécution de l’Offre.</p>
+                    <p>6.3. La Société se réserve le droit de demander à tout moment au Client, pendant la durée d’exécution des Prestations de Services et une période de dix (10) ans à compter de sa terminaison, à des fins probatoires, de répondre et/ou de produire tout justificatif permettant de démontrer la sincérité des informations le concernant et/ou relatives à l’Offre. Le Client s’engage à communiquer à la Société, sur première demande, les éléments sollicités dans ce cadre.</p>
+                    
+                    <h3>6.4. Prestations de Services de Maintenance</h3>
+                    <p>Pour les besoins d’exécution des Prestations de Services de maintenance technique et seulement dans le cas où le Client y souscrit dans sa Commande (les dispositions du présent article 6.4 N’étant pas applicables au Client à défaut), les termes suivants auront les significations indiquées ci-après :</p>
+                    <ul>
+                        <li><span class="highlight">ANOMALIE</span> : désigne tout dysfonctionnement reproductible et/ou non-conformité fonctionnelle ou technique (du(s) produits) techniques(s) sous maintenance, conformément aux termes de l’Offre acceptée par le Client (ci-après les « Produits Sous Maintenance »).</li>
+                        <li><span class="highlight">ANOMALIE BLOQUANT</span> : désigne toute Anomalie qui rend impossible l’exploitation des Produits Sous Maintenance dans leur intégralité ou certaines de leurs fonctionnalités.</li>
+                        <li><span class="highlight">ANOMALIE MAJEURE</span> : désigne toute Anomalie qui dégrade de manière significative l’exploitation des Produits Sous Maintenance ou d’une ou plusieurs de ses fonctionnalités stratégiques.</li>
+                        <li><span class="highlight">ANOMALIE MINEURE</span> : désigne toute Anomalie qui n’est ni majeure ni bloquante.</li>
+                        <li><span class="highlight">PRESTATIONS DE SERVICES DE MAINTENANCE CORRECTIVE</span> : s’entendent des Prestations de Services de maintenance incluses dans l’Offre. Les Prestations de Services de Maintenance Corrective désignent les Prestations de Services de diagnostic, de correction de bugs et de livraison de correctifs, réalisées par la Société, en cas d’Anomalie avérée, selon les conditions ci-après définies. Le détail technique des Prestations de Services de Maintenance Corrective des Produits Sous Maintenance incluses dans l’Offre figure en Annexe 2 ci-après. Toute autre Prestation de Maintenance Corrective fera l’objet d’une facturation séparée, dans les conditions ci-amoxisées.</li>
+                        <li><span class="highlight">PRESTATIONS DE SERVICES DE MAINTENANCE EVOLUTIVE INCLUSES</span> : s’entendent des Prestations de Services de maintenance évolutive, pendant la durée d’exécution de l’Offre, sur les modules déjà souscrits par le Client, inclués dans l’Offre. Les nouveaux modules développés par la Société, notamment postérieurement à sa Commande, de fait non encore souscrits par le Client, sont expressément exclus des Prestations de Services de Maintenance Evolutive Incluses.</li>
+                        <li><span class="highlight">PRESTATIONS DE SERVICES DE MAINTENANCE EVOLUTIVE EXCLUSES</span> : s’entendent des Prestations de Services de maintenance évolutive sur les nouveaux modules développés par la Société, exclues de l’Offre. Les Prestations de Services de Maintenance Evolutive Excluses désignent les Prestations de Services de fourniture de versions améliorées des Produits Sous Maintenance non comprises dans les modules souscrits par le Client. Elles comprennent également les Prestations de Services d’assistance technique liées.</li>
+                        <li><span class="highlight">PRESTATIONS DE SERVICES DE MAINTENANCE</span> : s’entendent des Prestations de Services de Maintenance Corrective et des Prestations de Services de Maintenance Evolutive.</li>
+                    </ul>
+                    <p>Les termes suivantes s’entendent au singulier comme au pluriel. Les Prestations de Services de Maintenance sont fournies par la Société, directement comme indirectement, dans les conditions des CGPS.</p>
+                    
+                    <h4>Étendue de la Prestation de Maintenance</h4>
+                    <p>La Société s’engage à assurer la Maintenance Corrective des Produits Sous Maintenance et notamment : faire ses meilleurs efforts pour maintenir en bon état de fonctionnement les Produits Sous Maintenance, conformément aux fonctionnalités définies dans l’Offre ;</p>
+                    <ul>
+                        <li>assister raisonnablement le Client dans l’utilisation normale et conforme des Produits Sous Maintenance, dans les conditions des CGPS ;</li>
+                        <li>faire ses meilleurs efforts pour corriger toute Anomalie de fonctionnement reproductible des Produits Sous Maintenance, dans les conditions visées ci-après.</li>
+                    </ul>
+                    <p>Dans le cadre de l’exécution des Prestations de Services de Maintenance, la Société :</p>
+                    <ul>
+                        <li>se réserve le droit de ne pas installer un nouveau logiciel système, réseau ou base de données, si celui-ci présentait un risque de dégradation pour les performances des Produits Sous Maintenance ;</li>
+                        <li>suggérera toutes modifications des équipements du Client qu’elle jugerait nécessaires ou utiles pour la mise en conformité technique et/ou pour répondre aux besoins de performance des Produits Sous Maintenance ;</li>
+                        <li>ne pourra être tenue pour responsable d’une décision ou d’un problème technique ou de toute autre nature, relevant de la responsabilité d’un ou plusieurs Tiers, dont notamment des titulaires des modules libres de droite, open sources ou sous licences créative. Comment intégrés aux Développements, ou encore de l’opérateur télécom, des hébergements de serveurs, des intermédiaires ou prestataires techniques ou du réseau informatique du Client.</li>
+                    </ul>
+                    
+                    <h4>Nature de la Maintenance Corrective Champ application</h4>
+                    <p>Dans ces conditions, le Client, qui décèle ou est alerte d’une Anomalie, notifie à la Société, par courriel électronique à l’adresse info@dgarco.com, l’Anomalie relevée. Pour que le signalement de l’Anomalie soit pris en compte, le Client devra motiver sa demande et communiquer les informations à minima suivantes :</p>
+                    <ul>
+                        <li>URI de la plateforme, compte utilisé, description des actions effectuées avant de rencontrer l’Anomalie,</li>
+                        <li>Navigateur et version, périphérique, OS,</li>
+                        <li>Capture d’écran de l’anomalie ou screen recording,</li>
+                        <li>Niveau de priorité estimé de l’Anomalie.</li>
+                    </ul>
+                    <p>À défaut, la Société ne peut garantir la traitement de l’Anomalie. À réception de l’enseigne des informations susvisées, la Société analysera son contenu et établira un diagnostic. La Société pourra être amenée à demander au Client toute précision utile, le Client acceptant par avance d’y répondre, afin de permettre à la Société d’assurer sa mission. Sous réserve que la résolution de l’Anomalie signale relève d’une Prestation de Maintenance Corrective et/ou Evolutive Incluse, la Société s’engage à mettre en œuvre tous les moyens à sa disposition en vue de la correction de ladite Anomalie et/ ou de la fourniture d’un correctif ou d’une nouvelle même version de module souscrit (sans toutefois que cette mission puisse s’analyser comme une obligation de Prestation de Maintenance Evolutive Exclue).</p>
+                    <p>Le Client s’engage à mettre en place toutes les versions corrigées des Anomalies des Produits Sous Maintenance sur son environnement, sur première demande de la Société.</p>
+                    <p>Si la Société identifie une cause d’Anomalie qui ne relève pas d’une Prestation de Maintenance Corrective ou d’une Prestation de Maintenance Evolutive Incluse, elle notifiera au Client son diagnostic et pourra proposer toute solution de contournement qu’elle estimera opportune. Dans un tel cas, les dispositions prévues au titre des exclusions ci-après trouveront à s’appliquer et une facturation séparée sera associée.</p>
+                    <p>De surcroît, dans le cas où la Société déterminerait après investigation que les programmes standard fonctionnent correctement, et que l’Anomalie relevée est due à un facteur indépendant de la Société, au regard des dispositions qui procèdent, le temps passé à la recherche de l’Anomalie sera soumis à facturation sur la base de son taux horaire applicable, selon les tarifs en vigueur figurant en Annexe 2.</p>
+                    <p>En cas de désaccord du Client quant aux conclusions d’analyse de la Société, et sans préjudice de la survivance du respect, par le Client, de ses obligations financières au titre du Contrat en cours, le Client pourra transmettre, par écrit, ses observations à la Société. Si le différend persiste plus de quarante-cinq (45) jours à compter de la réception, par la Société, des observations du Client, la Partie la plus diligente pourra saisir le Président du Tribunal compétent de Nanterre pour que ce dernier procède à la désignation d’un expert en vue de les départager, dans les termes et conditions de l’article 1843-4 du Code civil. L’avis de l’expert s’imposera aux Parties.</p>
+                    
+                    <h4>Exclusions</h4>
+                    <p>Les Prestations de Services de Maintenance Corrective et/ou Evolutive incluse au titre de l’Offre ne comprennent pas les cas non-cumulatifs suivants :</p>
+                    <ul>
+                        <li>Anomalie imputable au Client ou à tout tiers due à une mauvaise utilisation des Produits Sous Maintenance, en ce notamment compris l’un quelconque des composants et/ou programmes, au regard des CGPS ;</li>
+                        <li>Utilisation des Produits Sous Maintenance non conforme à la documentation fonctionnelle ou d’exploitation fournie, directement comme indirectement, par la Société ;</li>
+                        <li>Poursuite de l’exploitation des Produits Sous Maintenance suite à une Anomalie Bloquante, sans l’accord préalable et écrit de la Société ;</li>
+                        <li>Anomalies affectant les Produits Sous Maintenance consécutives à un fonctionnement défectueux du matériel et/ou du système d’exploitation des Produits Sous Maintenance, en ce notamment inclus en cas de panne ;</li>
+                        <li>Anomalies identifiées affectant les matériels, les systèmes d’exploitation ou les autres logiciels nécessaires au fonctionnement des Produits Sous Maintenance ;</li>
+                        <li>Tout événement revêtant les caractéristiques de la force majeure, telle que cette notion est définie à l’article 14 ci-après.</li>
+                    </ul>
+                    <p>Dans l’hypothèse où la cause de l’Anomalie relève d’une exclusion au titre de l’Offre, telle que définie ci-avant, la Prestation de Maintenance Corrective ou Evolutive considérée ne sera pas couverte par la Commande mais sera facturée aux tarifs en vigueur de la Société, suivant offre préalable acceptée par le Client. Dans ces conditions, le Client reconnaît et accepte expressément que la Maintenance Corrective ou Evolutive ne saurait davantage couvrir un quelconque service d’assistance technique du Client et/ou de Tiers (et notamment, aucune assistance des utilisateurs finaux des Développements n’est incluse dans l’Offre de la Société).</p>
+                    <p>Pour toute Prestation de Maintenance Evolutive Exclue (nouveau module développé par la Société de fait non souscrit par le Client), la Société informera le Client de l’évolution réalisée et de la tarification associée dans le cas où le Client souhaiterait en bénéficier. Le Client confirmera dans cette hypothèse à la Société son intérêt de bénéficier du ou des nouveaux modules développés par la Société, aux conditions – notamment financières – proposées.</p>
+                    
+                    <h4>Modalités d’exécution des Prestations de Services de Maintenance</h4>
+                    <p>Les Prestations de Services de Maintenance inclues dans l’Offre s’appliquent uniquement dans le cadre d’une utilisation telle que décrite dans la documentation contractuelle, dont l’Offre et les CGPS, fournie avec les Produits Sous Maintenance, et pour l’environnement d’exploitation préalablement valide, par écrit, par la Société.</p>
+                    <p>La Société est responsable des moyens et ressources mobilisés pour la réalisation des Prestations de Services de Maintenance, dans le respect des engagements contractuels.</p>
+                    <p>Pour ce faire, la Société s’engage, sous réserve des dispositions applicables à la maintenance (dont aux cas d’exclusion) ci-avant, à mettre tous les moyens nécessaires à la correction définitive de l’Anomalie déclarée par le Client. La Société est fondée à modifier les moyens initialement présentés au Client en vue de la réalisation des Prestations de Services de Maintenance, sous réserve d’en informer préalablement le Client.</p>
+                    <p>Afin d’offrir au Client une intervention optimale, la Société pourra librement avoir recours, pour tout ou partie de la réalisation des Prestations de Services de Maintenance, à des sous-traitants, sans pour autant que le Client ne puisse s’y opposer. Le Client sera régulièrement informé, par la Société, par tous moyens écrits, de l’avancement des Prestations de Services de Maintenance en cours d’exécution.</p>
+                    <p>Par ailleurs, la Société se réserve le droit de suspendre :</p>
+                    <ul>
+                        <li>L’accès aux Produits Sous Maintenance dans les cas où elle l’estimerait nécessaire pour la bonne réalisation des Prestations de Services de Maintenance. La Société fera ses meilleurs efforts pour que les Produits Sous Maintenance soient disponibles à nouveau, dans les meilleurs délais, sans pour autant qu’une indemnité ne puisse être réclamée par le Client, à quelque titre que ce soit.</li>
+                        <li>L’exécution de toute Prestation de Maintenance, en cas de non-respect par le Client de ses obligations au titre de la Commande et notamment de son obligation de paiement. Dans ce cas, cette suspension trouvera son fondement dans l’exception d’inexécution et ne pourra être considérée comme une rupture du Contrat par la Société, ni ouvrir un quelconque droit à indemnisation pour le Client.</li>
+                    </ul>
+                    <p>Le service de support fourni par la Société fonctionne tous les jours ouvrés, de dix (10) heures à dix-sept (17) heures (heure française). L’adresse de contact de la Société est : info@garone.com.</p>
+                    
+                    <h3>6.5. Prestations de Services de mise en place et de configuration de serveur(s)</h3>
+                    <p>Les dispositions du présent article 6.5 ne sont applicables que pour les besoins d’exécution des Prestations de Services d’assistance à mise en place et à configuration de serveur(s) et seulement dans le cas où le Client y souscrit dans sa Commande.</p>
+                    <p>Dans le cadre des Prestations de Services d’assistance à mise en place et à configuration de serveur(s), dont le détail figure en Annexe 2, la Société ne prend pas en charge la souscription du contrat avec l’hébergeur.</p>
+                    <p>Il appartient au Client de souscrire directement auprès d’un hébergeur une offre de service d’hébergement adaptée, sur recommandation de la Société. Suivant souscription de l’offre de service d’hébergement, auprès de l’hébergeur retenu, le Client ouvrira à la Société, sur son interface personnelle de l’hébergeur, un accès « développement », afin que celle-ci puisse réaliser les Prestations de Services d’assistance à mise en place et à configuration de serveur(s), selon la Commande.</p>
+                    <p>Sans cet accès, la Société ne saurait pouvoir exécuter, ni garantir l’exécution des Prestations de Services d’assistance à configuration de serveur.</p>
+                    
+                    <h3>6.6. En tout état de cause</h3>
+                    <p>Quelle que soit la Prestation commandée par le Client, la Société ne saurait être responsable en cas de motif légitime, entendu comme tout événement indépendant de sa volonté qui empêcherait l’exécution des Prestations de Services, comme en cas d’événement revêtant les caractéristiques de la force majeure telle que cette notion est définie à l’article 14 ci-après.</p>
+                    
+                    <h3>6.7. Obligation de moyens</h3>
+                    <p>La Société est en tout état de cause tenue à une obligation de moyens uniquement dans le cadre de la réalisation des Prestations de Services commandées par le Client.</p>
+                </section>
+
+                <!-- Section 7: Prix et conditions de règlement -->
+                <section id="prix" class="cgps-section">
+                    <h2>7. PRIX ET CONDITIONS DE RÈGLEMENT</h2>
+                    <p>7.1. Les Prestations de Services sont fournies aux tarifs en vigueur au jour de la réception de la Commande et conformément aux termes de l’Offre. Le prix des Prestations de Services correspond aux seules prestations définies dans l’Offre, à la date de celle-ci. Ainsi, toutes prestations supplémentaires et/ou complémentaires, qui ne seraient pas inclus dans l’Offre, devront donner lieu à une nouvelle Offre. Les prix des Prestations de Services sont fixés forfaitairement dans l’Offre transmise par la Société au Client préalablement à toute Commande, sur la base des indications spécifiques et personnalisées de chaque projet Client. À ce titre, les prix des Prestations de Services sont calculés par la Société sur la base d’un forfait journalier dont le montant est défini dans chaque Offre en fonction de la nature des prestations de Services à exécuter, de leur technique et du savoir-faire associé de la Société, multiplié par le nombre de jours requis, librement déterminé par la Société, pour répondre à la demande du Client.</p>
+                    <p>Par dérogation à ce qui précède, il est précisé que les prix des Prestations de Services (i) de développement de création sur mesure, et (ii) d’assistance à mise en place et à configuration de serveur(s) sont fixés par la Société dans l’Offre, sur la base de la méthode Agile, consistant à estimer les niveaux de complexité associés à la demande du Client, puis à appliquer une tarification forfaitaire en correspondance des points de complexité retenus par la Société. Il revient à cette Société d’apprécier discrétionnairesment les niveaux de complexité adaptés en fonction de la demande du Client et consécutivement, les points de complexité servant de base à sa tarification au titre des Prestations de Services (i) de développement de création sur mesure, et (ii) d’assistance à mise en place et à configuration de serveur(s).</p>
+                    <p>7.2. Toute Commande est due dans son intégralité par le Client dans les conditions des CGPS.</p>
+                    <p>7.3. Les prix s’entendent nets toutes taxes comprises, en euros.</p>
+                    <p>7.4. Les tarifs sont modifiables conformément à la réglementation applicable. Dans l’hypothèse où toute modification viendrait imparcier le contenu de la Commande du Client, la Société lui adressera une notification par tous moyens écrits, au moins sept (7) jours avant la date d’effet des modifications entreprises. L’information qui sera portée à la connaissance du Client précisera la date d’effet desdites modifications et la faculté, pour ce dernier, de résilier la Commande concernée par la modification tarifaire.</p>
+                    <p>7.5. Sauf autre accord avec le Client au titre de conditions particulières expressément spécifiées dans l’Offre, les Prestations de Services sont payables par le Client à réception de la facture correspondante de la Société, selon les modalités fixées dans l’Offre, conformément aux conditions de paiement définies en Annexe 2 pour chacune des Prestations de Services.</p>
+                    <p>7.6. Les factures de la Société sont payables par virement bancaire sur le compte de la Société, dont les références sont intégrées dans l’Offre, conformément à la réglementation en vigueur.</p>
+                    <p>7.7. Tout retard de paiement entraine l’application de plein droit des pénalités de retard au taux de refinancement de la Banque Centrale Européenne (BCE) majoré de dix (10) points. La pénalité est encourue dès lors que le règlement n’est pas intervenu à la date d’échéance figurant sur la facture, sans qu’une mise en demeure ne soit nécessaire. Le Client, débiteur professionnel des sommes dues à la Société, qui ne seraient pas réglées à bonne date, est redevable de plein droit d’une indemnité forfaitaire pour frais de recouvrement d’un montant de 40 € (art. D. 441-5 du Code de commerce). Lorsque les frais de recouvrement exposés sont supérieurs au montant de cette indemnité forfaitaire, la Société peut demander une indemnisation complémentaire sur justification (art. L. 441-6 alinéa 12 du Code de commerce).</p>
+                    <p>7.8. Lorsque le paiement est échelonné, le non-paiement d’une seule échéance entraînera l’exigibilité immédiate de la totalité de la dette au titre du Contrat et le droit pour la Société de résilier le Contrat, dans les conditions de l’article 4.1 ci-avant. En aucun cas les paiements ne peuvent, à la seule initiative du Client, être suspendus, ni faire l’objet d’une quelconque compensation sans l’accord écrit et préalable de toutes les Parties. Tout paiement partiel engendrera la suspension immédiate du compte et s’imputera d’abord sur la partie non privilégiée de la créance, puis sur les sommes dont l’exigibilité est plus ancienne.</p>
+                </section>
+
+                <!-- Section 8: Délais -->
+                <section id="delais" class="cgps-section">
+                    <h2>8. DELAIS</h2>
+                    <p>8.1. Les délais de réalisation des Prestations de Services sont donnés à titre indicatif et se décomptent à compter de la réception par la Société :</p>
+                    <ol>
+                        <li>de la Commande, et</li>
+                        <li>de l’ensemble des informations et éléments du Client (textes, images, charte graphique, accès au serveur, nom de domaine, etc.) nécessaires à la Société pour initier les Prestations de Services, tels que ces informations et éléments sont repris dans l’Offre. Toute modification de la Commande fait courir un nouveau délai.</li>
+                    </ol>
+                    <p>8.2. Un retard d’exécution ne peut entraîner ni le refus des Prestations de Services, ni la résiliation automatique et de plein droit du Contrat.</p>
+                    <p>8.3. Le délai global d’exécution, donné à titre indicatif, sera revu d’une manière appropriée :</p>
+                    <ul>
+                        <li>si le Client est en retard dans l’accomplissement de ses obligations contractuelles, notamment s’il ne fournit pas l’ensemble des informations et éléments listés dans l’Offre dont la Société a besoin pour initier les Prestations de Services et/ou ne respecte pas les conditions de paiement,</li>
+                        <li>lorsque survient une cause d’exonération telle que prévue à l’article 14 ci-après.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 9: Non-conformité et retour -->
+                <section id="non-conformite" class="cgps-section">
+                    <h2>9. NON-CONFORMITE ET RETOUR</h2>
+                    <p>9.1. En cas de non-conformité des Prestations de Services par rapport à l’Offre, il appartient au Client d’émettre une réclamation motivée par tous moyens écrits avec accusé de réception adressé à la Société dans un délai de dix (10) jours ouvrés suivant la date de fin de réalisation des Prestations de Services. À défaut, l’acceptation des Prestations de Services sera considérée comme définitive. En cas de non-conformité dûment motivée et justifiée, constatée par la Société, celle-ci procèdera soit à la régularisation, soit, en cas d’impossibilité, au remboursement du prix correspondant aux seules Prestations de Services non conformes, sans être tenue à une autre obligation ou indemnisation.</p>
+                    <p>9.2. Pour tout sujet relatif à une non-conformité de la Commande ou encore à la mise en œuvre des garanties, le Client est invité à joindre la Société à l’adresse électronique info@qatorze.com.</p>
+                </section>
+
+                <!-- Section 10: Déclarations -->
+                <section id="declarations" class="cgps-section">
+                    <h2>10. DECLARATIONS</h2>
+                    <p>Le Client s’engage à utiliser les Prestations de Services sous sa seule responsabilité. Le Client reconnaît, par ailleurs, que la responsabilité de la Société ne saurait être notamment retenue en cas d’événement indépendant de la volonté de cette dernière mettant en échec la bonne réalisation des Prestations de Services.</p>
+                </section>
+
+                <!-- Section 11: Garanties -->
+                <section id="garanties" class="cgps-section">
+                    <h2>11. GARANTIES</h2>
+                    <p>11.1. La Société garantit uniquement que les Prestations de Services fournies sont conformes à l’Offre et/ou à tout autre accord écrit entre le Client et la Société dans le cadre de l’exécution de la Commande. Aucune autre garantie que celles prévues dans le cadre des présentes CGPS n’est donnée au Client.</p>
+                    <p>11.2. Il appartient au Client de vérifier l’adéquation des Prestations de Services à ses besoins et attentes, au regard des termes de l’Offre.</p>
+                    <p>11.3. Le Client reconnaît avoir reçu de la part de la Société toutes les informations nécessaires lui permettant d’apprécier l’adéquation à ses besoins des Prestations de Services et de prendre toutes les précautions utiles pour l’utilisation de celles-ci.</p>
+                </section>
+
+                <!-- Section 12: Responsabilité de la société -->
+                <section id="responsabilite" class="cgps-section">
+                    <h2>12. RESPONSABILITE DE LA SOCIETE – EXCLUSION DE RESPONSABILITE</h2>
+                    <p>12.1 La responsabilité de la Société est limitée aux obligations définies dans le Contrat. La Société ne peut être responsable en l’absence de manquement contractuel lui étant imputable.</p>
+                    <p>12.2. La Société exclut de surcroît expressément toute responsabilité concernant :</p>
+                    <ul>
+                        <li>les performances des Prestations de Services ou autres spécifications non prévues contractuellement ;</li>
+                        <li>l’adéquation des Prestations de Services aux attentes particulières du Client ou à l’usage qu’il entend en faire.</li>
+                    </ul>
+                    <p>12.3. Enfin, la responsabilité de la Société est également exclue en cas d’événement revêtant les caractéristiques de la force majeure, telle que cette notion est visée à l’article 14 ci-après, ou de tout autre événement hors du contrôle de la Société.</p>
+                    <p>12.4. En tout état de cause, l’ensemble des conséquences financières liées à la responsabilité de la Société ne saurait excéder le montant de la Commande effectivement payé par le Client à la Société au titre des Prestations de Services litigieuses.</p>
+                </section>
+
+                <!-- Section 13: Législation et réglementation -->
+                <section id="legislation" class="cgps-section">
+                    <h2>13. LEGISLATION E T REGLEMENTATION</h2>
+                    <p>Les conditions contractuelles, telles que, notamment, les prix et les délais, sont établies dans le cadre des dispositions légales et réglementaires en vigueur à la date de l’établissement de l’Offre. Si celles-ci venaient à être changées et modifiaient les conditions économiques de l’Offre ou de tout Contrat, les deux Parties se réuniraient pour adapter de bonne foi les termes à la nouvelle situation.</p>
+                </section>
+
+                <!-- Section 14: Clause exonératoire -->
+                <section id="exoneration" class="cgps-section">
+                    <h2>14. CLAUSE EXONERATOIRE</h2>
+                    <p>Toutes circonstances indépendantes de la volonté de la Société intervenant après la conclusion de tout Contrat et empêchant l’exécution dans des conditions normales sont considérées comme causes d’exonération.</p>
+                    <p>Sont indépendantes de la volonté de la Société, au sens de cette clause, les circonstances qui ne résultent pas d’une faute de sa part et notamment, en raison des transactions concomitamment conclues par on pour le compte du Client avec des Tiers, pour lesquelles la Société n’est et ne saurait être responsable, ou encore de tout fait d’autres Tiers ou événement revêtant les caractéristiques de la force majeure, telle que cette notion est définie à l’article 1218 du Code civil.</p>
+                </section>
+
+                <!-- Section 15: Propriété intellectuelle et industrielle -->
+                <section id="propriete" class="cgps-section">
+                    <h2>15. PROPRIETE INTELLECTUELLE ET INDUSTRIELLE</h2>
+                    <p>Pour les besoins du présent article 15 et de la cession des droits au titre du Contrat, les termes suivants auront les significations indiquées ci-après :</p>
+                    <ul>
+                        <li><span class="highlight">« Développements »</span> : développement réalisés par la Société, pour le compte du Client, dans le cadre de l’exécution de la Commande de ce dernier, tels que décrits dans l’Offre et dans tout autre devis ultérieur accepté par le Client, à l’exception des connaissances générales appartenant au domaine public, des Connaissances Propres de la Société et des Contenus de Tiers ;</li>
+                        <li><span class="highlight">« Contenu de Tiers »</span> : éléments techniques, graphiques, musicaux et littéraires et/ou logiciels appartenant à des Tiers et fournis par la Société dans le cadre des Prestations de Services. Les Contenus de Tiers intégrés et/ou utilisés dans le cadre de l’exécution des Prestations de Services figurent en Annexe 4. Les Contenus de Tiers pour les Prestations de Services commandées après adhésion aux CGPS seront repris dans chaque Offre faite au Client.</li>
+                        <li><span class="highlight">« Connaissances Propres »</span> : désignent les connaissances, informations, méthodes, expertises, technologies, savoir-faire, logiciels, contenus et procédés antérieurs de la Société ainsi que toutes leurs améliorations et/ou développements apportés dans le cadre de l’exécution des Prestations de Services.</li>
+                        <li><span class="highlight">« Tiers »</span> : toute personne non-partie au Contrat. Les termes susvisés s’entendent au singulier comme au pluriel.</li>
+                    </ul>
+                    
+                    <h3>15.1. Cession des droits de propriété intellectuelle portant sur les Développements</h3>
+                    <p>En contrepartie de la rémunération prévue dans l’Offre acceptée par le Client, et sous la condition suspensive prévue en article 15.3, la Société cède au Client les droits de propriété intellectuelle et industrielle sur les Développements. Les droits ainsi cédés comprennent, de manière non limitative, les droits de reproduction, d’adaptation, de traduction, d’utilisation, d’exploitation et de représentation, tels qu’ils sont définis par le Code de la Propriété Intellectuelle, pour le monde entier et pour toute la durée des droits de propriété intellectuelle. La cession ne porte en revanche pas sur les connaissances générales appartenant au domaine public, ni sur les Connaissances Propres de la Société, ni sur les Contenus de Tiers, pour lesquels les Parties rappellent qu’aucun droit de propriété n’est transféré au profit du Client.</p>
+                    <p>Par droits de reproduction, on entend le droit de dupliquer, imprimer, enregistrer, fixer, numériser, reproduire, éditer les Développements, en tout ou en partie, sans limitation de nombre, sur tous supports – y compris supports papier (tels que par exemple brochures, plaquettes publicitaires, livres, journaux, magazines, documents), support magnétiques, optiques, numériques, informatiques, télématiques, électroniques, pellicules, vidéo cassettes, CD-ROM, CD-I ou tout autre support connu ou inconnu à ce jour, actuel ou futur et sous quelque format que ce soit.</p>
+                    <p>Par droits d’adaptation, on entend le droit de numériser, modifier, faire évoluer, corriger, retoucher, couper, coloriser, arranger les Développements, en tout ou en partie, sous toute forme et par tout moyen, l’assembler avec ou l’intégrer dans toute autre prestation ou création intellectuelle.</p>
+                    <p>Par droits de représentation, on entend le droit de distribuer, diffuser les supports intégrant tout ou partie des Développements, à titre gratuit ou onéreux, auprès de tout public, par tous moyens ou canaux de distribution ; le droit de représenter et de communiquer au public, à titre privé ou publiquement, diffuser et exploiter, tout ou partie des Développements par tous moyens de communication et de télécommunication (et notamment le réseau Internet, et tous procédés, notamment informatiques et audiovisuels (télévision, cablo-diffusion), connus ou inconnus à ce jour. Sous réserve de la condition suspensive prévue en article 15.3, la Société cède expressément au Client les droits de propriété corporelle sur les supports des Développements, au fur et à mesure de leur achèvement, permettant leur reproduction en nombre.</p>
+                    <p>Dans l’hypothèse où tout ou partie des Développements serait brevetable, le Client sera seul en droit de déposer une demande de brevet s’il le juge utile, et ce dans le territoire du monde entier.</p>
+                    <p>Sous la condition suspensive prévue à l’article 15.3 ci-après, les Développements, dont les codes sources y associés, seront fournis au Client et supprimés des serveurs de la Société sur simple demande du Client, transmise par courriel électronique à l’adresse : info@qatorze.com.</p>
+                    <p>Il est entendu entre les Parties que les codes source comprennent les programmes constituant les Développements. À la demande du Client et sur devis, la Société pourra rédiger un organigramme général de l’architecture et/ou une documentation détaillée des Développements, si le besoin apparaît.</p>
+                    
+                    <h3>15.2. Connaissances propres</h3>
+                    <p>Le Contrat n’emporte aucun transfert de droit de propriété sur les Connaissances Propres de la Société. Cependant, afin de permettre au Client l’exploitation des Développements (à l’exclusion de tout autre usage, exploitation, cessibilité ou transfert), la Société s’engage à ne pas opposer ses droits sur ses Connaissances Propres au Client. Aucune exclusivité n’étant concédée par la Société dans le cadre de la réalisation des Prestations de Services, la Société demeure libre d’exploiter ses droits sur les Connaissances Propres comme elle l’entend et notamment, pour le compte de tout Tiers. Les Connaissances Propres de la Société sont et demeurent la propriété exclusive de celle-ci, pour la durée de validité des droits et le monde entier.</p>
+                    
+                    <h3>15.3. Condition suspensive</h3>
+                    <p>La cession des droits de propriété intellectuelle visée à l’article 15.1 ci-avant est consentie par la Société sous réserve du complet et parfait paiement de sa rémunération au titre du Contrat. Le transfert des droits associés aux Développements n’interviendra dès lors que suivant purge de l’intégralité des sommes dues à la Société par le Client au titre du Contrat. Tant que le Client n’a pas rempli l’ensemble de ses obligations financières à ce titre, la Société demeure la seule titulaire des droits sur les Développements en cours et/ou réalisés.</p>
+                    
+                    <h3>15.4. Contenus de Tiers</h3>
+                    <p>Les Parties rappellent que le Client n’acquiert aucun droit sur les Contenus de Tiers.</p>
+                    <p>Sauf indication expresse contraire dans l’Offre, la Société garantit au Client que les Contenus de Tiers ne s’opposent pas à l’exploitation des Développements par le Client (à l’exclusion de tout autre usage, exploitation, cessibilité ou transfert).</p>
+                    <p>Dans certains cas, la Société peut être amenée à proposer, pour les besoins particuliers du Client, des Contenus de Tiers conditionnés à des autorisations préalables et/ou conditions financières additionnelles, notamment s’agissant de la musique. Il est d’ores et déjà entendu entre les Parties que ces Contenus de Tiers ne pourront être utilisés que pour certains modes d’exploitation et dans un cadre précis. L’Offre de la Société mentionnera de manière détaillée aux droits d’exploitation inclus relativement aux Contenus de Tiers, et toute autre exploitation souhaitée par le Client devra donner lieu à négociation, nouvelles conditions financières et autorisation écrite complémentaire de la part de la Société et/ou des Tiers titulaires des droits sur les Contenus considérés.</p>
+                </section>
+
+                <!-- Section 16: Confidentialité - non-usage -->
+                <section id="confidentialite" class="cgps-section">
+                    <h2>16. CONFIDENTIALITE – NON-USAGE</h2>
+                    <p>16.1. Le Client s’engage à ne pas divulguer l’objet de l’Offre et/ou l’un quelconque de ses termes, ni tous autres éléments et informations de la Société obtenus, directement comme indirectement, au cours ou dans le cadre de l’exécution des Prestations de Services (ci-après désignées par les « Informations ») et à ne pas utiliser tout ou partie de ces informations dans un autre cadre que l’exécution des Prestations de Services par la Société. Les informations restent la propriété entière et exclusive de la Société ou du tiers à qui elles appartiennent, dans le cas où la Société ne défient qu’un droit d’exploitation.</p>
+                    <p>16.2. Le Client s’engage à :</p>
+                    <ol>
+                        <li>conserver strictement confidentielles les Informations ;</li>
+                        <li>ne pas copier, ni reproduire, ni dupliquer totalement ou partiellement, les Informations ;</li>
+                        <li>ne transmettre que les informations strictement nécessaires et uniquement aux à ses membres du personnel ayant un strict besoin de connaissance, dans le cadre de l’exécution des Prestations de Services, sous réserve que ceux-ci soient tenus préalablement, par écrit, par les mêmes obligations de confidentialité et de non-usage que celles contenues aux CGPS ;</li>
+                        <li>ce que les Informations ne soient pas utilisées pour d’autres usages que l’exécution des Prestations de Services par la Société, notamment à des fins d’exploitation directe ou indirecte ;</li>
+                        <li>assumer la responsabilité envers la Société de tout manquement à l’une quelconque de ses obligations contractuelles ;</li>
+                        <li>notifier immédiatement à la Société tout détournement, utilisation non autorisée ou divulgation d’informations dont il aurait connaissance, la notification précisant les circonstances de cet incident. Le Client reconnaît en outre qu’aucune stipulation du Contrat ne peut être interprétée comme obligeant la Société à divulguer une information ; et que la divulgation par la Société d’Informations ne saurait, en aucun cas, être interprétée comme conférant, de manière expresse ou implicite, un droit quelconque sur ces Informations, le Client s’interdisant de rechercher une quelconque protection au titre de droits de propriété intellectuelle sur tout ou partie des informations.</li>
+                    </ol>
+                    <p>16.3. Les dispositions du présent article 16 ne sont pas applicables à tout ou partie des informations pour lesquelles le Client peut apporter la preuve écrite d’une exception légale.</p>
+                    <p>16.4. Les obligations de confidentialité et de non-usage prévues au titre du présent article demeurent valables jusqu’à ce que le dernier droit sur les Informations de la Société tombe régulièrement dans le domaine public.</p>
+                </section>
+
+                <!-- Section 17: Informations nominatives - données personnelles -->
+                <section id="donnees" class="cgps-section">
+                    <h2>17. INFORMATIONS NOMINATIVES – DONNÉES PERSONNELLES</h2>
+                    <p>17.1. La charte de protection des données personnelles établie par la Société (la « Charte ») indique au Client les règles d’utilisation et de protection de ses informations personnelles par la Société. La Charte figure en Annexe 3. La Charte est également accessible à tout moment sur le Site Internet de la Société. Le Client est prié, avant toute acceptation des CGPS, de lire attentivement les règles incluses dans cette Charte et de l’accepter sans réserve. En acceptant la Charte, tous les engagements et obligations mentionnés dans celle-ci sont applicables au Client. Le Client est fondé à demander, à tout moment, auprès de la Société, de retirer son adresse de la liste de ses contacts et/ou d’accéder, d’effacer, de rectifier, de s’opposer ou de limiter le traitement de ses données personnelles, par email à l’adresse électronique info@qatorze.com.</p>
+                    <p>17.2. Dans le cas où le Client transfère, sur sa demande et pour les besoins de l’exécution de l’Offre, à la Société des données personnelles de personnes physiques, utilisateurs finaux des résultats issus des Prestations de Services, le Client est et demeurez à ce titre l’unique responsable du traitement des données personnelles collectées et traitées, au sens du Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016, relatif à la protection des personnes physiques à l’égard du traitement des données à caractère personnel et à la libre circulation de ces données (règlement général sur la protection des données dit « RGPD »), en ce que lui seul détermine les finalités et les moyens du traitement. La Société agira quant à elle en qualité de sous-traitant au sens du RGPD. Pour ce faire, le Client concède expressément mandat à la Société pour, dans cette hypothèse, collecter et traiter les données des utilisateurs finaux des personnes physiques concernées conformément aux finalités de traitement déterminées par le Client, dont, à titre principal, les besoins d’exécution de l’Offre. Le mandat donne par le Client à la Société vaut pour la durée d’exécution de l’Offre. Par les CGPS, <span class="highlight">LE CLIENT RECONNAÎT EXPRESSEMENT, S’ENGAGE ET SE PORTE EN CONSÉQUENCE GARANT DE L’INFORMATION PRÉALABLE, PAR UN DES UTILISATEURS FINAUX, DONT LES DONNÉES PERSONNELLES SONT COLLECTÉES ET TRAITÉES, QUANT AUX FINALITÉS DE TRAITEMENT CONCERNÉS DONT NOTAMMENT LE PARTAGE DE LEURS INFORMATIONS NOMINATIVES À LA SOCIÉTÉ POUR LES BESOINS D’EXÉCUTION DE L’OFFRE, ET DE L’ABSENCE CORRECTIVE D’OPPOSITION DE CES UTILISATEURS, DE SORTE QUE LA SOCIÉTÉ NE SOIT JAMAIS INQUIÉTÉE À CE TITRE ET PUISSÉ VRAIREMENT ACCÉDER, COLLECTER ET TRAITER LES DONNÉES DES UTILISATEURS, CONFORMÉMENT AUX FINALITÉS DE TRAITEMENT DÉTERMINÉES.</span></p>
+                </section>
+
+                <!-- Section 18: Offres commerciales - références -->
+                <section id="offres" class="cgps-section">
+                    <h2>18. OFFRES COMMERCIALES – REFERENCES</h2>
+                    <p>Le Client accepte de recevoir, notamment par l’intermédiaire de newsletters, les offres commerciales de la Société, ses plans de communication et actualités, y compris par voie de newsletters, ainsi que ceux de ses partenaires. Le Client est fondé à demander, à tout moment, à la Société, de retirer son adresse de la liste de contacts, par courriel électronique à l’adresse info@qatorze.com. En acceptant l’Offre, le Client autorise expressément la Société à utiliser gracieusement ses signes distinctifs (dénomination sociale, marques, logo, lien(s)) vers son site Internet, ses applications mobiles, ses logiciels, solutions ou autres, etc.), ainsi qu’à citer l’objet des missions réalisées pour le compte du Client, pour les besoins des références promotionnelles et/ou commerciales de la Société. La Société pourra notamment librement diffuser tout communiqué de presse et/ou procéder à toute annonce mentionnant la collaboration entre la Société et le client, sur tout support et/ou réseau de son choix, ce incluant notamment sur le Site Internet de la Société. Le Client peut refuser une telle utilisation en faisant valoir son opposition par courriel à l’adresse électronique info@qatorze.com, dans le mois de sa Commande. Le silence du Client passé ce délai vaut acceptation, pour les utilisations qui précèdent. Les finalités de traitement des données personnelles du Client sont définies dans la Charte de la Société, telle que visée à l’article 17 ci-avant.</p>
+                </section>
+
+                <!-- Section 19: Modification des CGPS -->
+                <section id="modification" class="cgps-section">
+                    <h2>19. MODIFICATION DES CGPS</h2>
+                    <p>Les CGPS sont modifiables conformément à la réglementation applicable. Dans l’hypothèse où toute modification viendrait impacter le contenu de la Commande du Client, la Société lui adressera une notification par tous moyens écrits, au moins trente (30) jours avant la date d’effet des modifications entreprises. L’information qui sera portée à la connaissance du Client précisera la date d’effet desdites modifications et la faculté de ce dernier de résilier le Contrat.</p>
+                </section>
+
+                <!-- Section 20: Invalidité -->
+                <section id="invalidite" class="cgps-section">
+                    <h2>20. INVALIDITE</h2>
+                    <p>Si une ou plusieurs stipulations des CGPS sont tenues pour non valides ou déclarées telles en application d’une loi, d’un règlement – et en particulier du droit de l’Union Européenne – ou à la suite d’une décision définitive d’une juridiction compétente, les autres stipulations garderont toute leur force et leur portée et il sera procédé sans délai aux modifications nécessaires en respectant, dans toute la mesure du possible, l’esprit des CGPS.</p>
+                </section>
+
+                <!-- Section 21: Non renonciation -->
+                <section id="renonciation" class="cgps-section">
+                    <h2>21. NON RENONCIATION</h2>
+                    <p>La renonciation par une des Parties à invoquer un manquement de l’autre Partie et/ou l’application de l’une quelconque des conditions et clauses du Contrat ne saurait constituer une renonciation à invoquer d’autres manquements et/ou l’application de l’une quelconque des conditions et clauses du Contrat, ultérieurement ou non.</p>
+                </section>
+
+                <!-- Section 22: Litiges -->
+                <section id="litiges" class="cgps-section">
+                    <h2>22. LITIGES</h2>
+                    <p>Les CGPS sont établies en version française.</p>
+                    <p>Elles sont régie et gouvernée par le droit français.</p>
+                    <p><span class="highlight">TOUT LITIGE ENTRE LA SOCIETE ET UN CLIENT, PORTANT SUR LA VALIDITE, L’INTERPRETATION ET/OU L’EXECUTION DES CGPS, NON RESOLU AMABLEMENT AU TERME D’UNE PERIODE DE TRENTE (30) JOURS À COMPTER DE LA PREMIÈRE NOTIFICATION SUR LE DIFFEREND, POURRA ÊTRE PORTE DEVANT LES TRIBUNAUX DE COMMERCE DE NANTERRE, A QUI COMPETENCE EXCLUSIVE EST ATTRIBUEE</span></p>
+                </section>
+
+                <!-- Annexes -->
+                <section id="annexes" class="cgps-section">
+                    <h2>ANNEXES</h2>
+                    
+                    <div class="annexe-section">
+                        <h3>Annexe 1 – Intermédiaire(s) technique(s)</h3>
+                        <h4>Conditions générales du(des) Intermédiaire(s) technique(s)</h4>
+                        <p>A la date de signature des CGPS par le Client, la Société n’a pas recours à un intermédiaire technique pour l’acceptation de l’offre.</p>
+                    </div>
+                    
+                    <div class="annexe-section">
+                        <h3>Annexe 2 – Liste et détail des Prestations de Services – Prix des Prestations de Services</h3>
+                        <p>Sauf autrement indiqué dans l’Offre, l’offre de Prestations de Services de la Société recouvre les prestations suivantes, dans les conditions tarifaires définies ci-après :</p>
+                        
+                        <h4>1. Prestations d’audit et de cadrage technique :</h4>
+                        <p>L’offre de Prestations de Services d’audit et cadrage technique est définie dans chaque Offre préalablement transmise au Client, sur la base des spécifications et du budget indiqués par le Client à la Société. Elle peut porter sur tout ou partie des prestations suivantes :</p>
+                        <ul>
+                            <li>Recherche de solutions techniques et étude de faisabilité,</li>
+                            <li>Etude du comportement technique des modules à haute complexité technique, est définie dans chaque Offre préalablement transmise au Client, sur la base des spécifications et du budget indiqués par le Client à la Société.</li>
+                            <li>Analyse du comportement utilisateur attendu,</li>
+                            <li>Recherche de solutions tierces,</li>
+                            <li>Listing de fonctionnalités,</li>
+                            <li>Mise en place de l’architecture de la plateforme.</li>
+                        </ul>
+                        <p>Les livrables pour une telle prestation sont définis dans chaque Offre, par rapport à chaque Commande donnée et à la nature des Prestations de Services convenues associées.</p>
+                        <h5>Conditions de paiement :</h5>
+                        <p>Sauf autrement convenu dans l’Offre, le Client s’engage à régler les Prestations de Services d’audit et cadrage technique, selon les modalités ci-après définies :</p>
+                        <ul>
+                            <li>Acompte payable à la Commande de cinquante pour cent (50 %) du prix total toutes taxes comprises des Prestations de Services d’audit et de cadrage technique fixé dans l’Offre ;</li>
+                            <li>Le solde, soit soixante-dix pour cent (70 %) du prix total toutes taxes comprises des Prestations de Services d’audit et de cadrage technique fixé dans l’Offre, au jour de la mise à disposition, par la Société au Client, des livrables définis dans l’Offre au titre des Prestations de Services d’audit et de cadrage technique commandées.</li>
+                        </ul>
+                        
+                        <h4>2. Prestations de créations graphiques et maquettes :</h4>
+                        <p>L’offre de Prestations de Services de créations graphiques et maquettes est définie dans chaque Offre préalablement transmise au Client, sur la base des spécifications et du budget indiqués par le Client à la Société. Elle peut porter sur tout ou partie des prestations suivantes :</p>
+                        <ul>
+                            <li>Workshops de travail,</li>
+                            <li>Mise en place de wireframes « MidFidelity »,</li>
+                            <li>Mise en place de maquettes « HighFidelity ».</li>
+                        </ul>
+                        <p>Les livrables pour une telle prestation sont définis dans chaque Offre, par rapport à chaque Commande donnée et à la nature des Prestations de Services convenues associées.</p>
+                        <h5>Conditions de paiement :</h5>
+                        <p>Sauf autrement convenu dans l’Offre, le Client s’engage à régler les Prestations de Services de créations graphiques et maquettes, selon les modalités ci-après définies :</p>
+                        <ul>
+                            <li>Acompte payable à la Commande de cinquante pour cent (50 %) du prix total toutes taxes comprises des Prestations de Services de créations graphiques et maquettes fixé dans l’Offre ;</li>
+                            <li>Le solde, soit cinquante pour cent (50 %) du prix total toutes taxes comprises des Prestations de Services de créations graphiques et maquettes fixé dans l’Offre, au jour de la mise à disposition, par la Société au Client, des livrables définis dans l’Offre au titre des Prestations de Services de créations graphiques et maquettes commandées.</li>
+                        </ul>
+                        
+                        <h4>3. Prestations de Services de développement de création sur mesure :</h4>
+                        <p>Les Prestations de Services de développement de création sur mesure sont définies avec le Client sur présentation d’un cahier des charges associé aux demandes du Client ou le cas échéant, de maquette(s).</p>
+                        <p>L’Offre récapitule les Prestations de Services de développement de création sur mesure convenues avec le Client, toute Commande passée par le Client faisant foi à ce titre.</p>
+                        <h5>Conditions de paiement :</h5>
+                        <p>Conformément aux termes de l’Offre, le Client s’engage à régler les Prestations de Services de développement de création sur mesure, selon les modalités ci-après définies :</p>
+                        <ul>
+                            <li>Acompte payable à la Commande de cinquante pour cent (50 %) du prix total toutes taxes comprises des Prestations de Services de développement de création sur mesure fixé dans l’Offre ;</li>
+                            <li>Paiements intermédiaires conformément aux échéances de règlement définies dans l’Offre, à l’issue des étapes techniques d’exécution des Prestations de Services de développement de création sur mesure indiquées dans l’Offre,</li>
+                            <li>Le solde, au jour de la mise à disposition, par la Société au Client, des Développements définis dans l’Offre au titre des Prestations de Services de développement de création sur mesure commandées.</li>
+                        </ul>
+                        
+                        <h4>4. Prestations de Services de développement en sous-traitance :</h4>
+                        <p>Les Prestations de Services de développement en sous-traitance sont définies avec le Client.</p>
+                        <p>L’Offre récapitule les Prestations de Services de développement en sous-traitance convenues avec le Client, toute Commande passée par le Client faisant foi à ce titre.</p>
+                        <h5>Conditions de paiement :</h5>
+                        <p>Sauf autrement convenu dans l’Offre, le Client s’engage à régler les Prestations de Services de développement en sous-traitance, selon les modalités ci-après définies :</p>
+                        <p>Le prix des Prestations de Services de développement en sous-traitance est payable mensuellement, selon le nombre de jours consacrés à la réalisation des Prestations de Services de développement en sous-traitance sur la période mensuelle écoulée, dans la limite du forfait de Prestations associé convenu dans l’Offre, conformément aux dispositions de l’article 7 des CGPS.</p>
+                        <p>Ainsi, au terme de chaque mois civil, la Société transmettra au Client une facture récapitulative des Prestations de Services de développement en sous-traitance exécutées par la Société dans le cadre de l’Offre au titre du mois écoulé, ainsi que du nombre de jours associé à l’exécution desdites Prestations sur cette même période et ce, jusqu’au compte épuisement du forfait de Prestations de Services de développement en sous-traitance fixé dans l’Offre associée.</p>
+                        
+                        <h4>5. Prestation d’assistance à mise en place et à configuration de serveur(s) :</h4>
+                        <p>L’offre de Prestations de Services d’assistance à mise en place et à configuration de serveur(s) de la Société est définie dans chaque Offre préalablement transmise au Client, sur la base des spécifications et du budget indiqués par le Client à la Société. Elle peut porter sur tout ou partie des prestations suivantes :</p>
+                        <ul>
+                            <li>Mise en place et configuration d’un serveur de test,</li>
+                            <li>Mise en place et configuration d’un serveur de production,</li>
+                            <li>Mises en production,</li>
+                            <li>Scripts de sauvegarde de la donnée,</li>
+                            <li>Outils et automatisations.</li>
+                        </ul>
+                        <h5>Conditions de paiement :</h5>
+                        <p>Sauf autrement convenu dans l’Offre, le Client s’engage à régler les Prestations de Services d’assistance à mise en place et à configuration de serveur(s), selon les modalités ci-après définies :</p>
+                        <ul>
+                            <li>Acompte payable à la Commande de cinquante pour cent (50 %) du prix total toutes taxes comprises des Prestations de Services d’assistance à mise en place et à configuration de serveur(s) fixé dans l’Offre ;</li>
+                            <li>Le solde, soit soixante-dix pour cent (70 %) du prix total toutes taxes comprises des Prestations de Services d’assistance à mise en place et à configuration de serveur(s) fixé dans l’Offre, au jour de la mise en place du serveur de production par la Société, dans les conditions des CGPS.</li>
+                        </ul>
+                        
+                        <h4>6. Prestation de Services de Maintenance :</h4>
+                        <p>Dans les conditions, périmètre et limites de l’article 6.4 des CGPS, l’offre de Prestations de Service de Maintenance est définie dans chaque Offre préalablement transmise au Client, sur la base des spécifications et du budget indiqués par le Client à la Société. Elle peut porter sur des interventions sur les sujets suivants :</p>
+                        <ul>
+                            <li>Modifications mineures (textes, design, images),</li>
+                            <li>Résolution de bugs,</li>
+                            <li>Modifications et interventions sur les serveurs,</li>
+                            <li>Mise à jour de packages, dépendances et outils de développement,</li>
+                            <li>Configuration et gestion de serveur(s).</li>
+                        </ul>
+                        <h5>Conditions de paiement :</h5>
+                        <p>Sauf autrement convenu dans l’Offre, le Client s’engage à régler les Prestations de Services de Maintenance, selon les modalités ci-après définies :</p>
+                        <p>Le prix des Prestations de Services de Maintenance est payable trimestriellement, selon le nombre de jours dédiés à la réalisation des Prestations de Services de Maintenance sur la période trimestrielle écoulée, dans la limite du forfait de Prestations associé convenu dans l’Offre, conformément aux dispositions de l’article 7 des CGPS.</p>
+                        <p>Ainsi, au terme de chaque trimestre civil, la Société transmettra au Client une facture récapitulative des Prestations de Services de Maintenance réalisées par la Société dans le cadre de l’Offre au titre du trimestre écoulé, ainsi que du nombre de jours associé à l’exécution desdites Prestations sur cette même période et ce, jusqu’au complet épuisement du forfait de Prestations de Services de Maintenance fixé dans l’Offre associée.</p>
+                    </div>
+                    
+                    <div class="annexe-section">
+                        <h3>Annexe 3 – Charte de protection des données personnelles de la Société</h3>
+                        <p>Version 1.0 du 21 Novembre 2024</p>
+                        <p>QATORZE est une société à Responsabilité Limitée de 14 euros, dont le siège social est situé 24 Avenue de la Division Leclerc – 92310 Sèvres, et immatriculée au registre du commerce et des sociétés sous le numéro 980 239 552 ACS Nanterre (ci-après « QATORZE »), qui a développé divers services de développement, d’audit et cadrage technique, de maquettes graphiques, de maintenance, de configuration de serveur et d’assistance à hébergement de données, ainsi qu’un site Internet récapitulatif des offres de QATORZE accessible à l’adresse https://services.qatorze.com/ (les « Services »).</p>
+                        <p>Dans ce cadre, pour QATORZE, la préservation des données personnelles des clients de QATORZE importe (les « Clients »).</p>
+                        <p>QATORZE s’engage à mettre en œuvre les mesures adéquates de protection, de confidentialité et de sécurité des données personnelles de ses Clients, conformément à la réglementation en vigueur européenne, telle qu’issue du Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016, relatif à la protection des personnes physiques à l’égard du traitement des données à caractère personnel et à la libre circulation de ces données, et abrogeant la directive 95/46/CE (règlement général sur la protection des données), et française, notamment les règles de droit national d’application audit Règlement.</p>
+                        <p>La présente charte (la « Charte ») a pour objet d’informer et d’éclairer les Clients sur les finalités de la collecte et du traitement de leurs données personnelles par QATORZE, en tant que responsable de traitement.</p>
+                        <p>Les Clients sont en conséquence invités à lire très attentivement la Charte et à en conserver un exemplaire.</p>
+                        <p>En souscrivant aux Services, le Client accepte l’ensemble des dispositions incluses dans la Charte relatives à la collecte et au traitement de ses données, pour les finalités ci-après explicitées.</p>
+                        <p>Les Clients sont amenés à fournir leurs données personnelles sous format numérique lors de la souscription aux Services.</p>
+                        
+                        <h4>1. Catégories de données personnelles collectées</h4>
+                        <p>Aucune donnée sensible n’est collectée, ni traitée par QATORZE.</p>
+                        <p>Les données des Clients que QATORZE collecte et traite consistent en les données suivantes :</p>
+                        <ol>
+                            <li>l’identité du Client : dénomination sociale, raison sociale, adresse, adresse de courrier électronique, numéro SIRET et SIREN, adresse du site Internet ; pour chaque collaborateur/interlocuteur du Client : adresse électronique, numéro de téléphone (fixe ou portable), fonctions exercées et localisation. Une copie du justificatif d’immatriculation ou d’identification aux registres ou autorités compétentes peut être conservée aux fins de preuve de l’exercice d’un droit d’accès, de rectification ou d’opposition ou pour répondre à une obligation légale ;</li>
+                            <li>les données relatives aux moyens de paiement : adresse de courrier électronique de facturation, adresse de facturation, relevé d’identité postale ou bancaire (RIB) et numéro IBAN ;</li>
+                            <li>les données relatives à la Commande et à son exécution, telles que le numéro de la Commande, l’identifiant et le mode de passe d’accès aux comptes partagés du Client sur ses réseaux et supports, ce incluant le contenu y associé, les cahiers des charges, les présentations Annexe 3 – Charte de protection des données personnelles de la Société (également appelées « briefs »), les maquettes, les captures d’écran, les images, les documentations techniques, les codes sources (en cas de reprise de projet), si requis pour le besoin de l’exécution de la Commande, les comptes informatiques du Client et l’accès à ceux-ci (identifiants et mots de passe), les spécifications techniques associées à la réalisation des Prestations de Services commandées, les comptes-rendus des réunions avec le Client ;</li>
+                            <li>les données relatives au suivi de la relation commerciale : accords de confidentialité conclus avec le Client, contrats signés avec le Client, historique des services, correspondances avec le Client et service après-vente, échanges et commentaires des Clients et prospects, personnel(s) en charge de la relation client ;</li>
+                            <li>les données relatives aux règlements des factures : modalités de règlement, remises consenties, reçus, soldes et impayés n’entraînant pas une exclusion de la personne du bénéfice d’un droit, d’une prestation ou d’un contrat soumis à autorisation de la Commission telle que prévue par les dispositions de l’article 25-l-4° de la loi du 6 janvier 1978 modifiée ;</li>
+                            <li>les données nécessaires à la réalisation des actions de fidélisation, de prospection, d’étude, de sondage, de test produit et de promotion, la sélection des personnes ne pouvant résulter que de l’analyse des données listées ci-avant ;</li>
+                            <li>les données relatives à l’organisation et au traitement des jeux concours, de loteries et de toute opération promotionnelle telles que la date de participation, les réponses apportées aux jeux concours et la nature des lots offerts ;</li>
+                            <li>les données relatives aux contributions des personnes qui déposent des avis sur des produits, services ou contenus, notamment leur pseudonyme.</li>
+                        </ol>
+                        <p>D’autres données personnelles pourront être sollicitées pour les besoins d’exécution des Services, suivant notification et accord préalables des Clients.</p>
+                        
+                        <h4>2. Principes applicables à la collecte et au traitement des données personnelles</h4>
+                        <h5>Base légale de la collecte et du traitement des données personnelles</h5>
+                        <p>Les données personnelles des Clients sont traitées par QATORZE dans les cas autorisés par la réglementation en vigueur et dans les conditions suivantes :</p>
+                        <ul>
+                            <li>Obtention d’un consentement libre, spécifique, éclairé et univoque du Client au traitement de leurs données personnelles ;</li>
+                            <li>Collecte de données personnelles nécessaires à l’exécution de la demande du Client ;</li>
+                            <li>Respect des obligations légales et/ou réglementaires s’imposant à QATORZE (tel que la lutte contre la fraude et la corruption) ;</li>
+                            <li>Protection des intérêts légitimes de QATORZE (tels que la protection de la sécurité de son réseau informatique).</li>
+                        </ul>
+                        
+                        <h5>Informations de navigation des Clients applicables à la collecte et au traitement des données personnelles</h5>
+                        <p>Lors de la souscription aux Services ou de certaines prestations liées, certaines données sont recueillies de manière automatique telles que l’adresse IP, la référence du logiciel de navigation utilisé, les données de navigation (date, heure, contenu consulté, termes de recherche utilisés, etc.), les références du système d’exploitation.</p>
+                        <p>Parmi les technologies utilisées pour recueillir les données personnelles des Clients, afin d’améliorer la qualité de son service et mieux répondre à leurs attentes, QATORZE peut avoir recours à des sessions et php ou équivalentes, qui sociaient les données, en utilisant un identifiant de session unique. Ces sessions conservent lesquelles données en mémoire le temps de navigation des Clients.</p>
+                        <p>Les données collectées lors de la navigation sont supprimées à la clôture de la session de navigation sur le site internet de QATORZE accessible à l’adresse https://services.qatorze.com/, par le Client ou, le cas échéant, dans un délai de 13 mois maximum à compter de leur collecte.</p>
+                        
+                        <h5>Finalités de la collecte et du traitement des données personnelles</h5>
+                        <p>Les Clients peuvent utiliser le site internet de QATORZE accessible à l’adresse https://services.qatorze.com/, sans qu’il soit nécessaire de communiquer des données personnelles.</p>
+                        <p>QATORZE collecte et traite les données des Clients pour les finalités suivantes :</p>
+                        <ol>
+                            <li>Pour exécuter la mission confiée par le Client à QATORZE, dans le cadre de l’exécution de la Commande,</li>
+                            <li>Pour les besoins d’utilisation et d’amélioration des Services,</li>
+                            <li>Pour les besoins d’amélioration des offres commerciales de QATORZE, notamment dans le cadre de sondages, enquêtes et autres sollicitations,</li>
+                            <li>Pour les besoins d’envoi et de communication des lettres d’information (« newsletters »), notifications diverses (courriels électroniques, sms, réseaux sociaux tels que WhatsApp, Messenger, appels téléphoniques) d’alerte informatisé ou commerciaux et/ou actualités de QATORZE aux Clients désireux,</li>
+                            <li>Pour répondre aux demandes de renseignements (formulaires de contact en ligne),</li>
+                            <li>Pour répondre aux candidatures d’offres d’emploi (données personnelles collectées : nom(s), prénom(s), courriel électronique, numéro de téléphone, CV, lettres de motivation si jointes),</li>
+                            <li>Pour diffuser via le site Internet de QATORZE accessible à l’adresse https://services.qatorze.com/ et/ou tous réseaux sociaux et de communication et/ou tous autres supports de QATORZE, quelle que soit la forme ou la nature, existants ou à venir, les commentaires et/ou avis des Clients sur les Services et/ou sur QATORZE,</li>
+                            <li>Pour toute mesure ou projet s’inscrivant plus largement dans un objectif d’intérêt des Clients ou d’amélioration de la relation et de l’expérience client,</li>
+                            <li>Pour répondre aux exigences réglementaires en vigueur ou en cours d’adoption.</li>
+                        </ol>
+                        
+                        <h4>3. Durée de conservation des données personnelles</h4>
+                        <p>La durée de conservation des données personnelles des Clients dépend de la finalité concernée. Dans ce cadre, les données personnelles des Clients sont conservées le temps nécessaire à l’accomplissement de leur requête.</p>
+                        <p>A défaut d’une quelconque réalisation, les données personnelles sont supprimées dans les délais recommandés par la Commission Nationale Informatique et Libertés (CNIL), au terme d’un délai de trois ans à compter de leur collecte, sous réserve :</p>
+                        <ul>
+                            <li>des possibilités et obligations légales en matière d’archivage,</li>
+                            <li>des obligations de conservation de certaines données, à des fins probatoires, et/ou d’anonymisation de celles-ci.</li>
+                        </ul>
+                        <p>Les données personnelles des Clients collectées et traitées, pour les besoins d’exécution des offres, sont conservées pour la durée nécessaire à la gestion de la relation contractuelle.</p>
+                        <p>Par dérogation, les données personnelles requises pour à l’établissement de la preuve d’un droit ou d’un contrat sont archivées conformément aux dispositions légales (5 ou 10 ans après la fin de la relation commerciale selon le cas).</p>
+                        
+                        <h4>4. Destinataires des données personnelles collectées</h4>
+                        <p>Les informations collectées nominatives sont exclusivement destinées à QATORZE et ne feront pas l’objet de cession ou d’échange à des tiers, autrement que pour les finalités visées à l’article 2 ci-avant.</p>
+                        <p>Seul le personnel habilité du groupe et des prestataires de QATORZE peut avoir accès aux données personnelles nominatives collectées et être amené à les traiter, sans préjudice de leur éventuelle transmission aux organes chargés d’une mission de contrôle ou d’inspection conformément à la législation et/ou à la réglementation en vigueur ou aux fins de répondre à une décision judiciaire ou administrative.</p>
+                        <p>Sous réserve de leur parfaite anonymisation, QATORZE est fondée, dans le respect des dispositions textuelles en vigueur, à utiliser les données personnelles des Clients, notamment à des fins statistiques, de mesure, de cession et/ou d’échange à des tiers.</p>
+                        
+                        <h4>5. Transfert des données personnelles</h4>
+                        <p>Les données personnelles des Clients collectées sont hébergées en France. Dans le cadre de ses recours à des affiliés ou à des prestataires situés en dehors de l’Union européenne, QATORZE s’engage à vérifier que des mesures appropriées ont été mises en place afin que les données personnelles des Clients bénéficient d’un niveau de protection adéquat.</p>
+                        
+                        <h4>6. Mesures de protection mises en place par QATORZE</h4>
+                        <p>QATORZE collecte et traite les données personnelles des Clients, dans le respect de la réglementation en vigueur.</p>
+                        <p>Lorsque la divulgation de données personnelles d’un Client à des tiers est nécessaire et autorisée, QATORZE s’assure que ces tiers garantissent auxdites données personnelles le même niveau de protection que celui mis en place par QATORZE. Dans ce cadre, QATORZE demande à chacun de ses partenaires contractuels une confirmation de conformité à la réglementation applicable.</p>
+                        <p>QATORZE met en place des mesures techniques et organisationnelles pour assurer que la conservation des données personnelles des Clients est sécurisée et ce, pendant la durée nécessaire à l’exercice des finalités poursuives.</p>
+                        <p>QATORZE attire l’attention des Clients sur le fait qu’aucune technologie de transmission ou de stockage n’est totalement infaillible. Aussi, en cas d’atteinte avérée aux données personnelles des Clients, susceptible d’engendrer un risque élevé pour les droits et libertés de ces derniers, QATORZE informera l’autorité de contrôle compétente de cette violation selon les modalités prévues par la réglementation en vigueur.</p>
+                        <p>Les Clients doivent faire preuve de prudence pour empêcher tout accès non autorisé à leurs données personnelles et notamment à leurs terminaux informatiques et numériques (ordinateur, smartphone, tablette en particulier).</p>
+                        
+                        <h4>7. Droits des Clients</h4>
+                        <p>Conformément à la réglementation en vigueur, les Clients disposent des droits suivants, sous réserve des limitations légales et réglementaires :</p>
+                        <p><span class="highlight">Droit d'information sur la collecte et le traitement des données</span></p>
+                        <p>QATORZE s’engage à faire ses meilleurs efforts pour que l’information communiquée aux Clients soit accessible, précise et transparente sur les conditions de la collecte et du traitement de leurs données personnelles.</p>
+                        <p><span class="highlight">Droit d'accès / droit à l'effacement (« droit à l'oubli ») / droit de rectification / droit d'opposition / droit à la limitation des traitements.</span></p>
+                        <p>Exercice, par les Clients, de leurs droits : Afin d’exercer leurs droits, tout Client peut s’adresser à QATORZE selon les coordonnées suivantes : QATORZE SARL, service de protection des données personnelles, 24 Avenue de la Division Leclerc – 92310 Sèvres, info@qatorze.com</p>
+                        <p>Pour les aider dans l’exercice de leurs droits, QATORZE indique aux Clients que la CNIL a établi et mis à leur disposition, sur son site internet accessible à l’adresse www.cml.fr, des modèles de courriers.</p>
+                        <p>Tout Client peut, à tout moment, accéder aux informations personnelles le concernant détenues par QATORZE. Il dispose du droit d’en recevoir une copie sous forme électronique (pour toute copie supplémentaire, QATORZE sera en droit d’exiger le règlement de frais basés sur les coûts administratifs occasionnés).</p>
+                        <p>Chaque Client dispose du droit de demander la suppression et/ou la rectification de ses données personnelles le concernant lorsque celles-ci sont erronées ou obsolètes. QATORZE pourra conserver certaines données personnelles lorsque la loi le lui imposera ou en cas de motif légitime.</p>
+                        <p>Les Clients peuvent s’opposer à tout moment pour des motifs légitimes :</p>
+                        <ul>
+                            <li>À l’utilisation de leurs données personnelles à des fins de marketing direct, ou</li>
+                            <li>À la réutilisation de leurs données personnelles pour des traitements autres que ceux listés à l’article 2 ci-avant, sauf en cas d’exécution, par QATORZE, de l’une de ses obligations légales et/ou réglementaires.</li>
+                        </ul>
+                        <p>Les Clients disposent du droit de demander à ce que les traitements effectués sur leurs données personnelles soient limités au strict nécessaire. Ce droit est applicable seulement :</p>
+                        <ul>
+                            <li>Si le Client concerné conteste l’exactitude de ses données personnelles ;</li>
+                            <li>Si le Client concerné justifie que le traitement de ses données personnelles est illicite et demande une limitation de leur utilisation plutôt qu’un effacement ;</li>
+                            <li>Si QATORZE n’a plus besoin des données personnelles du Client concerné et que celles-ci sont encore nécessaires audit Client pour la constatation, l’exercice ou la défense de droits en justice ;</li>
+                            <li>Si le Client concerné s’oppose au traitement de ses données personnelles fondé sur l’intérêt légitime du responsable de traitement, en justifiant d’un intérêt légitime supérieur.</li>
+                        </ul>
+                        <p><span class="highlight">Droit de réclamation auprès d’une autorité de contrôle</span></p>
+                        <p>Tout Client, qui estime que les efforts mis en œuvre par QATORZE pour préserver la protection de ses données personnelles ne garantissent pas le respect de leurs droits, a la possibilité d’introduire une réclamation auprès de l’autorité de contrôle compétente (CNIL ou toute autre autorité mentionnée sur la liste disponible auprès de la Commission européenne).</p>
+                        <p><span class="highlight">Droit à la portabilité des données personnelles</span></p>
+                        <p>Les Clients bénéficient d’un droit à la portabilité de leurs données personnelles, les autorisant à obtenir de QATORZE lesdites données personnelles les concernant, dans un format structuré, couramment utilisé et lisible.</p>
+                        <p>Les Clients peuvent dans ce cadre demander à ce que leurs données personnelles soient transmises à un autre responsable du traitement.</p>
+                        <p><span class="highlight">Droit de décider du sort des données personnelles suivant décès</span></p>
+                        <p>Les Clients ont également le droit d’organiser le sort de leurs données personnelles après leur mort par l’adoption de directives générales ou particulières que QATORZE s’engage à respecter.</p>
+                        <p>En l’absence de telles directives, QATORZE reconnaît aux héritiers la possibilité d’exercer certains droits, en particulier le droit d’accès s’il est nécessaire pour le règlement de la succession du défunt et le droit d’opposition.</p>
+                        <p>Avant de traiter la(es) demande(s) des Clients, QATORZE sera fondée à vérifier leur identité, en leur demandant tout justificatif utile. QATORZE répondra aux demandes de chaque Client dans les meilleurs délais et en tout état de cause un (1) mois à compter de la justification, par le Client en demande, de son identité. En cas de complexité des demandes et/ou de leur nombre, ce délai pourra être prolongé de deux (2) mois supplémentaires, QATORZE s’engageant en tout état de cause à informer le Client concerné de la prolongation et des raisons du report.</p>
+                        
+                        <h4>8. Modification de la Charte</h4>
+                        <p>QATORZE se réserve le droit d’apporter, à tout moment, des modifications à la Charte, afin de respecter les évolutions législatives et réglementaires et/ou d’améliorer sa politique de traitement et de protection des données personnelles.</p>
+                        <p>En cas de modification, une nouvelle version sera actualisée et mise en ligne avec la date de dernière mise à jour de la Charte.</p>
+                        <p>Toute nouvelle version de la Charte devra faire l’objet d’une acceptation préalable des Clients.</p>
+                    </div>
+                    
+                    <div class="annexe-section">
+                        <h3>Annexe 4 – Contenus de Tiers</h3>
+                        <p>Les contenus de Tiers utilisés pour l’exécution de l’Offre pourront être envoyés au Client sur simple demande écrite à l’adresse info@qatorze.com.</p>
+                        <p>Ces Contenus de Tiers représentent les dépendances, librairies et packages utilisées pour le bon déroulé de la Prestation, sous les licences suivantes (liste non exhaustive) : MIT, BSD-2-Clause, BSD-3-Clause, Apache, Apache 2.0, LGPL-3.0, NEW RELIC, RUBY, …</p>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <!-- Grille principale -->
+        <div class="footer-grid container">
+            <!-- Section brand (visible uniquement sur desktop) -->
+            <div class="footer-brand" style="margin-right: 3rem; flex: 1; min-width: 250px;">
+                <div>
+                    <a href="#" class="footer-brand_img" aria-label="Brand">
+                        <img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
+                    </a>
+                    <p class="footer-message"><em>Notre mission, mettre à disposition notre expertise Tech au service de vos ambitions. Nous combinons innovation, savoir-faire technique et compréhension de vos enjeux métier pour développer des outils numériques qui optimisent votre performance et accélèrent votre développement.</em></p>
+                </div>
+                <p class="footer-brand-copyright">© 2025 Qatôrze - Tous droits réservés.</p>
+            </div>
+
+            <!-- Colonne Services -->
+            <div class="footer-column">
+                <p class="footer-title">Services</p>
+                <div class="footer-links">
+                    <p><a href="services_web-&-ecom.html" class="footer-link">Sites Web & E-com</a></p>
+                    <p><a href="service_web-app.html" class="footer-link">Web Apps</a></p>
+                    <p><a href="service_mobile-app.html" class="footer-link">Apps Mobiles</a></p>
+                    <p><a href="services_design-&-conception-graphique.html" class="footer-link">Design</a></p>
+                    <p><a href="service_installation-logiciels.html" class="footer-link">Installation Logiciels</a></p>
+                    <p><a href="service_audit-conseil.html" class="footer-link">Audit & Conseil</a></p>
+                    <p><a href="service_accompagnement-cm.html" class="footer-link">Accompagnement CM</a></p>
+                </div>
+            </div>
+
+            <!-- Colonne Ressources -->
+            <div class="footer-column">
+                <p class="footer-title">Ressources</p>
+                <div class="footer-links">
+                    <p><a href="portfolio.html" class="footer-link">Portfolio</a></p>
+                    <p><a href="#" class="footer-link disabled">Nos outils</a></p>
+                    <p><a href="#" class="footer-link disabled">Nos offres d'emplois</a> <span class="footer-special-text">— On recrute</span></p>
+                    <p><a href="#" class="footer-link disabled">Blog</a></p>
+                </div>
+            </div>
+
+            <!-- Colonne Liens utiles -->
+            <div class="footer-column">
+                <p class="footer-title">Liens utiles</p>
+                <div class="footer-links">
+                    <p><a href="contact.html" class="footer-link">Nous contacter</a></p>
+                    <p><a href="#" class="footer-link disabled">Demande de devis</a></p>
+                    <p><a href="#" class="footer-link disabled">Aide et assistance</a></p>
+                </div>
+            </div>
+
+            <!-- Colonne Aller plus loin -->
+            <div class="footer-column">
+                <p class="footer-title">Aller plus loin</p>
+                <div class="footer-links">
+                    <p><a href="#" class="footer-link disabled">Api</a></p>
+                    <p><a href="#" class="footer-link disabled">Status</a></p>
+                    <p><a href="#" class="footer-link disabled">GitHub</a> <span class="footer-special-text">— New</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section bottom du footer -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content  container">
+                <!-- Section gauche -->
+                <div class="footer-bottom-left">
+                    <!-- Dropdown de langue -->
+                    <!-- <div class="language-dropdown" id="languageDropdown">
+                        <button class="language-dropdown-button" id="languageButton" aria-haspopup="menu" aria-expanded="false">
+                            <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <g fill-rule="evenodd">
+                                    <g stroke-width="1pt">
+                                        <path fill="#bd3d44" d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                        <path fill="#fff" d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                    </g>
+                                    <path fill="#192f5d" d="M0 0h98.8v70H0z" transform="scale(3.9385)"/>
+                                </g>
+                            </svg>
+                            English (US)
+                            <svg class="language-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m18 15-6-6-6 6"/>
+                            </svg>
+                        </button>
+
+                        <div class="language-dropdown-menu" role="menu">
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <g fill-rule="evenodd">
+                                        <g stroke-width="1pt">
+                                            <path fill="#bd3d44" d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                            <path fill="#fff" d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                        </g>
+                                        <path fill="#192f5d" d="M0 0h98.8v70H0z" transform="scale(3.9385)"/>
+                                    </g>
+                                </svg>
+                                English (US)
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="#ffce00" d="M0 341.3h512V512H0z"/>
+                                    <path d="M0 0h512v170.7H0z"/>
+                                    <path fill="#d00" d="M0 170.7h512v170.6H0z"/>
+                                </svg>
+                                Deutsch
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="#c8102e" d="M0 0h512.1v512H0z"/>
+                                    <path fill="#fff" d="M144 0h73.1v512H144z"/>
+                                    <path fill="#fff" d="M0 219.4h512.1v73.2H0z"/>
+                                </svg>
+                                Dansk
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <g fill-rule="evenodd" stroke-width="1pt">
+                                        <path fill="#fff" d="M0 0h512v512H0z"/>
+                                        <path fill="#009246" d="M0 0h170.7v512H0z"/>
+                                        <path fill="#ce2b37" d="M341.3 0H512v512H341.3z"/>
+                                    </g>
+                                </svg>
+                                Italiano
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
+                                    <defs>
+                                        <path id="a" fill="#ffde00" d="M1-.3L-.7.8 0-1 .6.8-1-.3z"/>
+                                    </defs>
+                                    <path fill="#de2910" d="M0 0h512v512H0z"/>
+                                    <use width="30" height="20" transform="matrix(76.8 0 0 76.8 128 128)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="rotate(-121 142.6 -47) scale(25.5827)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="rotate(-98.1 198 -82) scale(25.6)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="rotate(-74 272.4 -114) scale(25.6137)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="matrix(16 -19.968 19.968 16 256 230.4)" xlink:href="#a"/>
+                                </svg>
+                                中文 (繁體)
+                            </a>
+                        </div>
+                    </div> -->
+
+                    <!-- Liens légaux -->
+                    <div class="footer-legal-links">
+                        <p></p>
+                        <a href="cgps.html" class="footer-legal-link">Conditions générales</a>
+                        <a href="#" class="footer-legal-link disabled">Politique de confidentialité</a>
+                        <a href="#" class="footer-legal-link disabled">Utilisation Cookies</a>
+                    </div>
+                </div>
+
+                <!-- Section droite -->
+                <div class="footer-bottom-right">
+                    <!-- Brand mobile (visible uniquement sur mobile) -->
+                    <div class="footer-brand-mobile">
+                        <a href="index.html" class="footer-brand-mobile-title" aria-label="Brand">
+                            <img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
+                        </a>
+                        <p class="footer-brand-mobile-copyright">© 2025 - Tous droits réservés.</p>
+                    </div>
+
+                    <!-- Réseaux sociaux -->
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/qatorze" class="footer-social-link" aria-label="Social Media 1">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M8 11v5" />
+                                <path d="M8 8v.01" />
+                                <path d="M12 16v-5" />
+                                <path d="M16 16v-3a2 2 0 1 0 -4 0" />
+                                <path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/qatorze.services/" class="footer-social-link" aria-label="Social Media 2">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+                                <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                                <path d="M16.5 7.5v.01" />
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/qatorze14" class="footer-social-link" aria-label="Social Media 3">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-facebook">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@qatorze.services" class="footer-social-link" aria-label="Social Media 3">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-tiktok">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" />
+                            </svg>
+                        </a>
+                        <a href="https://g.co/kgs/2utkKce" class="footer-social-link" aria-label="Social Media 3">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-google">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M20.945 11a9 9 0 1 1 -3.284 -5.997l-2.655 2.392a5.5 5.5 0 1 0 2.119 6.605h-4.125v-3h7.945z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script pour gérer le défilement fluide et la mise en surbrillance de la section active
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.cgps-toc a');
+            const sections = document.querySelectorAll('.cgps-section');
+            
+            // Fonction pour mettre à jour la TOC
+            function updateActiveToc() {
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.scrollY >= sectionTop - 200) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            // Défilement fluide pour les liens d'ancrage
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Mettre à jour la TOC au scroll
+            window.addEventListener('scroll', updateActiveToc);
+            updateActiveToc(); // Initialiser
+        });
+    </script>
+
+    <script src="/services/assets/js/script.js"></script>
+
+</body>
+</html>

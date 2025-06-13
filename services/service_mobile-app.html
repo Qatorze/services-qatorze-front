@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QTZ | Mobile App</title>
+    <link rel="stylesheet" href="/services/assets/styles/style.css"> <!-- Assure-toi que le chemin est correct -->
+    <!-- Optionnel: Font Awesome si tu utilises des icônes -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+
+    <!-- IMPORT DU FAVICON -->
+    <link rel="icon" type="image/png" href="/services/assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/services/assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/services/assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/services/assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Qatôrze Services" />
+    <link rel="manifest" href="/services/assets/favicon/site.webmanifest" />
+</head>
+<body>
+
+    
+    <nav>
+        <!-- NAVBAR - VERSION MOBILE -->
+        <ul class="container sidebar hide-lg">
+
+            <li onclick=hideSidebar()  class="hide-sidebar">
+                <a href="#" class="ctn-logo-qtz-mobile"><img class="logo-qtz-mobile" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a>
+                <a href="index.html">
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M18 6l-12 12" />
+                        <path d="M6 6l12 12" />
+                    </svg>
+                </a>
+            </li>
+            <li class="btn-hover-bg"><a href="index.html" class="link">Accueil</a></li>
+            <li class="btn-hover-bg">
+                <details>
+                    <summary>
+                        Services
+                        <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </summary>
+                    <ul>
+                        <li>
+                            <a href="services_web-&-ecom.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                                </svg>
+                                <span>Sites Web & E-com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_web-app.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                    <path d="M3 9h18"/>
+                                    <path d="M9 21V9"/>
+                                </svg>
+                                <span>Web Apps</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_mobile-app.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                                    <path d="M12 18h.01"/>
+                                  </svg>
+                                <span>Apps Mobiles</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_installation-logiciels.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                  </svg>
+                                <span>Installation Logiciels</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service_audit-conseil.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                                  </svg>
+                                <span>Audit & Conseil</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="nos-services-&-produits.html" class="texte-autres-services">
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M12 5l0 14" />
+                                    <path d="M5 12l14 0" />
+                                </svg>
+                                <span>Nos services et produits</span>
+                            </a>
+                            <div class="img-ctn">
+                            </div>
+                        </li>
+                    </ul>
+                </details>
+            </li>
+            <!-- TO-DO : Activer lorsque la page Nos outils sera faite -->
+            <!-- <li class="btn-hover-bg"><a href="#" class="link">Outils</a></li> -->
+            <li class="btn-hover-bg"><a href="portfolio.html" class="link">Portfolio</a></li>
+            <li class="link-yellow-underline"><a href="#">info@qatorze.com</a></li>
+        </ul>
+        <!-- NAVBAR VERSION GRANDS ECRANTS -->
+        <ul class="container">
+            <li><a href="index.html"><img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a></li>
+            <li class="hideOnMobile"><a href="index.html" class="link">Accueil</a></li>
+
+            <li class="hideOnMobile dropdown">
+                <a href="#" class="link">Services 
+                    <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </a>
+                <div class="dropdown-menu row">
+                    <div class="row">
+                        <div class="left-section">
+                            <h4 class="cat-service-titre">Services principaux</h4>
+                            <div class="megamenu-grid">
+        
+                                <a href="services_web-&-ecom.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Sites Web & E-com</p>
+                                      <p class="desc-service">Développement de sites vitrines et e-commerce sur mesure</p>
+                                    </div>
+                                </a>
+        
+                                <a href="service_web-app.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                        <path d="M3 9h18"/>
+                                        <path d="M9 21V9"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Web Apps</p>
+                                      <p class="desc-service">Développement d'applications web progressives</p>
+                                    </div>
+                                </a>
+        
+                                <a href="service_mobile-app.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                                        <path d="M12 18h.01"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Apps Mobiles</p>
+                                      <p class="desc-service">Développement d'applications natifs Android/iOS et hybrides</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="services_design-&-conception-graphique.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                                            <path d="M2 2l7.586 7.586"/>
+                                            <circle cx="11" cy="11" r="2"/>
+                                        </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Design</p>
+                                      <p class="desc-service">Création d'interfaces UI/UX et d'identité visuelle</p>
+                                    </div>
+                                </a>
+
+                                <a href="service_installation-logiciels.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Logiciels</p>
+                                      <p class="desc-service">Installation et configuration logiciels métiers</p>
+                                    </div>
+                                </a>
+
+        
+                                <a href="service_audit-conseil.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                                      </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Audit & Conseil</p>
+                                      <p class="desc-service">Expertise technique et informatique</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="service_accompagnement-cm.html" class="megamenu-item">
+                                    <div class="megamenu-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                            <circle cx="9" cy="7" r="4"/>
+                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                          </svg>
+                                    </div>
+                                    <div class="megamenu-text">
+                                      <p class="service-titre">Accompagnement CM</p>
+                                      <p class="desc-service">Optimisation et gestion réseaux sociaux</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="right-section ali_flex-start">
+                            <h4 class="cat-service-titre">Autres services</h4>
+                            <p class="desc-autres-services">Découvrez tous les services et produits proposés par Qatôrze</p>
+                            <a href="nos-services-&-produits.html" class="col disabled">
+                                <div class="img-dropdown-ctn  disabled">
+
+                                </div>
+                                <p>Voir plus</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="hideOnMobile"><a href="portfolio.html" class="link">Portfolio</a></li>
+            <li class="hideOnMobile"><a href="contact.html" class="link">Contact</a></li>
+            <li class="hideOnMobile"><a href="#" class="link-yellow-line-left">info@qatorze.com</a></li>
+            <li onclick=showSidebar() class="menu-button"><a href="#">
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M4 6h16" />
+                    <path d="M7 12h13" />
+                    <path d="M10 18h10" />
+                </svg>
+            </a></li>
+        </ul>
+    </nav>
+
+
+    <main class="page-coming-soon">
+        <section class="coming-soon-section">
+            
+            <div class="coming-soon-content">
+                <div class="coming-soon-icon"></div>
+                
+                <h2 class="coming-soon-title">
+                    Service - Développement App Mobile
+                </h2>
+                
+                <p class="coming-soon-subtitle">
+                    ... en cours de modification par notre équipe.
+                </p>
+                
+                <p class="coming-soon-message">
+                    <span class="coming-soon-accent">Revenez dans quelques temps</span>, les détails de cette page seront bientôt disponible
+                    <span class="loading-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </p>
+            </div>
+        </section>
+    </main>
+
+
+    
+    <!-- FOOTER -->
+    <footer class="footer">
+        <!-- Grille principale -->
+        <div class="footer-grid container">
+            <!-- Section brand (visible uniquement sur desktop) -->
+            <div class="footer-brand" style="margin-right: 3rem; flex: 1; min-width: 250px;">
+                <div>
+                    <a href="#" class="footer-brand_img" aria-label="Brand">
+                        <img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
+                    </a>
+                    <p class="footer-message"><em>Notre mission, mettre à disposition notre expertise Tech au service de vos ambitions. Nous combinons innovation, savoir-faire technique et compréhension de vos enjeux métier pour développer des outils numériques qui optimisent votre performance et accélèrent votre développement.</em></p>
+                </div>
+                <p class="footer-brand-copyright">© 2025 Qatôrze - Tous droits réservés.</p>
+            </div>
+
+            <!-- Colonne Services -->
+            <div class="footer-column">
+                <p class="footer-title">Services</p>
+                <div class="footer-links">
+                    <p><a href="services_web-&-ecom.html" class="footer-link">Sites Web & E-com</a></p>
+                    <p><a href="service_web-app.html" class="footer-link">Web Apps</a></p>
+                    <p><a href="service_mobile-app.html" class="footer-link">Apps Mobiles</a></p>
+                    <p><a href="services_design-&-conception-graphique.html" class="footer-link">Design</a></p>
+                    <p><a href="service_installation-logiciels.html" class="footer-link">Installation Logiciels</a></p>
+                    <p><a href="service_audit-conseil.html" class="footer-link">Audit & Conseil</a></p>
+                    <p><a href="service_accompagnement-cm.html" class="footer-link">Accompagnement CM</a></p>
+                </div>
+            </div>
+
+            <!-- Colonne Ressources -->
+            <div class="footer-column">
+                <p class="footer-title">Ressources</p>
+                <div class="footer-links">
+                    <p><a href="portfolio.html" class="footer-link">Portfolio</a></p>
+                    <p><a href="#" class="footer-link disabled">Nos outils</a></p>
+                    <p><a href="#" class="footer-link disabled">Nos offres d'emplois</a> <span class="footer-special-text">— On recrute</span></p>
+                    <p><a href="#" class="footer-link disabled">Blog</a></p>
+                </div>
+            </div>
+
+            <!-- Colonne Liens utiles -->
+            <div class="footer-column">
+                <p class="footer-title">Liens utiles</p>
+                <div class="footer-links">
+                    <p><a href="contact.html" class="footer-link">Nous contacter</a></p>
+                    <p><a href="#" class="footer-link disabled">Demande de devis</a></p>
+                    <p><a href="#" class="footer-link disabled">Aide et assistance</a></p>
+                </div>
+            </div>
+
+            <!-- Colonne Aller plus loin -->
+            <div class="footer-column">
+                <p class="footer-title">Aller plus loin</p>
+                <div class="footer-links">
+                    <p><a href="#" class="footer-link disabled">Api</a></p>
+                    <p><a href="#" class="footer-link disabled">Status</a></p>
+                    <p><a href="#" class="footer-link disabled">GitHub</a> <span class="footer-special-text">— New</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section bottom du footer -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content  container">
+                <!-- Section gauche -->
+                <div class="footer-bottom-left">
+                    <!-- Dropdown de langue -->
+                    <!-- <div class="language-dropdown" id="languageDropdown">
+                        <button class="language-dropdown-button" id="languageButton" aria-haspopup="menu" aria-expanded="false">
+                            <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <g fill-rule="evenodd">
+                                    <g stroke-width="1pt">
+                                        <path fill="#bd3d44" d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                        <path fill="#fff" d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                    </g>
+                                    <path fill="#192f5d" d="M0 0h98.8v70H0z" transform="scale(3.9385)"/>
+                                </g>
+                            </svg>
+                            English (US)
+                            <svg class="language-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m18 15-6-6-6 6"/>
+                            </svg>
+                        </button>
+
+                        <div class="language-dropdown-menu" role="menu">
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <g fill-rule="evenodd">
+                                        <g stroke-width="1pt">
+                                            <path fill="#bd3d44" d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                            <path fill="#fff" d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/>
+                                        </g>
+                                        <path fill="#192f5d" d="M0 0h98.8v70H0z" transform="scale(3.9385)"/>
+                                    </g>
+                                </svg>
+                                English (US)
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="#ffce00" d="M0 341.3h512V512H0z"/>
+                                    <path d="M0 0h512v170.7H0z"/>
+                                    <path fill="#d00" d="M0 170.7h512v170.6H0z"/>
+                                </svg>
+                                Deutsch
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="#c8102e" d="M0 0h512.1v512H0z"/>
+                                    <path fill="#fff" d="M144 0h73.1v512H144z"/>
+                                    <path fill="#fff" d="M0 219.4h512.1v73.2H0z"/>
+                                </svg>
+                                Dansk
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <g fill-rule="evenodd" stroke-width="1pt">
+                                        <path fill="#fff" d="M0 0h512v512H0z"/>
+                                        <path fill="#009246" d="M0 0h170.7v512H0z"/>
+                                        <path fill="#ce2b37" d="M341.3 0H512v512H341.3z"/>
+                                    </g>
+                                </svg>
+                                Italiano
+                            </a>
+                            <a href="#" class="language-dropdown-item">
+                                <svg class="language-flag" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
+                                    <defs>
+                                        <path id="a" fill="#ffde00" d="M1-.3L-.7.8 0-1 .6.8-1-.3z"/>
+                                    </defs>
+                                    <path fill="#de2910" d="M0 0h512v512H0z"/>
+                                    <use width="30" height="20" transform="matrix(76.8 0 0 76.8 128 128)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="rotate(-121 142.6 -47) scale(25.5827)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="rotate(-98.1 198 -82) scale(25.6)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="rotate(-74 272.4 -114) scale(25.6137)" xlink:href="#a"/>
+                                    <use width="30" height="20" transform="matrix(16 -19.968 19.968 16 256 230.4)" xlink:href="#a"/>
+                                </svg>
+                                中文 (繁體)
+                            </a>
+                        </div>
+                    </div> -->
+
+                    <!-- Liens légaux -->
+                    <div class="footer-legal-links">
+                        <p></p>
+                        <a href="cgps.html" class="footer-legal-link">Conditions générales</a>
+                        <a href="#" class="footer-legal-link disabled">Politique de confidentialité</a>
+                        <a href="#" class="footer-legal-link disabled">Utilisation Cookies</a>
+                    </div>
+                </div>
+
+                <!-- Section droite -->
+                <div class="footer-bottom-right">
+                    <!-- Brand mobile (visible uniquement sur mobile) -->
+                    <div class="footer-brand-mobile">
+                        <a href="index.html" class="footer-brand-mobile-title" aria-label="Brand">
+                            <img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
+                        </a>
+                        <p class="footer-brand-mobile-copyright">© 2025 - Tous droits réservés.</p>
+                    </div>
+
+                    <!-- Réseaux sociaux -->
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/qatorze" class="footer-social-link" aria-label="Social Media 1">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M8 11v5" />
+                                <path d="M8 8v.01" />
+                                <path d="M12 16v-5" />
+                                <path d="M16 16v-3a2 2 0 1 0 -4 0" />
+                                <path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/qatorze.services/" class="footer-social-link" aria-label="Social Media 2">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+                                <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                                <path d="M16.5 7.5v.01" />
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/qatorze14" class="footer-social-link" aria-label="Social Media 3">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-facebook">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@qatorze.services" class="footer-social-link" aria-label="Social Media 3">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-tiktok">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" />
+                            </svg>
+                        </a>
+                        <a href="https://g.co/kgs/2utkKce" class="footer-social-link" aria-label="Social Media 3">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-google">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M20.945 11a9 9 0 1 1 -3.284 -5.997l-2.655 2.392a5.5 5.5 0 1 0 2.119 6.605h-4.125v-3h7.945z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="/services/assets/js/effets.js"></script>
+    <script src="/services/assets/js/script.js"></script>
+</body>
+</html>
