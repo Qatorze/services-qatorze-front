@@ -361,7 +361,7 @@ details>ul .img-ctn {
     /* Supprime la marge haute par défaut de <ul> */
     margin-bottom: 0.3rem;
     border-radius: 8px;
-    background-image: url(/services/assets/images/logo-gtz-rectangle.svg);
+    background-image: url(/assets/images/logo-gtz-rectangle.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1105,7 +1105,7 @@ li:hover a .icon-arrow {
     height: 100%;
     padding: 0.5rem;
     border-radius: 8px;
-    background-image: url(/services/assets/images/logo-gtz-square.svg);
+    background-image: url(/assets/images/logo-gtz-square.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1122,7 +1122,7 @@ details>ul .img-ctn {
     /* Supprime la marge haute par défaut de <ul> */
     margin-bottom: 0.3rem;
     border-radius: 8px;
-    background-image: url(/services/assets/images/logo-gtz-rectangle.svg);
+    background-image: url(/assets/images/logo-gtz-rectangle.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -2251,7 +2251,7 @@ details>ul .img-ctn {
     transform: translate(-50%, -50%);
     width: 56px;
     height: 56px;
-    background-image: url(/services/assets/images/logo-gtz-square.svg);
+    background-image: url(/assets/images/logo-gtz-square.svg);
     background-size: cover;
     border-radius: 8px;
     display: flex;
@@ -2650,43 +2650,43 @@ details>ul .img-ctn {
 
 /* Classes d'images inchangées */
 .s1 {
-    background-image: url(/services/assets/images/img-site-web.png);
+    background-image: url(/assets/images/img-site-web.png);
     background-size: cover;
     background-position: center;
 }
 
 .s2 {
-    background-image: url(/services/assets/images/img-web-app.jpg);
+    background-image: url(/assets/images/img-web-app.jpg);
     background-size: cover;
     background-position: center;
 }
 
 .s3 {
-    background-image: url(/services/assets/images/img-app-mobile.png);
+    background-image: url(/assets/images/img-app-mobile.png);
     background-size: cover;
     background-position: center;
 }
 
 .s4 {
-    background-image: url(/services/assets/images/img-conception-graphique.jpg);
+    background-image: url(/assets/images/img-conception-graphique.jpg);
     background-size: cover;
     background-position: center;
 }
 
 .s5 {
-    background-image: url(/services/assets/images/img-audit-conseil-tech.png);
+    background-image: url(/assets/images/img-audit-conseil-tech.png);
     background-size: cover;
     background-position: center;
 }
 
 .s6 {
-    background-image: url(/services/assets/images/img-installation-logiciels.png);
+    background-image: url(/assets/images/img-installation-logiciels.png);
     background-size: cover;
     background-position: center;
 }
 
 .s7 {
-    background-image: url(/services/assets/images/img-accompagnement-cm.webp);
+    background-image: url(/assets/images/img-accompagnement-cm.webp);
     background-size: cover;
     background-position: center;
 }
@@ -3529,7 +3529,7 @@ select {
 }
 
 .page-header {
-    background: linear-gradient(to right, #007e4c 50%, url(/services/assets/images/img-egerie-qtz.jpg) 50%);
+    background: linear-gradient(to right, #007e4c 50%, url(/assets/images/img-egerie-qtz.jpg) 50%);
 }
 
 .page-header_ctn {
@@ -4030,7 +4030,7 @@ select {
      align-items: center;
      height: 400px;
     padding-top: 2.5rem;
-    background-image: url(/services/assets/images/img-qtz-bg.svg);
+    background-image: url(/assets/images/img-qtz-bg.svg);
     background-position: top;
     background-size: cover;
     background-repeat: no-repeat;
@@ -4213,7 +4213,7 @@ select {
      position: relative;
     width: 100%;
     height: 55vh;
-    background-image: url(/services/assets/images/qtz-patern-2.png);
+    background-image: url(/assets/images/qtz-patern-2.png);
     background-position: center;
     background-size: cover;
     

@@ -31,8 +31,8 @@ const caseStudies = [
                 description: "Conception d'une architecture technique solide et d'un système de gestion de contenu (CMS) intuitif, offrant à l'agence une autonomie complète pour administrer sa plateforme web, actualiser ses annonces et contenus, et gérer ses données clients en toute sécurité et indépendance." 
             },
         ],
-        image: "/services/assets/images/img-p2s-3.svg",
-        logo: "/services/assets/images/logo-p2s-1.png", // Chemin vers le logo
+        image: "/assets/images/img-p2s-3.svg",
+        logo: "/assets/images/logo-p2s-1.png", // Chemin vers le logo
         services: ["Web App", "UX/UI Design"],
         tools: ["Angular", "Java", "Spring Boot", "TypeScript", "SCSS", "Figma"],
         link: "https://p2s-tde.com",
@@ -62,8 +62,8 @@ const caseStudies = [
                 description: "Les informations sur les services de l'entreprise sont disponibles 24/7, un site est un commerciale infatigable et présent partout où il y a une connexion internet." 
             }
         ],
-        image: "/services/assets/images/img-afmat-1.png",
-        logo: "/services/assets/images/logo-afmat-blanc.png", // Chemin vers le logo
+        image: "/assets/images/img-afmat-1.png",
+        logo: "/assets/images/logo-afmat-blanc.png", // Chemin vers le logo
         services: ["Développement Web", "Design graphique", "UX/UI Design"],
         tools: ["Bootstrap", "SCSS", "JavaScript", "ERP", "CRM", "Figma"],
         link: "https://www.af-mat.com/"
@@ -92,8 +92,8 @@ const caseStudies = [
                 description: "Les demandes stressantes et uregentes soumises au clients prenne du temps, pressent les fournisseurs qui doivent faire preuve d'une extrême véllocité. Pour des demandes qui n'abouttissent qu'à un très faible taux de convertion en commande client." 
             }
         ],
-        image: "/services/assets/images/img-liftyparts-1.png",
-        logo: "/services/assets/images/icone-liftyparts.png", // Chemin vers le logo
+        image: "/assets/images/img-liftyparts-1.png",
+        logo: "/assets/images/icone-liftyparts.png", // Chemin vers le logo
         services: ["Développement E-commerce", "UX/UI Design"],
         tools: ["Zoho Commerce", "Stripe", "ERP", "CRM", "CSS", "Figma"],
         link: "https://www.liftyparts.com/"
@@ -113,8 +113,8 @@ const caseStudies = [
     //         { title: "50+ educational partners onboarded", description: "Platform attracted major institutions as content providers." },
     //         { title: "Scalable architecture for future growth", description: "System designed to handle increasing user base and content." }
     //     ],
-    //     logo: "/services/assets/images/logo-gtz-square.svg", // Chemin vers le logo
-    //     image: "/services/assets/images/Aurores-Boréales.png",        
+    //     logo: "/assets/images/logo-gtz-square.svg", // Chemin vers le logo
+    //     image: "/assets/images/Aurores-Boréales.png",        
     //     services: ["Développement Web", "Développement Mobile", "UX/UI Design"],
     //     tools: ["Angular", "Typescript", "SCSS", "Figma"],
     //     link: "#learnplus"
@@ -134,8 +134,8 @@ const caseStudies = [
     //         { title: "40% higher engagement rates", description: "Messaging resonated strongly with target demographic." },
     //         { title: "Established as industry thought leader", description: "Positioned brand as authority on sustainable living." }
     //     ],
-    //     image: "/services/assets/images/Aurores-Boréales.png",
-    //     logo: "/services/assets/images/logo-gtz-square.svg", // Chemin vers le logo
+    //     image: "/assets/images/Aurores-Boréales.png",
+    //     logo: "/assets/images/logo-gtz-square.svg", // Chemin vers le logo
     //     services: ["Accompagnement CM", "Design graphique"],
     //     tools: ["Figma"],
     //     link: "#greenlife"
@@ -155,8 +155,8 @@ const caseStudies = [
     //         { title: "Reduced bounce rate by 35%", description: "Engaging content kept visitors exploring the site." },
     //         { title: "Improved search rankings", description: "SEO optimization increased organic traffic." }
     //     ],
-    //     image: "/services/assets/images/Aurores-Boréales.png",
-    //     logo: "/services/assets/images/logo-gtz-square.svg", // Chemin vers le logo
+    //     image: "/assets/images/Aurores-Boréales.png",
+    //     logo: "/assets/images/logo-gtz-square.svg", // Chemin vers le logo
     //     services: ["Développement Web", "Design graphique", "SEO"],
     //     tools: ["Astro JS", "Javascript", "SCSS", "Hostinger"],
     //     link: "#techsolutions"
@@ -176,8 +176,8 @@ const caseStudies = [
     //         { title: "40% longer session duration", description: "Improved UX kept readers engaged with content." },
     //         { title: "Doubled ad revenue", description: "Better layout and engagement increased ad visibility." }
     //     ],
-    //     image: "/services/assets/images/Aurores-Boréales.png",
-    //     logo: "/services/assets/images/logo-gtz-square.svg", // Chemin vers le logo
+    //     image: "/assets/images/Aurores-Boréales.png",
+    //     logo: "/assets/images/logo-gtz-square.svg", // Chemin vers le logo
     //     services: ["Développement Web", "SEO"],
     //     tools: ["Wordpress", "Javascript", "Hostinger"],
     //     link: "#foodlover"
@@ -197,8 +197,8 @@ const caseStudies = [
     //         { title: "4.7/5 user satisfaction", description: "Users praised the intuitive interface and specialized features." },
     //         { title: "80% daily active usage", description: "High engagement showed the tool became essential to workflows." }
     //     ],
-    //     image: "/services/assets/images/Aurores-Boréales.png",
-    //     logo: "/services/assets/images/logo-gtz-square.svg", // Chemin vers le logo
+    //     image: "/assets/images/Aurores-Boréales.png",
+    //     logo: "/assets/images/logo-gtz-square.svg", // Chemin vers le logo
     //     services: ["Développement Web", "UX/UI Design"],
     //     tools: ["Angular", "Typescript", "SCSS", "Figma"],
     //     link: "#taskmaster"
@@ -218,8 +218,8 @@ const caseStudies = [
     //         { title: "Increased media coverage", description: "Distinctive visual identity attracted press attention." },
     //         { title: "Positive artist feedback", description: "Artists appreciated how the design complemented their work." }
     //     ],
-    //     image: "/services/assets/images/Aurores-Boréales.png",
-    //     logo: "/services/assets/images/logo-gtz-square.svg", // Chemin vers le logo
+    //     image: "/assets/images/Aurores-Boréales.png",
+    //     logo: "/assets/images/logo-gtz-square.svg", // Chemin vers le logo
     //     services: ["Design graphique", "UX/UI Design"],
     //     tools: ["Figma"],
     //     link: "#artgallery"
@@ -239,8 +239,8 @@ const caseStudies = [
     //         { title: "Advanced filtering system", description: "Custom solution for unique vintage attributes." },
     //         { title: "Secure payment integration", description: "Built trust for high-value vintage transactions." }
     //     ],
-    //     image: "/services/assets/images/Aurores-Boréales.png",
-    //     logo: "/services/assets/images/logo-gtz-square.svg", // Chemin vers le logo
+    //     image: "/assets/images/Aurores-Boréales.png",
+    //     logo: "/assets/images/logo-gtz-square.svg", // Chemin vers le logo
     //     services: ["Développement Web", "Design graphique", "SEO"],
     //     tools: ["Astro JS", "Javascript", "SCSS", "Hostinger"],
     //     link: "#vintageworld"

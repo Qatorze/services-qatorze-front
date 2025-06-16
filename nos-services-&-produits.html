@@ -3,323 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service - Développement d'Applications Web</title>
-    <link rel="stylesheet" href="/services/assets/styles/style.css"> <!-- Assure-toi que le chemin est correct -->
+    <title>QTZ | Services & produits</title>
+    <link rel="stylesheet" href="/assets/styles/style.css"> <!-- Assure-toi que le chemin est correct -->
     <!-- Optionnel: Font Awesome si tu utilises des icônes -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
 
-    <!-- IMPORT DU FAVICON -->
-    <link rel="icon" type="image/png" href="/services/assets/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/services/assets/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="/services/assets/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/services/assets/favicon/apple-touch-icon.png" />
+        <!-- IMPORT DU FAVICON -->
+    <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Qatôrze Services" />
-    <link rel="manifest" href="/services/assets/favicon/site.webmanifest" />
-
-        <style>
-
-        @media (max-width: 468px) {
-
-            .tech-carousel {
-                display: block !important;
-            }
-        }
-
-        .tech-card {
-            background: #070707;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            min-height: 350px;
-        }
-
-        .tech-card:hover {
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 15px 40px rgba(255, 201, 0, 0.1);
-        }
-
-        .tech-header,
-        .tech-content,
-        .tech-details
-
-        /* ... styles internes des cartes ... */
-        {
-            padding: 1.5rem;
-            /* Exemple */
-        }
-
-        .tech-header {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .tech-logo {
-            width: 50px;
-            height: 50px;
-            background: var(--primary-color);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #000;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .tech-title {
-            margin: 0;
-            font-size: 1.4rem;
-            color: white;
-            font-weight: 600;
-        }
-
-        .tech-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .tech-description {
-            color: #ccc;
-            line-height: 1.6;
-            font-size: 0.95rem;
-            flex-grow: 1;
-        }
-
-        .tech-details {
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .alternatives-title {
-            position: relative;
-            color: var(--white);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.5rem;
-        }
-
-
-
-        .alternatives-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            background: rgba(76, 175, 80, 0.1);
-            color: var(--primary-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: var(--fw-5);
-            border: 1px solid rgba(76, 175, 80, 0.3);
-            display: inline-block;
-            margin-right: 4px;
-            margin-bottom: 6px;
-            transition: var(--tr-1);
-        }
-        
-        .tag:hover {
-            background: rgba(76, 175, 80, 0.2);
-        }
-
-
-        /* ===================
-           CARROUSEL STYLES
-           =================== */
-
-        .tech-carousel {
-            display: none;
-            position: relative;
-            width: 100%;
-            height: 100%;
-            margin: 0 auto;
-            /* Centre si max-width est actif */
-
-            /* Styles pour écrans > 468px par défaut */
-            max-width: calc(var(--carousel-card-width-large-screen) + (2 * var(--carousel-arrow-space-large-screen)));
-            padding: 0 var(--carousel-arrow-space-large-screen);
-        }
-
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            min-height: 400px;
-            overflow: hidden;
-            border-radius: 15px;
-        }
-
-        .carousel-track {
-            display: flex;
-            height: 100%;
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            min-height: 100%;
-            flex-shrink: 0;
-        }
-
-        .carousel-slide .tech-card {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            min-height: 400px;
-            /* Le border-radius de la carte elle-même est conservé.
-               Celui du .carousel-container le clippera. */
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 201, 0, 0.9);
-            color: #000;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            z-index: 10;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Positionnement par défaut (> 468px) */
-        .prev-btn {
-            left: calc(var(--carousel-arrow-space-large-screen) / 2 - 20px);
-        }
-
-        .next-btn {
-            right: calc(var(--carousel-arrow-space-large-screen) / 2 - 20px);
-        }
-
-        .carousel-btn:hover {
-            background: #ffc900;
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 201, 0, 0.4);
-        }
-
-        .carousel-btn:active {
-            transform: translateY(-50%) scale(0.95);
-        }
-
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            gap: 10px;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .dot:hover {
-            background: rgba(255, 201, 0, 0.6);
-        }
-
-        .dot.active {
-            background: #ffc900;
-            transform: scale(1.2);
-            box-shadow: 0 0 10px rgba(255, 201, 0, 0.5);
-            border-color: rgba(255, 201, 0, 0.2);
-        }
-
-        /* Styles spécifiques pour écrans <= 468px */
-        @media (max-width: 468px) {
-            .tech-carousel {
-                padding: 0 !important;
-                /* crucial: pas d'espace latéral */
-                max-width: none !important;
-                /* crucial: prend toute la largeur disponible de son parent */
-                /* background-color: rgba(255,0,0,0.1); /* Debug: couleur tech-carousel */
-            }
-
-            .carousel-container {
-                /* background-color: rgba(0,255,0,0.1); /* Debug: couleur carousel-container */
-                width: 95vw;
-            }
-
-            .carousel-slide .tech-card {
-                /* background-color: rgba(255,255,0,0.1); /* Debug: couleur tech-card dans slide */
-                width: 95vw;
-            }
-
-
-            .carousel-btn {
-                width: 35px;
-                height: 35px;
-                font-size: 16px;
-                background: rgba(20, 20, 20, 0.6);
-                color: #fff;
-                backdrop-filter: blur(5px);
-                top: 50%;
-                /* Garde le centrage vertical par rapport à .tech-carousel */
-                transform: translateY(-50%);
-                /* Garde le centrage vertical */
-            }
-
-            .prev-btn {
-                left: 10px;
-                /* Par rapport au bord de .tech-carousel */
-            }
-
-            .next-btn {
-                right: 10px;
-                /* Par rapport au bord de .tech-carousel */
-            }
-
-            .carousel-btn:hover {
-                background: rgba(50, 50, 50, 0.8);
-                /* transform doit toujours inclure translateY pour le centrage */
-                transform: translateY(-50%) scale(1.1);
-            }
-
-            .carousel-btn:active {
-                transform: translateY(-50%) scale(0.95);
-            }
-
-            .container {
-                padding: 0 10px;
-                /* Réduit le padding du container global */
-            }
-
-            .subtitle-service {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    <link rel="manifest" href="/assets/favicon/site.webmanifest" />
 </head>
 <body>
 
@@ -329,7 +27,7 @@
         <ul class="container sidebar hide-lg">
 
             <li onclick=hideSidebar()  class="hide-sidebar">
-                <a href="#" class="ctn-logo-qtz-mobile"><img class="logo-qtz-mobile" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a>
+                <a href="#" class="ctn-logo-qtz-mobile"><img class="logo-qtz-mobile" src="/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a>
                 <a href="index.html">
                     <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -414,7 +112,7 @@
         </ul>
         <!-- NAVBAR VERSION GRANDS ECRANTS -->
         <ul class="container">
-            <li><a href="index.html"><img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a></li>
+            <li><a href="index.html"><img class="logo-qtz" src="/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a></li>
             <li class="hideOnMobile"><a href="index.html" class="link">Accueil</a></li>
 
             <li class="hideOnMobile dropdown">
@@ -554,323 +252,32 @@
         </ul>
     </nav>
 
-    <section class="services-header">
-        <div class="section-header_ctn container">
-            <div class="services-header_content">
-                <p class="petit-titre-section">Sites Web & E-commerces</p>
-                <h2 class="titre-service-2 animate-element blur-letters" data-text="Les meilleurs technologies open-source pour répondre ">Les meilleures outils de développement pour répondre à vos besoins spécifiques.</h2>
-            </div>
-    
-            <model-viewer
-            class="services-3d"
-            src="/services/assets/3d/Green_Lightning_Bolt_0519182819_stylize.glb"
-            camera-controls
-            auto-rotate
-            auto-rotate-delay="0"
-            disable-zoom
-            ar
-            exposure="0.6"
-            environment-image="neutral"
-            shadow-intensity="1">
-            </model-viewer>
-        </div>
-    </section>
 
-    <main class="sercives_main-content">
-        <div class="row-on-pc_col-on-tab container m-bottom-4">
-            <div class="half-width-lg_ctn">
-                <!-- Tab Content -->
-                <div class="tab-content">
-                    <div id="tabs-with-card-1" role="tabpanel" aria-labelledby="tabs-with-card-item-1">
-                        <!-- Devices -->
-                        <div class="devices-container">
-                            <!-- Mobile Device -->
-                            <figure class="mobile-device">
-                                <div class="mobile-frame">
-                                    <img id="mobile-image" class="mobile-image" src="/services/assets/images/img-egerie-qtz.jpg" alt="Image mobile">
-                                </div>
-                            </figure>
-                            <!-- End Mobile Device -->
-                
-                            <!-- Browser Device -->
-                            <figure class="browser-device">
-                                <div class="browser-header">
-                                    <div class="browser-dots">
-                                        <span class="browser-dot"></span>
-                                        <span class="browser-dot"></span>
-                                        <span class="browser-dot"></span>
-                                    </div>
-                                    <div class="browser-url">www.p2s-tde.com</div>
-                                </div>
-                
-                                <div class="browser-image-container">
-                                    <img id="tab-image" class="browser-image" src="/services/assets/gifs/SHOWUP - P2S - gif.gif" alt="Capture d'écran du projet">
-                                </div>
-                            </figure>
-                            <!-- End Browser Device -->
-                        </div>
-                        <!-- End Devices -->
-                    </div>
-                </div>
-                <!-- End Tab Content -->
-            </div>
+    <main class="page-coming-soon">
+        <section class="coming-soon-section">
             
-            <!-- <button class="theme-toggle" id="themeToggle">Mode sombre</button> -->
-
-            <div class="half-width-lg_ctn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
-                </svg>
-                <br>
-                <h2 class="subtitle-service">Développement de sites web performants, et SEO friendly</h2>
-
-                <p class="text-service-2">Nous créons des sites web modernes et optimisés qui allient performance technique et visibilité sur les moteurs de recherche. Notre approche combine un code propre, des temps de chargement rapides et une architecture pensée pour le référencement naturel. Chaque site est développé selon les meilleures pratiques du web moderne pour garantir une expérience utilisateur exceptionnelle.</p>
-
-                <p class="text-service-2 m-top-1">Notre expertise couvre l'intégralité du processus de développement : analyse des besoins, conception responsive, optimisation SEO technique, et mise en ligne sécurisée. Nous utilisons les dernières technologies pour créer des sites évolutifs qui s'adaptent aux besoins futurs de votre entreprise tout en respectant les standards d'accessibilité et de performance web.</p>
+            <div class="coming-soon-content">
+                <div class="coming-soon-icon"></div>
+                
+                <!-- <h2 class="coming-soon-title">
+                    EN COURS
+                </h2> -->
+                
+                <p class="coming-soon-subtitle">
+                    ... en cours de modification par notre équipe.
+                </p>
+                
+                <p class="coming-soon-message">
+                    <span class="coming-soon-accent">Revenez dans quelques temps</span>, les détails de cette page seront bientôt disponible
+                    <span class="loading-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </p>
             </div>
-        </div>
-
-
-        <!-- -------------------
-        SECTION N°2 - DEFILEMENT DE LOGOS
-        -------------------- -->
-        
-        <section class="ctn-scroll">
-            <div class="container-2">
-                <div class="content-container-2">
-                    <div class="wrapper">
-                        <div class="item item1">Propulsé par</div>
-                        <div class="item item2 no-text"><img src="/services/assets/images/logo-qonto-blanc.png" alt="Logo Qonto Blanc"></div>
-                        <div class="item item3 no-text"><img src="/services/assets/images/logo-pepite-eca.png" alt="Logo Pépite ECA"></div>
-                        <div class="item item4 no-text"><img src="/services/assets/images/logo-stripe-blanc.png" alt="Logo Stripe"></div>
-                        <div class="item item5">Nos technologies</div>
-                        <div class="item item6 no-text"><img src="/services/assets/images/logo-angular-white.png" alt="Logo Astro Js"></div>
-                        <div class="item item7 no-text"><img src="/services/assets/images/logo-astrojs.svg" alt="Logo Astro Js"></div>
-                        <div class="item item8 no-text"><img src="/services/assets/images/logo-android-blanc.svg" alt="Logo Android"></div>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="image-container">
-                <img class="qtz-bg-image" src="/services/assets/images/img-qtz-bg-down-tr.svg" alt="">
-            </div> -->
         </section>
-
-
-        <div class="centered-title m-top-4 container">
-            <h1 class="subtitle-service  animate-element blur-letters">Les technologies que nous utilisons pour le développement Web</h1>   
-        </div>
-
-        <!-- Section nos Frameworks développement Web -->
-        <div class="row-on-pc_col-on-tab m-top-3 container">
-            <div class="tech-text-box">
-                <p class="petit-titre-section">Frameworks</p>
-                <h1 class="subtitle-service">Front & <br> Back-end</h1>
-            </div>
-            <div class="tech-grid">
-
-                <!-- Astro JS -->
-                <div class="tech-card">
-                    <div class="tech-header">
-                        <img class="tech-logo" src="/services/assets/images/logo-gtz-square.svg" alt="JavaScript Logo">
-                        <h3 class="tech-title">Astro JS</h3>
-                    </div>
-                    <div class="tech-content">
-                        <p class="tech-description">Framework moderne pour construire des sites rapides avec moins de JavaScript.</p>
-                        <div class="tech-details">
-                            <div class="tech-alternatives">
-                                <h4 class="alternatives-title">Alternatives</h4>
-                                <div class="alternatives-tags">
-                                    <span class="tag">Next.js</span>
-                                    <span class="tag">Gatsby</span>
-                                    <span class="tag">Nuxt</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tech-footer">
-
-                    </div>
-                </div>
-
-                <!-- Angular -->
-                <div class="tech-card">
-                    <div class="tech-header">
-                        <img class="tech-logo" src="/services/assets/images/logo-gtz-square.svg" alt="JavaScript Logo">
-                        <h3 class="tech-title">Angular</h3>
-                    </div>
-                    <div class="tech-content">
-                        <p class="tech-description">Framework front-end complet développé par Google pour les applications complexes.</p>
-                        <div class="tech-details">
-                            <div class="tech-alternatives">
-                                <h4 class="alternatives-title">Alternatives</h4>
-                                <div class="alternatives-tags">
-                                    <span class="tag">React</span>
-                                    <span class="tag">Vue</span>
-                                    <span class="tag">Svelte</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tech-footer">
-
-                    </div>
-                </div>
-
-                
-                <!-- Spring Boot -->
-                <div class="tech-card">
-                    <div class="tech-header">
-                        <img class="tech-logo" src="/services/assets/images/logo-gtz-square.svg" alt="JavaScript Logo">
-                        <h3 class="tech-title">Spring Boot</h3>
-                    </div>
-                    <div class="tech-content">
-                        <p class="tech-description">Framework Java pour créer des applications autonomes prêtes pour la production.</p>
-                        <div class="tech-details">
-                            <div class="tech-alternatives">
-                                <h4 class="alternatives-title">Alternatives</h4>
-                                <div class="alternatives-tags">
-                                    <span class="tag">Micronaut</span>
-                                    <span class="tag">Quarkus</span>
-                                    <span class="tag">Jakarta EE</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tech-footer">
-
-                    </div>
-                </div>  
-            </div>
-        </div>
-
-        <!-- Section nos Outils Design et DevOps -->
-        <div class="row-on-pc_col-on-tab container">
-            <div class="tech-text-box">
-                <p class="petit-titre-section">Outils</p>
-                <h1 class="subtitle-service">Design & <br> DevOps</h1>
-            </div>
-
-            <div class="tech-container">
-                <div class="tech-grid">
-                    <!-- Figma -->
-                    <div class="tech-card" data-tech="figma">
-                        <div class="tech-header">
-                            <img class="tech-logo" src="/services/assets/images/logo-gtz-square.svg" alt="JavaScript Logo">
-                            <h3 class="tech-title">Figma</h3>
-                        </div>
-                        <div class="tech-content">
-                            <p class="tech-description">Outil de design collaboratif en ligne pour les interfaces
-                                utilisateur et prototypes.</p>
-                            <div class="tech-details">
-                                <div class="tech-alternatives">
-                                    <h4 class="alternatives-title">Alternatives</h4>
-                                    <div class="alternatives-tags">
-                                        <span class="tag">Sketch</span>
-                                        <span class="tag">Adobe XD</span>
-                                        <span class="tag">Framer</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Docker -->
-                    <div class="tech-card" data-tech="docker">
-                        <div class="tech-header">
-                            <img class="tech-logo" src="/services/assets/images/logo-gtz-square.svg" alt="JavaScript Logo">
-                            <h3 class="tech-title">Docker</h3>
-                        </div>
-                        <div class="tech-content">
-                            <p class="tech-description">Plateforme de conteneurisation pour développer, déployer et exécuter
-                                des applications.</p>
-                            <div class="tech-details">
-                                <div class="tech-alternatives">
-                                    <h4 class="alternatives-title">Alternatives</h4>
-                                    <div class="alternatives-tags">
-                                        <span class="tag">Podman</span>
-                                        <span class="tag">Kubernetes</span>
-                                        <span class="tag">LXC</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Ansible -->
-                    <div class="tech-card" data-tech="ansible">
-                        <div class="tech-header">
-                            <img class="tech-logo" src="/services/assets/images/logo-gtz-square.svg" alt="JavaScript Logo">
-                            <h3 class="tech-title">Ansible</h3>
-                        </div>
-                        <div class="tech-content">
-                            <p class="tech-description">Outil d'automatisation IT pour la configuration management et le
-                                déploiement.</p>
-                            <div class="tech-details">
-                                <div class="tech-alternatives">
-                                    <h4 class="alternatives-title">Alternatives</h4>
-                                    <div class="alternatives-tags">
-                                        <span class="tag">Terraform</span>
-                                        <span class="tag">Chef</span>
-                                        <span class="tag">Puppet</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
-        </div>
-        
-        <!-- <div class="tech-carousel">
-            <button class="carousel-btn prev-btn" aria-label="Slide précédente">‹</button>
-            <button class="carousel-btn next-btn" aria-label="Slide suivante">›</button>
-
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    
-                    
-                </div>
-            </div>
-
-            <div class="carousel-dots">
-                
-                
-            </div>
-        </div> -->
-
     </main>
-
-
-    
-    <!-- SECTION REVEAL QR CODE WHATSAPP -->
-    <div class="sections-mt qr-reveal" style="text-align:center;">
-        <!-- Exemple avec contenu WhatsApp -->
-        <p class="info" style="padding-bottom: 1rem;">Survolez la zone ci-dessous et scannez le QR code</p>
-        <div class="reveal-container" id="whatsappReveal">
-            <div class="reveal-content">
-                <div class="text-content">Discuttons en live<br>sur WhatsApp</div>
-                
-                <div class="qr-code">
-                    <img src="assets/images/qr-code-chat-whatsapp-qtz.svg" alt="">
-                </div>
-                
-                <a href="https://wa.me/message/ULZITK5PFZDLK1" class="whatsapp-btn" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.888 3.488"/>
-                    </svg>
-                    Discuter sur WhatsApp
-                </a>
-            </div>
-            
-            <!-- Flèche directionnelle -->
-            <div class="direction-arrow" id="directionArrow">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 12h14m0 0l-7-7m7 7l-7 7" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-        </div>
-    </div>
 
     
     <!-- FOOTER -->
@@ -881,7 +288,7 @@
             <div class="footer-brand" style="margin-right: 3rem; flex: 1; min-width: 250px;">
                 <div>
                     <a href="#" class="footer-brand_img" aria-label="Brand">
-                        <img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
+                        <img class="logo-qtz" src="/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
                     </a>
                     <p class="footer-message"><em>Notre mission, mettre à disposition notre expertise Tech au service de vos ambitions. Nous combinons innovation, savoir-faire technique et compréhension de vos enjeux métier pour développer des outils numériques qui optimisent votre performance et accélèrent votre développement.</em></p>
                 </div>
@@ -1027,7 +434,7 @@
                     <!-- Brand mobile (visible uniquement sur mobile) -->
                     <div class="footer-brand-mobile">
                         <a href="index.html" class="footer-brand-mobile-title" aria-label="Brand">
-                            <img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
+                            <img class="logo-qtz" src="/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
                         </a>
                         <p class="footer-brand-mobile-copyright">© 2025 - Tous droits réservés.</p>
                     </div>
@@ -1076,43 +483,8 @@
         </div>
     </footer>
 
-    <script>
-        // ===================
-        // CODE DU REVEAL DU QR CODE AU SURVOL
-        // ===================
-        // Fonction pour suivre la position de la souris
-        function updateMousePosition(container, event) {
-            const rect = container.getBoundingClientRect();
-            const x = ((event.clientX - rect.left) / rect.width) * 100;
-            const y = ((event.clientY - rect.top) / rect.height) * 100;
-            
-            const content = container.querySelector('.reveal-content');
-            content.style.setProperty('--x', x + '%');
-            content.style.setProperty('--y', y + '%');
-            
-            // Mettre à jour aussi la position pour l'effet de lueur
-            container.style.setProperty('--x', x + '%');
-            container.style.setProperty('--y', y + '%');
-        }
 
-        // Appliquer l'effet au conteneur WhatsApp
-        const container = document.getElementById('whatsappReveal');
-        container.addEventListener('mousemove', (e) => {
-            updateMousePosition(container, e);
-        });
-
-        // Réinitialiser au centre quand la souris sort
-        container.addEventListener('mouseleave', () => {
-            const content = container.querySelector('.reveal-content');
-            content.style.setProperty('--x', '50%');
-            content.style.setProperty('--y', '50%');
-            container.style.setProperty('--x', '50%');
-            container.style.setProperty('--y', '50%');
-        });
-        
-    </script>
-
-    <script src="/services/assets/js/effets.js"></script>
-    <script src="/services/assets/js/script.js"></script>
+    <script src="/assets/js/effets.js"></script>
+    <script src="/assets/js/script.js"></script>
 </body>
 </html>

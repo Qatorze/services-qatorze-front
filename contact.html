@@ -3,32 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QTZ | Accompagnement CM</title>
-    <link rel="stylesheet" href="/services/assets/styles/style.css"> <!-- Assure-toi que le chemin est correct -->
+    <title>Service - Développement d'Applications Web</title>
+    <link rel="stylesheet" href="/assets/styles/style.css"> <!-- Assure-toi que le chemin est correct -->
     <!-- Optionnel: Font Awesome si tu utilises des icônes -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
 
-    <!-- IMPORT DU FAVICON -->
-    <link rel="icon" type="image/png" href="/services/assets/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/services/assets/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="/services/assets/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/services/assets/favicon/apple-touch-icon.png" />
+        <!-- IMPORT DU FAVICON -->
+    <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Qatôrze Services" />
-    <link rel="manifest" href="/services/assets/favicon/site.webmanifest" />
+    <link rel="manifest" href="/assets/favicon/site.webmanifest" />
 </head>
 <body>
 
-    
     
     <nav>
         <!-- NAVBAR - VERSION MOBILE -->
         <ul class="container sidebar hide-lg">
 
             <li onclick=hideSidebar()  class="hide-sidebar">
-                <a href="#" class="ctn-logo-qtz-mobile"><img class="logo-qtz-mobile" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a>
+                <a href="#" class="ctn-logo-qtz-mobile"><img class="logo-qtz-mobile" src="/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a>
                 <a href="index.html">
                     <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -113,7 +112,7 @@
         </ul>
         <!-- NAVBAR VERSION GRANDS ECRANTS -->
         <ul class="container">
-            <li><a href="index.html"><img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a></li>
+            <li><a href="index.html"><img class="logo-qtz" src="/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services"></a></li>
             <li class="hideOnMobile"><a href="index.html" class="link">Accueil</a></li>
 
             <li class="hideOnMobile dropdown">
@@ -253,32 +252,293 @@
         </ul>
     </nav>
 
+    <section class="contact-page-header">
+        <div class="contact-page-header_ctn container">
+            <p class="petit-titre-section">Nous contacter</p>
+            <h2 class="titre-service titre-service animate-element blur-letters" data-text="Vous avez un projet ? Mettons le en place ensemble.">Mettons dès maintenant en place votre projet Tech.</h2>
+        </div>
+    </section>
 
-    <main class="page-coming-soon">
-        <section class="coming-soon-section">
-            
-            <div class="coming-soon-content">
-                <div class="coming-soon-icon"></div>
-                
-                <h2 class="coming-soon-title">
-                    Service - Accompagnement CM
-                </h2>
-                
-                <p class="coming-soon-subtitle">
-                    ... en cours de modification par notre équipe.
-                </p>
-                
-                <p class="coming-soon-message">
-                    <span class="coming-soon-accent">Revenez dans quelques temps</span>, les détails de cette page seront bientôt disponible
-                    <span class="loading-dots">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </span>
-                </p>
+    <!-- -------------------
+    SECTION N°2 - DEFILEMENT DE LOGOS
+    -------------------- -->
+    
+    <section class="ctn-scroll">
+        <div class="container-2">
+            <div class="content-container-2">
+                <div class="wrapper">
+                    <div class="item item1">Propulsé par</div>
+                    <div class="item item2 no-text"><img src="/assets/images/logo-qonto-blanc.png" alt="Logo Qonto Blanc"></div>
+                    <div class="item item3 no-text"><img src="/assets/images/logo-pepite-eca.png" alt="Logo Pépite ECA"></div>
+                    <div class="item item4 no-text"><img src="/assets/images/logo-stripe-blanc.png" alt="Logo Stripe"></div>
+                    <div class="item item5">Nos technologies</div>
+                    <div class="item item6 no-text"><img src="/assets/images/logo-angular-white.png" alt="Logo Astro Js"></div>
+                    <div class="item item7 no-text"><img src="/assets/images/logo-astrojs.svg" alt="Logo Astro Js"></div>
+                    <div class="item item8 no-text"><img src="/assets/images/logo-android-blanc.svg" alt="Logo Android"></div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="image-container">
+            <img class="qtz-bg-image" src="/assets/images/img-qtz-bg-down-tr.svg" alt="">
+        </div> -->
+    </section>
+
+    <main class="sercives_main-content">
+        
+        <section class="contact-section">
+            <div class="contact-container container">
+                <div class="contact-header">
+                    <h2 class="contact-title">Contactez-nous</h2>
+                    <p class="contact-subtitle">Votre vision, notre expertise - ensemble jusqu'au résultat.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Formulaire -->
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" id="name" class="form-input" placeholder=" " required>
+                                <label for="name" class="form-label">Name</label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="email" id="email" class="form-input" placeholder=" " required>
+                                <label for="email" class="form-label">Email</label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" id="company" class="form-input" placeholder=" " required>
+                                <label for="company" class="form-label">Company</label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="tel" id="phone" class="form-input" placeholder=" " required>
+                                <label for="phone" class="form-label">Phone</label>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea id="message" class="form-input form-textarea" placeholder=" " required></textarea>
+                                <label for="message" class="form-label">Tell us about your project</label>
+                                <p class="form-note">All fields are required</p>
+                            </div>
+
+
+                            <button type="submit" class="cta disabled">Envoyer</button>
+                        </form>
+                    </div>
+
+                    <!-- Informations de contact -->
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <div>
+                                <h3 class="contact-item-title">Notre adresse</h3>
+                                <address class="contact-item-content">
+                                    24 Avenue de la division Leclerc<br>
+                                    92310 - Sèvres, France
+                                </address>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z"/><path d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10"/>
+                            </svg>
+                            <div>
+                                <h3 class="contact-item-title">Écrivez-nous</h3>
+                                <a href="mailto:info@qatorze.com" class="contact-item-content contact-link">
+                                    info@qatorze.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
+                            </svg>
+                            <div>
+                                <h3 class="contact-item-title">On recrute</h3>
+                                <p class="contact-item-content">
+                                    Nous sommes ravis d'annoncer que nous agrandissons notre équipe et recherchons des personnes talentueuses pour nous rejoindre.
+                                </p>
+                                <p class="mt-4">
+                                    <a href="#" class="contact-link disabled">
+                                        Nos offres d'emplois
+                                        <svg class="inline ml-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                                        </svg>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+
+                            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 12H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+
+                            <div>
+                                <h3 class="contact-item-title">Nos réseaux sociaux</h3>
+                                <p class="contact-item-content" style="display: flex; gap: 0.5rem;">
+                                    LinkedIn :
+                                    <span>
+                                        <a href="https://www.linkedin.com/company/qatorze" target="_blank" class="contact-link">@qatorze</a>
+                                    </span>
+                                </p>
+                                <p class="contact-item-content" style="display: flex; gap: 0.5rem;">
+                                    Facebook :
+                                    <span>
+                                        <a href="https://www.facebook.com/qatorze14" target="_blank" class="contact-link">@qatorze14</a>
+                                    </span>
+                                </p>
+                                <p class="contact-item-content" style="display: flex; gap: 0.5rem;">
+                                    Instagram :
+                                    <span>
+                                        <a href="https://www.instagram.com/qatorze.services/" target="_blank" class="contact-link">@qatorze.services</a>
+                                    </span>
+                                </p>
+                                <p class="contact-item-content" style="display: flex; gap: 0.5rem;">
+                                    TikTok :
+                                    <span>
+                                        <a href="https://www.tiktok.com/@qatorze.services" target="_blank" class="contact-link">@qatorze.services</a>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="faq-section">
+            <div class="faq-container container">
+                <div class="faq-header">
+                    <h2 class="faq-title">Questions <br> Fréquentes</h2>
+                    <p class="faq-subtitle">Réponses aux questions qui nous sont le plus demandées. La votre s'y trouve peut-être.</p>
+                </div>
+
+                <div class="faq-content">
+                    <div class="faq-accordion">
+                        <!-- Item 1 -->
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Qu'est-ce que c'est Qatôrze ?
+                                <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m6 9 6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Qatôrze est une fintech en croissance qui possède un segment services nommé Qatôrze Services. L'objectif est clair proposer aux entreprises, entrepreuneurs, PME/PMI et grands groupes, une multitude de services pour les accompagner sur le volet Tech de leurs projets.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Pourquoi le nom "Qatôrze" ?
+                                <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m6 9 6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Ça c'est un secret qu'on va garder pour nous... 🤫</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Combien ça coûte pour développer un site ?
+                                <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m6 9 6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Nous nous positionnons comme le partenaire technologique privilégié des entreprises et nous appuyons sur notre expertise métier en développement informatique pour proposer les solutions les mieux adaptées aux enjeux de nos clients. Le chiffrage d'un projet dépend de plusieurs paramètres spécifiques à chaque demande qui nous est soumise. Nous prenons systématiquement le temps de comprendre la sollicitation ou le cahier des charges de nos clients afin d'établir un devis précis et fidèle à la réalité de votre projet.</p>
+                                <p>Si vous avez un besoin à nous soumettre, n'hésitez pas à nous contacter par l'un des moyens mis à votre disposition. Privilégiez <a class="text-yellow" href="https://wa.me/message/ULZITK5PFZDLK1">Whatsapp</a> pour les réponses rapide, presuqes instantanées.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Sur quel marché intervenez vous ?
+                                <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m6 9 6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Du fait que Qatôrze Services intervient sur des projets essentiellement tournés vers la Tech et le digital, notre champs d'action s'étends sur le monde entier. Ainsi, que vous soyez en Afrique, en Asie, Europe, Amérique Latine ou du Nord, vous pouvez nous confier votre projet, notre équipe basée à l'international pourra vous accompagner. Les décalages horaires, n'hexistent pas pour nous. 😉</p>
+                            </div>
+                        </div>
+
+                        <!-- <div class="faq-item">
+                            <button class="faq-question">
+                                How do I get access to a theme I purchased?
+                                <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m6 9 6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>If you lose the link for a theme you purchased, don't panic! We've got you covered. You can login to your account, tap your avatar in the upper right corner, and tap Purchases. If you didn't create a login or can't remember the information, you can use our handy Redownload page, just remember to use the same email you originally made your purchases with.</p>
+                            </div>
+                        </div> -->
+
+                        <!-- <div class="faq-item">
+                            <button class="faq-question">
+                                Upgrade License Type
+                                <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m6 9 6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>There may be times when you need to upgrade your license from the original type you purchased and we have a solution that ensures you can apply your original purchase cost to the new license purchase.</p>
+                            </div>
+                        </div> -->
+
+                    </div>
+                </div>
             </div>
         </section>
     </main>
+
+    
+
+        
+    <!-- SECTION REVEAL QR CODE WHATSAPP -->
+    <div class="sections-mt qr-reveal" style="text-align:center;">
+        <!-- Exemple avec contenu WhatsApp -->
+        <p class="info" style="padding-bottom: 1rem;">Survolez la zone ci-dessous et scannez le QR code</p>
+        <div class="reveal-container" id="whatsappReveal">
+            <div class="reveal-content">
+                <div class="text-content">Discuttons en live<br>sur WhatsApp</div>
+                
+                <div class="qr-code">
+                    <img src="assets/images/qr-code-chat-whatsapp-qtz.svg" alt="">
+                </div>
+                
+                <a href="https://wa.me/message/ULZITK5PFZDLK1" class="whatsapp-btn" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.888 3.488"/>
+                    </svg>
+                    Discuter sur WhatsApp
+                </a>
+            </div>
+            
+            <!-- Flèche directionnelle -->
+            <div class="direction-arrow" id="directionArrow">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12h14m0 0l-7-7m7 7l-7 7" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+    </div>
 
 
     <!-- FOOTER -->
@@ -289,7 +549,7 @@
             <div class="footer-brand" style="margin-right: 3rem; flex: 1; min-width: 250px;">
                 <div>
                     <a href="#" class="footer-brand_img" aria-label="Brand">
-                        <img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
+                        <img class="logo-qtz" src="/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
                     </a>
                     <p class="footer-message"><em>Notre mission, mettre à disposition notre expertise Tech au service de vos ambitions. Nous combinons innovation, savoir-faire technique et compréhension de vos enjeux métier pour développer des outils numériques qui optimisent votre performance et accélèrent votre développement.</em></p>
                 </div>
@@ -424,7 +684,7 @@
                     <!-- Liens légaux -->
                     <div class="footer-legal-links">
                         <p></p>
-                        <a href="cgps.html" class="footer-legal-link ">Conditions générales</a>
+                        <a href="cgps.html" class="footer-legal-link">Conditions générales</a>
                         <a href="#" class="footer-legal-link disabled">Politique de confidentialité</a>
                         <a href="#" class="footer-legal-link disabled">Utilisation Cookies</a>
                     </div>
@@ -435,7 +695,7 @@
                     <!-- Brand mobile (visible uniquement sur mobile) -->
                     <div class="footer-brand-mobile">
                         <a href="index.html" class="footer-brand-mobile-title" aria-label="Brand">
-                            <img class="logo-qtz" src="/services/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
+                            <img class="logo-qtz" src="/assets/images/logo-qtz-s-blanc.svg" alt="Logo Qatôrze Services">
                         </a>
                         <p class="footer-brand-mobile-copyright">© 2025 - Tous droits réservés.</p>
                     </div>
@@ -483,9 +743,72 @@
             </div>
         </div>
     </footer>
-    
 
-    <script src="/services/assets/js/effets.js"></script>
-    <script src="/services/assets/js/script.js"></script>
+
+    <script src="/assets/js/effets.js"></script>
+
+    <script>
+        // ===================
+        // CODE DE LA SECTION FAQ
+        // ===================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Fermer tous les autres items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Basculer l'item actuel
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+
+    <script>
+        // ===================
+        // CODE DU REVEAL DU QR CODE AU SURVOL
+        // ===================
+        // Fonction pour suivre la position de la souris
+        function updateMousePosition(container, event) {
+            const rect = container.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width) * 100;
+            const y = ((event.clientY - rect.top) / rect.height) * 100;
+            
+            const content = container.querySelector('.reveal-content');
+            content.style.setProperty('--x', x + '%');
+            content.style.setProperty('--y', y + '%');
+            
+            // Mettre à jour aussi la position pour l'effet de lueur
+            container.style.setProperty('--x', x + '%');
+            container.style.setProperty('--y', y + '%');
+        }
+
+        // Appliquer l'effet au conteneur WhatsApp
+        const container = document.getElementById('whatsappReveal');
+        container.addEventListener('mousemove', (e) => {
+            updateMousePosition(container, e);
+        });
+
+        // Réinitialiser au centre quand la souris sort
+        container.addEventListener('mouseleave', () => {
+            const content = container.querySelector('.reveal-content');
+            content.style.setProperty('--x', '50%');
+            content.style.setProperty('--y', '50%');
+            container.style.setProperty('--x', '50%');
+            container.style.setProperty('--y', '50%');
+        });
+        
+    </script>
+
+    <script src="/assets/js/script.js"></script>
 </body>
 </html>
