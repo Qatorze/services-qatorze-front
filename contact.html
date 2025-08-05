@@ -295,35 +295,47 @@
                 <div class="contact-grid">
                     <!-- Formulaire -->
                     <div class="contact-form">
-                        <form id="contactForm">
+                        <form id="__vtigerWebForm" name="SITE - NOUS CONTACTER" action="https://spacex.qatorze.com/modules/Webforms/capture.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                            <input type="hidden" name="__vtrftk" value="sid:d215b2285ac29d766ff3098acf8afba78ad3333e,1750294453">
+                            <input type="hidden" name="publicid" value="cdf855608b493b8cc2d9e51491a5f456">
+                            <input type="hidden" name="urlencodeenable" value="1">
+                            <input type="hidden" name="name" value="SITE - NOUS CONTACTER">
+
+                            <!-- Laisser les placeholders vides, ils permettrent l'animation qui label quand on selectionne l'input -->
                             <div class="form-group">
-                                <input type="text" id="name" class="form-input" placeholder=" " required>
-                                <label for="name" class="form-label">Name</label>
+                                <input type="text" name="lastname" data-label="" value="" placeholder="" class="form-input" required>
+                                <label for="name" class="form-label">Nom</label>
                             </div>
 
                             <div class="form-group">
-                                <input type="email" id="email" class="form-input" placeholder=" " required>
-                                <label for="email" class="form-label">Email</label>
+                                <input type="text" name="firstname" data-label="" value="" placeholder="" class="form-input" required>
+                                <label for="text" class="form-label">Prénom</label>
                             </div>
 
                             <div class="form-group">
-                                <input type="text" id="company" class="form-input" placeholder=" " required>
-                                <label for="company" class="form-label">Company</label>
+                                <input type="email" name="email" data-label="" value="" placeholder="" class="form-input" required>
+                                <label for="phone" class="form-label">E-Mail Principale</label>
                             </div>
-
+                            
                             <div class="form-group">
-                                <input type="tel" id="phone" class="form-input" placeholder=" " required>
+                                <input type="tel" name="phone" data-label="" value="" placeholder="" class="form-input" required>
                                 <label for="phone" class="form-label">Phone</label>
                             </div>
 
                             <div class="form-group">
-                                <textarea id="message" class="form-input form-textarea" placeholder=" " required></textarea>
-                                <label for="message" class="form-label">Tell us about your project</label>
-                                <p class="form-note">All fields are required</p>
+                                <input type="hidden" name="account_id" data-label="" value="" readonly="/" placeholder="" class="form-input">
+                                <label for="company" class="form-label">Entreprise</label>
                             </div>
 
+                            <div class="form-group">
+                                <textarea name="description" data-label="" placeholder="" class="form-input form-textarea" required></textarea>
+                                <label for="message" class="form-label">Parlez nous de votre projet</label>
 
-                            <button type="submit" class="cta disabled">Envoyer</button>
+                                <p class="form-note">Veuillez remplir tous les champs</p>
+                            </div>
+
+                            <input type="submit" value="ENVOYER" class="cta">
+                            <!-- <button type="submit" class="cta disabled">Envoyer</button> -->
                         </form>
                     </div>
 
@@ -809,6 +821,117 @@
         
     </script>
 
-    <script src="/assets/js/script.js"></script>
+    <script type="text/javascript">
+    // ===================
+    // SCRIPT POUR ENVOIS DES DONNES DU FORMULAIRE DANS LE CRM
+    // ===================
+    window.onload = function() {
+        var N = navigator.appName,
+            ua = navigator.userAgent,
+            tem;
+        var M = ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
+        
+        if (M && (tem = ua.match(/version\/([\.\d]+)/i)) != null) {
+            M[2] = tem[1];
+        }
+        
+        M = M ? [M[1], M[2]] : [N, navigator.appVersion, "-?"];
+        var browserName = M[0];
+        var form = document.getElementById("__vtigerWebForm"),
+            inputs = form.elements;
+        
+        form.onsubmit = function() {
+            var required = [],
+                att, val;
+            
+            for (var i = 0; i < inputs.length; i++) {
+                att = inputs[i].getAttribute("required");
+                val = inputs[i].value;
+                type = inputs[i].type;
+                
+                if (type == "email") {
+                    if (val != "") {
+                        var elemLabel = inputs[i].getAttribute("label");
+                        var emailFilter = /^[_/a-zA-Z0-9]+([!"#$%&()*+,./:;<=>?\^_`{|}~-]?[a-zA-Z0-9/_/-])*@[a-zA-Z0-9]+([\_\-\.]?[a-zA-Z0-9]+)*\.([\-\_]?[a-zA-Z0-9])+(\.?[a-zA-Z0-9]+)?$/;
+                        var illegalChars = /[\(\)\<\>\,\;\:\"\[\]]/;
+                        
+                        if (!emailFilter.test(val)) {
+                            alert("For " + elemLabel + " field please enter valid email address");
+                            return false;
+                        } else if (val.match(illegalChars)) {
+                            alert(elemLabel + " field contains illegal characters");
+                            return false;
+                        }
+                    }
+                }
+                
+                if (att != null) {
+                    if (val.replace(/^\s+|\s+$/g, "") == "") {
+                        required.push(inputs[i].getAttribute("label"));
+                    }
+                }
+            }
+            
+            if (required.length > 0) {
+                alert("The following fields are required: " + required.join());
+                return false;
+            }
+            
+            var numberTypeInputs = document.querySelectorAll("input[type=number]");
+            for (var i = 0; i < numberTypeInputs.length; i++) {
+                val = numberTypeInputs[i].value;
+                var elemLabel = numberTypeInputs[i].getAttribute("label");
+                var elemDataType = numberTypeInputs[i].getAttribute("datatype");
+                
+                if (val != "") {
+                    if (elemDataType == "double") {
+                        var numRegex = /^[+-]?\d+(\.\d+)?$/;
+                    } else {
+                        var numRegex = /^[+-]?\d+$/;
+                    }
+                    
+                    if (!numRegex.test(val)) {
+                        alert("For " + elemLabel + " field please enter valid number");
+                        return false;
+                    }
+                }
+            }
+            
+            var dateTypeInputs = document.querySelectorAll("input[type=date]");
+            for (var i = 0; i < dateTypeInputs.length; i++) {
+                dateVal = dateTypeInputs[i].value;
+                var elemLabel = dateTypeInputs[i].getAttribute("label");
+                
+                if (dateVal != "") {
+                    var dateRegex = /^[1-9][0-9]{3}-(0[1-9]|1[0-2]|[1-9]{1})-(0[1-9]|[1-2][0-9]|3[0-1]|[1-9]{1})$/;
+                    
+                    if (!dateRegex.test(dateVal)) {
+                        alert("For " + elemLabel + " field please enter valid date in required format");
+                        return false;
+                    }
+                }
+            }
+            
+            var inputElems = document.getElementsByTagName("input");
+            var totalFileSize = 0;
+            
+            for (var i = 0; i < inputElems.length; i++) {
+                if (inputElems[i].type.toLowerCase() === "file") {
+                    var file = inputElems[i].files[0];
+                    if (typeof file !== "undefined") {
+                        totalFileSize = totalFileSize + file.size;
+                    }
+                }
+            }
+            
+            if (totalFileSize > 52428800) {
+                alert("Maximum allowed file size including all files is 50MB.");
+                return false;
+            }
+        };
+    }
+    </script>
+
+    <script src="script.js"></script>
 </body>
 </html>

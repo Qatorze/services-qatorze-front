@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Truncation Demo</title>
+    <style>
+        :root {
+            --primary-color: #007e4c;
+            --primary-light: #81C784;
+            --primary-dark: #388E3C;
+            --white: #ffffff;
+            --black: #000000;
+            --gray-200: #e5e7eb;
+            --gray-400: #b9bcba;
+            --fs-3: 16px;
+            --fw-5: 500;
+            --tr-1: all 0.3s ease-in-out;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+
+        .content-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .tag-standard {
+            background: var(--black);
+            color: var(--white);
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: var(--fw-5);
+            padding: 0.5rem 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--gray-400);
+            display: inline-block;
+        }
+
+        .content-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .content-description {
+            font-size: var(--fs-3);
+            color: var(--gray-200);
+            line-height: 1.7;
+        }
+
+        .content-description p {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .content-description p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===================
+         * VERSION 1: CSS PURE
+         * =================== */
+        @media (max-width: 768px) {
+            .expand-content .content-description {
+                position: relative;
+            }
+
+            .expand-content .text-content {
+                max-height: calc(1.7em * 10); /* 10 lignes */
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .expand-content .expand-toggle {
+                display: none;
+            }
+
+            .expand-content .expand-toggle:checked + .text-content {
+                max-height: none;
+            }
+
+            .expand-content .expand-toggle:checked + .text-content + .expand-toggle-btn::after {
+                content: "Voir moins";
+            }
+
+            .expand-content .expand-toggle-btn {
+                display: block;
+                background: transparent;
+                border: 1px solid var(--primary-light);
+                color: var(--primary-light);
+                padding: 0.5rem 1rem;
+                border-radius: 6px;
+                margin-top: 1rem;
+                cursor: pointer;
+                font-size: 14px;
+                transition: var(--tr-1);
+                width: fit-content;
+            }
+
+            .expand-content .expand-toggle-btn:hover {
+                background: var(--primary-light);
+                color: var(--black);
+            }
+
+            .expand-content .expand-toggle-btn::after {
+                content: "Voir plus";
+            }
+
+            /* Gradient fade pour indiquer qu'il y a plus de contenu */
+            .expand-content .text-content::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 2.5em;
+                background: linear-gradient(transparent, #050505);
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+
+            .expand-content .expand-toggle:checked + .text-content::after {
+                opacity: 0;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .expand-content .expand-toggle,
+            .expand-content .expand-toggle-btn {
+                display: none;
+            }
+        }
+
+        /* ===================
+         * VERSION 2: JAVASCRIPT
+         * =================== */
+        .js-version .content-description {
+            position: relative;
+        }
+
+        .js-version .text-content.truncated {
+            max-height: calc(1.7em * 10);
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.3s ease;
+        }
+
+        .js-version .text-content.truncated::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2em;
+            background: linear-gradient(transparent, var(--black));
+            pointer-events: none;
+        }
+
+        .js-version .text-content.expanded {
+            max-height: none;
+        }
+
+        .js-version .text-content.expanded::after {
+            display: none;
+        }
+
+        .js-version .expand-toggle-btn {
+            background: transparent;
+            border: 1px solid var(--primary-light);
+            color: var(--primary-light);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            cursor: pointer;
+            font-size: 14px;
+            transition: var(--tr-1);
+            display: none;
+        }
+
+        .js-version .expand-toggle-btn:hover {
+            background: var(--primary-light);
+            color: var(--black);
+        }
+
+        .js-version .expand-toggle-btn.visible {
+            display: inline-block;
+        }
+
+        @media (min-width: 769px) {
+            .js-version .text-content {
+                max-height: none !important;
+            }
+            
+            .js-version .text-content::after {
+                display: none !important;
+            }
+            
+            .js-version .expand-toggle-btn {
+                display: none !important;
+            }
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table th {
+            background: rgba(255, 255, 255, 0.05);
+            font-weight: 600;
+        }
+
+        .pro {
+            color: var(--primary-light);
+        }
+
+        .con {
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <!-- COMPARAISON TABLE -->
+        <div class="demo-section">
+            <h2 class="demo-title">Comparaison des Approches</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Critère</th>
+                        <th>CSS Pure</th>
+                        <th>JavaScript</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Performance</strong></td>
+                        <td class="pro">✓ Excellente (pas de JS)</td>
+                        <td class="con">✗ Légèrement plus lente</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Accessibilité</strong></td>
+                        <td class="con">✗ Limitée (checkbox cachée)</td>
+                        <td class="pro">✓ Excellente (ARIA, focus)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Maintenance</strong></td>
+                        <td class="con">✗ CSS complexe</td>
+                        <td class="pro">✓ Code plus lisible</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Flexibilité</strong></td>
+                        <td class="con">✗ Limitée</td>
+                        <td class="pro">✓ Très flexible</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Robustesse</strong></td>
+                        <td class="pro">✓ Fonctionne sans JS</td>
+                        <td class="con">✗ Dépend du JavaScript</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Détection Auto</strong></td>
+                        <td class="con">✗ Impossible</td>
+                        <td class="pro">✓ Détecte si truncation nécessaire</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- VERSION CSS -->
+        <div class="content-item expand-content">
+            <span class="tag-standard">React</span>
+            <h2 class="content-title">Version CSS Pure</h2>
+            <div class="content-description">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=3540&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="blog thumbnail" class="content-image">
+                <input type="checkbox" class="expand-toggle" id="css-toggle">
+                <div class="text-content">
+                    <p>Sit duis est minim proident non nisi velit non consectetur. Esse adipisicing laboris consectetur enim ipsum reprehenderit eu deserunt Lorem ut aliqua anim do. Duis cupidatat qui irure cupidatat incididunt incididunt enim magna id est qui sunt fugiat.</p>
+                    <p>Dolor minim irure ut Lorem proident. Ipsum do pariatur est ad ad veniam in commodo id reprehenderit adipisicing. Proident duis exercitation ad quis ex cupidatat cupidatat occaecat adipisicing.</p>
+                    <p>Tempor quis dolor veniam quis dolor. Sit reprehenderit eiusmod reprehenderit deserunt amet laborum consequat adipisicing officia qui irure id sint adipisicing.</p>
+                    <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus.</p>
+                </div>
+            </div>
+            <label for="css-toggle" class="expand-toggle-btn"></label>
+        </div>
+
+
+        <!-- VERSION JAVASCRIPT -->
+        <div class="demo-section js-version">
+            <h2 class="demo-title">Version JavaScript</h2>
+            <div class="content-item">
+                <span class="tag-standard">JavaScript</span>
+                <h2 class="content-title">Version JavaScript</h2>
+                <div class="content-description">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=3540&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="blog thumbnail" class="content-image">
+                    <div class="text-content truncated">
+                        <p>Sit duis est minim proident non nisi velit non consectetur. Esse adipisicing laboris consectetur enim ipsum reprehenderit eu deserunt Lorem ut aliqua anim do. Duis cupidatat qui irure cupidatat incididunt incididunt enim magna id est qui sunt fugiat.</p>
+                        <p>Dolor minim irure ut Lorem proident. Ipsum do pariatur est ad ad veniam in commodo id reprehenderit adipisicing. Proident duis exercitation ad quis ex cupidatat cupidatat occaecat adipisicing.</p>
+                        <p>Tempor quis dolor veniam quis dolor. Sit reprehenderit eiusmod reprehenderit deserunt amet laborum consequat adipisicing officia qui irure id sint adipisicing.</p>
+                        <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus.</p>
+                    </div>
+                    <button class="expand-toggle-btn" data-text-expanded="Voir moins" data-text-collapsed="Voir plus">Voir plus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Version JavaScript - Simple et optimisée
+        class TextTruncator {
+            constructor(container) {
+                this.container = container;
+                this.textContent = container.querySelector('.text-content');
+                this.toggleButton = container.querySelector('.expand-toggle-btn');
+                this.isExpanded = false;
+                
+                this.init();
+            }
+
+            init() {
+                // Vérifier si la truncation est nécessaire sur mobile uniquement
+                if (window.innerWidth <= 768) {
+                    this.checkTruncationNeeded();
+                    this.bindEvents();
+                }
+
+                // Re-check lors du redimensionnement
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth <= 768) {
+                        this.checkTruncationNeeded();
+                    } else {
+                        this.showButton(false);
+                        this.expand();
+                    }
+                });
+            }
+
+            checkTruncationNeeded() {
+                // Temporairement enlever la truncation pour mesurer la hauteur réelle
+                this.textContent.classList.remove('truncated');
+                const fullHeight = this.textContent.scrollHeight;
+                
+                // Remettre la truncation
+                this.textContent.classList.add('truncated');
+                const truncatedHeight = this.textContent.scrollHeight;
+
+                // Afficher le bouton seulement si nécessaire
+                if (fullHeight > truncatedHeight) {
+                    this.showButton(true);
+                } else {
+                    this.showButton(false);
+                }
+            }
+
+            bindEvents() {
+                this.toggleButton.addEventListener('click', () => {
+                    this.toggle();
+                });
+            }
+
+            toggle() {
+                if (this.isExpanded) {
+                    this.collapse();
+                } else {
+                    this.expand();
+                }
+            }
+
+            expand() {
+                this.textContent.classList.remove('truncated');
+                this.toggleButton.textContent = this.toggleButton.dataset.textExpanded;
+                this.isExpanded = true;
+            }
+
+            collapse() {
+                this.textContent.classList.add('truncated');
+                this.toggleButton.textContent = this.toggleButton.dataset.textCollapsed;
+                this.isExpanded = false;
+            }
+
+            showButton(show) {
+                this.toggleButton.classList.toggle('visible', show);
+            }
+        }
+
+        // Initialiser pour tous les conteneurs JS
+        document.addEventListener('DOMContentLoaded', () => {
+            const jsContainers = document.querySelectorAll('.js-version .content-description');
+            jsContainers.forEach(container => {
+                new TextTruncator(container);
+            });
+        });
+    </script>
+</body>
+</html>

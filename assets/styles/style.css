@@ -11,10 +11,12 @@
   * =================== */
 :root {
     /* Couleurs*/
-    --primary-color: #007e4c; /* Vert principal */
+    --primary-color: #4CAF50; /* Vert principal */
     --primary-light: #81C784; /* Vert clair */
     --primary-dark: #388E3C; /* Vert foncé */
     --accent-color: #FFC900; /* Jaune pour les CTA */
+    --secondary-color: #007e4bbb;
+    --secondary-color-2: #00ff9956;
     --white: #ffffff;
     --black: #000000;
     --gray-200: #e5e7eb;
@@ -434,10 +436,27 @@ li:has(.img-ctn:hover) a.texte-autres-services {
     margin-bottom: 2rem;
 }
 
+.tag-standard {
+    background: rgba(76, 175, 80, 0.1);
+    color: var(--primary-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: var(--fw-5);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    display: inline-block;
+    margin-right: 0.5rem;
+    margin-bottom: 0.7rem;
+    transition: var(--tr-1);
+}
+
+.tag-standard:hover {
+    background: rgba(76, 175, 80, 0.2);
+}
 
 /* ===================
-  * HEADER 
-  * =================== */
+ * HEADER 
+ * =================== */
 
 nav {
     position: fixed;
@@ -1021,6 +1040,15 @@ li:hover a .icon-arrow {
     }
 }
 
+.call-to-action {
+    margin-top: 70px;
+    text-align: center;
+    background-image: url(../images/Aurores-Boréales.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 /* Secondary Button Styles */
 .secondary-button {
     min-width: 200px;
@@ -1052,6 +1080,8 @@ li:hover a .icon-arrow {
     color: #F9FAFB;
     /* Keep text color consistent on hover */
 }
+
+
 
 /* ===================
  * DROPDOWN MENU
@@ -3510,6 +3540,10 @@ select {
     background: linear-gradient(to right, #007e4c 50%, navajowhite 50%);
 }
 
+.services-header {
+    background: #00653C;
+}
+
 .section-header_ctn {
     display: flex;
 }
@@ -3821,19 +3855,49 @@ select {
 /* Par exemple, en dessous de 768px */
 @media (max-width: 767px) {
     .tech-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
         margin-bottom: 4rem;
     }
 }
 
-@media (max-width: 367.98px) {
+@media (max-width: 520px) {
     .tech-grid {
-        display: none;
-        grid-template-columns: minmax(1fr);
+        grid-template-columns: 1fr;
     }
+}
 
-    .tech-carousel {
-        display: block;
+/* Carrousel pour les très petits écrans */
+@media (max-width: 500px) {
+    .tech-grid {
+        /* Transformation en carrousel */
+        display: flex;
+        grid-template-columns: none;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        gap: 15px;
+        padding: 0 10px;
+        margin-bottom: 4rem;
+        
+        /* Masquer la scrollbar mais garder la fonctionnalité */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+    }
+    
+    /* Masquer scrollbar WebKit */
+    .tech-grid::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Chaque carte dans le carrousel */
+    .tech-grid .tech-card {
+        flex: 0 0 85%; /* Largeur fixe à 85% de l'écran */
+        max-width: 280px; /* Largeur maximum */
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+    }
+    .tech-card {
+        min-height: 400px;
     }
 }
 
@@ -3888,7 +3952,7 @@ select {
 }
 
 .tech-content {
-    padding: 1rem ;
+    padding: 1rem;
     flex-grow: 1;
 }
 
