@@ -98,27 +98,27 @@ const caseStudies = [
         tools: ["Zoho Commerce", "Stripe", "ERP", "CRM", "CSS", "Figma"],
         link: "https://www.liftyparts.com/"
     },
-    // {
-    //     id: 4,
-    //     title: "Plateforme éducative LearnPlus",
-    //     description: "Création d'une plateforme éducative moderne avec des cours interactifs et un système de progression personnalisé.",
-    //     summary: "Creation of a modern educational platform with interactive courses and personalized progress tracking.",
-    //     about: [
-    //         "LearnPlus aimed to disrupt the online education space with a platform that offered truly interactive learning experiences. The challenge was to create a system that could support various content types while providing meaningful progress tracking.",
-    //         "We developed a modular platform that allowed educators to create rich, interactive content with quizzes, videos, and hands-on exercises. The system included AI-powered recommendations and personalized learning paths based on user progress.",
-    //         "The platform successfully onboarded several major educational institutions as partners and saw rapid user growth. Analytics showed significantly higher completion rates compared to traditional online courses."
-    //     ],
-    //     results: [
-    //         { title: "60% higher completion rates", description: "Interactive content and progress tracking kept users engaged." },
-    //         { title: "50+ educational partners onboarded", description: "Platform attracted major institutions as content providers." },
-    //         { title: "Scalable architecture for future growth", description: "System designed to handle increasing user base and content." }
-    //     ],
-    //     logo: "/assets/images/logo-gtz-square.svg", // Chemin vers le logo
-    //     image: "/assets/images/Aurores-Boréales.png",        
-    //     services: ["Développement Web", "Développement Mobile", "UX/UI Design"],
-    //     tools: ["Angular", "Typescript", "SCSS", "Figma"],
-    //     link: "#learnplus"
-    // },
+    // PROJET N°4 - STE VITRINE WORDPRESS > INITIAL TARGET
+    {
+        id: 4,
+        status: "nouveau",
+        title: "INITIAL TARGET - Centre de formation en logistique",
+        description: "Développement su site vitrine d'INITIAL TARGET, un centre de formation aux métiers de la logistique et de l'industrie, basé en France.",
+        summary: "Développement d'un site sous wordpress pour le centre de formation INITIAL TARGET. ",
+        about: [
+            "Initial Target (IT) est une entreprise se définiissant comme étant un centre de formation interprofesonnel en logstique et en industrie. Son PDG Ingénieur en Logistique, forme les professionnels depuis 2020. 5 ans après, il adécider de donner une autre dmension à Initial Target qui était à l'époque une Entrprise Individuelle. Afin de marquer le tournant opéré, le PDG a fait appel à nos service pour affirmer et établir le branding d'IT, progressiivement sur tout ses apsects, digital comme physique. Nous sommes donc dans un premier temps d'effectuer un rebranding de l'entrprise, mis en place sa charte graphique complète, elaborer les supports de communications physiques et digitaux puis effectué le développement du siite vitrine de l'entreprise. En complément de cela, nous avons "
+        ],
+        results: [
+            { title: "Mise en place d'un brandng fort et établi", description: "Interactive content and progress tracking kept users engaged." },
+            { title: "Elaboration des supports de communiication physiques et digitaux", description: "Platform attracted major institutions as content providers." },
+            { title: "Etablissement de la présence en ligne", description: "System designed to handle increasing user base and content." }
+        ],
+        logo: "/assets/images/logo-gtz-square.svg", // Chemin vers le logo
+        image: "/assets/images/img-initial-target-thumbnail-2.png",        
+        services: ["Développement Web", "Développement Wordpress", "UI", "Charte graphique"],
+        tools: ["Wordpress", "Elementor", "Slider Revolution", "Figma", "Hostinger"],
+        link: "https://initial-target.com/"
+    },
     // {
     //     id: 5,
     //     title: "Stratégie de communication GreenLife",
@@ -311,8 +311,19 @@ function renderCaseStudies(studies) {
         caseStudyElement.className = 'case-study';
         caseStudyElement.dataset.id = study.id;
         
+        // Générer le tag de statut
+        let statusTag = '';
+        if (study.status === 'nouveau') {
+            statusTag = '<div class="status-tag nouveau">Nouveau projet</div>';
+        } else if (study.status === 'dernier') {
+            statusTag = '<div class="status-tag dernier">Dernier projet</div>';
+        }
+        
         caseStudyElement.innerHTML = `
-            <img src="${study.image}" alt="${study.title}" class="case-study-image">
+            <div style="position: relative;">
+                <img src="${study.image}" alt="${study.title}" class="case-study-image">
+                ${statusTag}
+            </div>
             <div class="case-study-content">
                 <h2 class="case-study-title">${study.title}</h2>
                 <p class="case-study-description">${study.description}</p>
@@ -363,8 +374,31 @@ function openModal(studyId) {
 
     // Mettre à jour le contenu de la modale
     document.getElementById('modal-title').textContent = study.title;
-    document.getElementById('modal-image').src = study.image;
-    document.getElementById('modal-image').alt = study.title;
+    
+    // Générer le tag de statut pour la modal
+    let statusTag = '';
+    if (study.status === 'nouveau') {
+        statusTag = '<div class="status-tag nouveau">Nouveau projet</div>';
+    } else if (study.status === 'dernier') {
+        statusTag = '<div class="status-tag dernier">Dernier projet</div>';
+    }
+    
+    // Trouver l'image existante et son conteneur parent
+    const modalImage = document.getElementById('modal-image');
+    const imageParent = modalImage.parentNode;
+    
+    // Créer un nouveau conteneur avec l'image et le tag
+    const imageContainer = document.createElement('div');
+    imageContainer.className = 'modal-image-container';
+    imageContainer.innerHTML = `
+        <img id="modal-image" src="${study.image}" alt="${study.title}" class="modal-image">
+        ${statusTag}
+    `;
+    
+    // Remplacer l'ancienne image par le nouveau conteneur
+    imageParent.replaceChild(imageContainer, modalImage);
+    
+    // Mettre à jour les autres éléments
     document.getElementById('modal-summary').textContent = study.summary;
     document.getElementById('modal-link').href = study.link;
 
@@ -426,14 +460,27 @@ function openModal(studyId) {
         .slice(0, 3); // Limiter à 3 recommandations
 
     if (similarStudies.length > 0) {
-        recommendationsContainer.innerHTML = similarStudies.map(similar => `
-            <div class="recommendation-card" data-id="${similar.id}">
-                <img src="${similar.image}" alt="${similar.title}" class="recommendation-image">
-                <div class="recommendation-content">
-                    <h3 class="recommendation-title">${similar.title}</h3>
+        recommendationsContainer.innerHTML = similarStudies.map(similar => {
+            // Générer le tag de statut pour les recommandations aussi
+            let recStatusTag = '';
+            if (similar.status === 'nouveau') {
+                recStatusTag = '<div class="status-tag nouveau">Nouveau projet</div>';
+            } else if (similar.status === 'dernier') {
+                recStatusTag = '<div class="status-tag dernier">Dernier projet</div>';
+            }
+            
+            return `
+                <div class="recommendation-card" data-id="${similar.id}">
+                    <div style="position: relative;">
+                        <img src="${similar.image}" alt="${similar.title}" class="recommendation-image">
+                        ${recStatusTag}
+                    </div>
+                    <div class="recommendation-content">
+                        <h3 class="recommendation-title">${similar.title}</h3>
+                    </div>
                 </div>
-            </div>
-        `).join('');
+            `;
+        }).join('');
 
         // Ajouter les event listeners pour les cartes de recommandation
         document.querySelectorAll('.recommendation-card').forEach(card => {
