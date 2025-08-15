@@ -1,0 +1,174 @@
+<html
+  lang="fr"
+  data-__embeded-gyazo-content-j-s="5.14.0"
+  data-__gyazo-expander-enabled="true"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QTZ-IMMO - Localisation</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .form-container {
+        width: 90%;
+        max-width: 800px;
+        height: 80dvh;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
+    <style>
+      @font-face {
+        font-family: "Open Sans Regular";
+        font-style: normal;
+        font-weight: 400;
+        src: url("chrome-extension://gkkdmjjodidppndkbkhhknakbeflbomf/fonts/open_sans/open-sans-v18-latin-regular.woff");
+      }
+    </style>
+    <style>
+      @font-face {
+        font-family: "Open Sans Bold";
+        font-style: normal;
+        font-weight: 800;
+        src: url("chrome-extension://gkkdmjjodidppndkbkhhknakbeflbomf/fonts/open_sans/OpenSans-Bold.woff");
+      }
+    </style>
+    <style>
+      @font-face {
+        font-family: "Open Sans ExtraBold";
+        font-style: normal;
+        font-weight: 800;
+        src: url("chrome-extension://gkkdmjjodidppndkbkhhknakbeflbomf/fonts/open_sans/open-sans-v18-latin-800.woff");
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <iframe
+        src="https://app.formbricks.com/s/cmecrr7h104qlup01w0ivpjrv"
+        allowfullscreen=""
+      >
+      </iframe>
+    </div>
+    <!-- Code injected by live-server -->
+    <script>
+      // <![CDATA[  <-- For SVG support
+      if ("WebSocket" in window) {
+        (function () {
+          function refreshCSS() {
+            var sheets = [].slice.call(document.getElementsByTagName("link"));
+            var head = document.getElementsByTagName("head")[0];
+            for (var i = 0; i < sheets.length; ++i) {
+              var elem = sheets[i];
+              var parent = elem.parentElement || head;
+              parent.removeChild(elem);
+              var rel = elem.rel;
+              if (
+                (elem.href && typeof rel != "string") ||
+                rel.length == 0 ||
+                rel.toLowerCase() == "stylesheet"
+              ) {
+                var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, "");
+                elem.href =
+                  url +
+                  (url.indexOf("?") >= 0 ? "&" : "?") +
+                  "_cacheOverride=" +
+                  new Date().valueOf();
+              }
+              parent.appendChild(elem);
+            }
+          }
+          var protocol =
+            window.location.protocol === "http:" ? "ws://" : "wss://";
+          var address =
+            protocol + window.location.host + window.location.pathname + "/ws";
+          var socket = new WebSocket(address);
+          socket.onmessage = function (msg) {
+            if (msg.data == "reload") window.location.reload();
+            else if (msg.data == "refreshcss") refreshCSS();
+          };
+          if (
+            sessionStorage &&
+            !sessionStorage.getItem("IsThisFirstTime_Log_From_LiveServer")
+          ) {
+            console.log("Live reload enabled.");
+            sessionStorage.setItem("IsThisFirstTime_Log_From_LiveServer", true);
+          }
+        })();
+      } else {
+        console.error(
+          "Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading."
+        );
+      }
+      // ]]>
+    </script>
+
+    <scribe-shadow
+      id="crxjs-ext"
+      data-crx="okfkdaglfjjjfefdcppliegebpoegaii"
+      style="
+        position: fixed;
+        width: 0px;
+        height: 0px;
+        top: 0px;
+        left: 0px;
+        z-index: 2147483647;
+        overflow: visible;
+        visibility: visible;
+      "
+    ></scribe-shadow>
+  </body>
+
+  <!-- Voici ci-dessous le code simple car le code ci-dessus, je la'ai pris dans l'inspecteur -->
+   <!-- <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>QTZ-IMMO - Localisation</title>
+        <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-container {
+            width: 90%;
+            max-width: 800px;
+            height: 80dvh;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="form-container">
+        <iframe 
+            src="https://app.formbricks.com/s/cmecrr7h104qlup01w0ivpjrv" 
+            allowfullscreen>
+        </iframe>
+        </div>
+    </body>
+    </html> -->
+
+</html>
