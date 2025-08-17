@@ -1693,6 +1693,32 @@ details>ul .img-ctn {
     margin: 0 0 0.5rem 0;
 }
 
+.card-title_underline {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--white);
+    margin: 0 0 0.5rem 0;
+    text-decoration: underline;
+}
+
+.card-liste {
+    margin-bottom: 1rem;
+    list-style-type: disc;
+}
+
+.card-liste li {
+    list-style: none;
+    position: relative;
+    padding-left: 20px;
+}
+
+.card-liste li::before {
+    content: "▸"; /* ou "►" ou "•" ou "-" */
+    position: absolute;
+    left: 0;
+    color: var(--accent-color); /* Couleur de votre choix */
+}
+
 .card-description {
     font-size: 0.875rem;
     color: var(--gray-400);
