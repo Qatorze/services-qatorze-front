@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Search Input</title>
+    <style>
+        :root {
+            --fs-xxs: 8px;
+            --fs-xs: 12px;
+            --fs-sm: 14px;
+            --fw-5: 500;
+            --fw-7: 700;
+            --grey-2: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 50px;
+            background: #f8f9fa;
+        }
+
+        .qtz-search-container {
+            position: relative;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        .qtz-floating-label {
+            position: absolute;
+            margin: 10px 0 0 17px;
+            font-size: 11px;
+            text-transform: uppercase;
+            transition: all 0.3s ease-in-out;
+            font-weight: var(--fw-7);
+            color: var(--grey-2);
+            z-index: 1;
+        }
+
+        .qtz-search-input {
+            width: 100%;
+            padding-top: 27px;
+            padding-left: 14px;
+            padding-right: 14px;
+            padding-bottom: 8px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: var(--fs-xs);
+            font-weight: var(--fw-5);
+            color: var(--grey-2);
+            transition: all 0.3s ease-in-out;
+            outline: none;
+            background: white;
+        }
+
+        .qtz-search-input::placeholder {
+            font-size: var(--fs-xs);
+            color: #999;
+        }
+
+        .qtz-search-input:focus {
+            border-color: #28a745;
+        }
+
+        .qtz-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .qtz-dropdown.qtz-show {
+            display: block;
+        }
+
+        .qtz-section-title {
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .qtz-clear-history-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 2px;
+            color: #999;
+            font-size: 14px;
+            line-height: 1;
+            border-radius: 2px;
+            transition: color 0.2s ease;
+        }
+
+        .qtz-clear-history-btn:hover {
+            color: #666;
+            background: #e9ecef;
+        }
+
+        .qtz-dropdown-item {
+            padding: 10px 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .qtz-dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .qtz-dropdown-item:hover {
+            background: #f8f9fa;
+        }
+
+        .qtz-recent-item {
+            color: #666;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .qtz-recent-item:hover {
+            color: #333;
+        }
+
+        .qtz-recent-time {
+            font-size: 11px;
+            color: #999;
+        }
+
+        .qtz-suggestion-item {
+            color: #333;
+        }
+
+        .qtz-geolocation-item {
+            color: #28a745;
+            font-weight: 500;
+            position: relative;
+                        display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .qtz-geolocation-item:hover {
+            background: #CEFFEB;
+            color: #00653c;
+        }
+
+        .qtz-geolocation-item:hover > svg {
+            color: #00653c;
+        }
+
+        .qtz-geolocation-icon svg {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-right: 8px;
+            width: 15px;
+            /* font-size: 12px; */
+        }
+
+        .qtz-loading-text {
+            color: #666;
+            font-style: italic;
+        }
+
+        .qtz-section-separator {
+            height: 0px;
+            background: #e9ecef;
+            margin: 0px 0;
+        }
+
+        /* Responsive breakpoints */
+        @media (max-width: 991px) {
+            .qtz-floating-label {
+                font-size: var(--fs-xxs);
+            }
+        }
+
+        @media (max-width: 575px) {
+            .qtz-search-input {
+                min-height: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .qtz-search-input {
+                min-height: 40px;
+                font-size: var(--fs-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="qtz-search-container">
+        <label for="qtzSearchInput" class="qtz-floating-label">Localisation</label>
+        <input type="text" 
+               id="qtzSearchInput" 
+               class="qtz-search-input" 
+               placeholder="Ville..."
+               autocomplete="off">
+        
+        <div id="qtzDropdown" class="qtz-dropdown"></div>
+    </div>
+
+    <script>
+        const qtzSuggestions = [
+            'Libreville',
+            'Akanda',
+            'Owendo',
+            'Port-Gentil',
+            'Franceville',
+            'Oyem',
+            'Moanda',
+            'Ntoum',
+            'Lambaréné',
+            'Mouila',
+            'Makokou',
+            'Tchibanga',
+            'Bitam',
+            'Koulamoutou',
+        ];
+
+        const qtzSearchInput = document.getElementById('qtzSearchInput');
+        const qtzDropdown = document.getElementById('qtzDropdown');
+
+        // État de la géolocalisation
+        let qtzGeolocationState = {
+            isLoading: false,
+            address: null,
+            error: null
+        };
+
+        // Gestion des recherches récentes
+        function qtzGetRecentSearches() {
+            return JSON.parse(localStorage.getItem('qtzRecentSearches') || '[]');
+        }
+
+        function qtzAddRecentSearch(query) {
+            let recent = qtzGetRecentSearches();
+            
+            // Supprimer si déjà présent
+            recent = recent.filter(item => item.query !== query);
+            
+            // Ajouter au début
+            recent.unshift({
+                query: query,
+                timestamp: Date.now()
+            });
+            
+            // Limiter à 4 éléments
+            recent = recent.slice(0, 4);
+            
+            localStorage.setItem('qtzRecentSearches', JSON.stringify(recent));
+        }
+
+        function qtzClearRecentSearches() {
+            localStorage.removeItem('qtzRecentSearches');
+            // Toujours rafraîchir le dropdown sans le fermer
+            if (qtzDropdown.classList.contains('qtz-show')) {
+                qtzShowDropdown(qtzSearchInput.value);
+            }
+        }
+
+        // Géolocalisation
+        function qtzGetCurrentLocation() {
+            return new Promise((resolve, reject) => {
+                if (!navigator.geolocation) {
+                    reject(new Error('Géolocalisation non supportée'));
+                    return;
+                }
+
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        resolve({ latitude, longitude });
+                    },
+                    (error) => {
+                        let message = 'Erreur de géolocalisation';
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                message = 'Permission refusée';
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                message = 'Position indisponible';
+                                break;
+                            case error.TIMEOUT:
+                                message = 'Délai dépassé';
+                                break;
+                        }
+                        reject(new Error(message));
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 300000 // 5 minutes
+                    }
+                );
+            });
+        }
+
+        async function qtzGetAddressFromCoords(latitude, longitude) {
+            try {
+                // Essayer d'abord avec Google Geocoding API (plus précise)
+                // Note: En production, il faudrait une clé API Google
+                // Pour le moment, on utilise Nominatim avec une meilleure logique
+                const response = await fetch(
+                    `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&addressdetails=1&accept-language=fr&zoom=18`
+                );
+                
+                if (!response.ok) {
+                    throw new Error('Erreur réseau');
+                }
+                
+                const data = await response.json();
+                console.log('Données géocodage:', data);
+                
+                const address = data.address;
+                let formattedAddress = '';
+                
+                // Priorité 1: Adresse complète avec numéro de rue
+                if (address.house_number && (address.road || address.street)) {
+                    formattedAddress = `${address.house_number} ${address.road || address.street}`;
+                    if (address.city || address.town || address.village) {
+                        formattedAddress += `, ${address.city || address.town || address.village}`;
+                    }
+                    return formattedAddress;
+                }
+                
+                // Priorité 2: Nom de rue sans numéro
+                if (address.road || address.street || address.pedestrian || address.footway) {
+                    formattedAddress = address.road || address.street || address.pedestrian || address.footway;
+                    if (address.city || address.town || address.village) {
+                        formattedAddress += `, ${address.city || address.town || address.village}`;
+                    }
+                    return formattedAddress;
+                }
+                
+                // Priorité 3: Nom du quartier/zone + ville
+                if (address.suburb || address.neighbourhood || address.quarter) {
+                    formattedAddress = address.suburb || address.neighbourhood || address.quarter;
+                    if (address.city || address.town || address.village) {
+                        formattedAddress += `, ${address.city || address.town || address.village}`;
+                    }
+                    return formattedAddress;
+                }
+                
+                // Priorité 4: Juste le nom de la ville
+                if (address.city || address.town || address.village) {
+                    return address.city || address.town || address.village;
+                }
+                
+                // Priorité 5: Point d'intérêt proche
+                if (address.amenity || address.shop || address.office) {
+                    formattedAddress = address.amenity || address.shop || address.office;
+                    if (address.city || address.town || address.village) {
+                        formattedAddress += `, ${address.city || address.town || address.village}`;
+                    }
+                    return formattedAddress;
+                }
+                
+                // Fallback: Utiliser les premières parties du display_name
+                if (data.display_name) {
+                    const parts = data.display_name.split(',').map(p => p.trim());
+                    // Prendre les 2 premières parties les plus significatives
+                    return parts.slice(0, 2).join(', ');
+                }
+                
+                return 'Position actuelle';
+                
+            } catch (error) {
+                console.error('Erreur géocodage:', error);
+                return 'Position actuelle';
+            }
+        }
+
+        async function qtzHandleGeolocationSearch() {
+            // Vérifier d'abord les permissions
+            if (navigator.permissions) {
+                try {
+                    const permission = await navigator.permissions.query({ name: 'geolocation' });
+                    console.log('Permission géolocalisation:', permission.state);
+                    
+                    if (permission.state === 'denied') {
+                        console.log('Permission géolocalisation refusée');
+                        qtzGeolocationState.error = 'Permission refusée';
+                        if (qtzDropdown.classList.contains('qtz-show')) {
+                            qtzShowDropdown(qtzSearchInput.value);
+                        }
+                        return;
+                    }
+                } catch (e) {
+                    console.log('Impossible de vérifier les permissions:', e);
+                }
+            }
+
+            qtzGeolocationState.isLoading = true;
+            qtzGeolocationState.error = null;
+            
+            // Mettre à jour l'affichage
+            if (qtzDropdown.classList.contains('qtz-show')) {
+                qtzShowDropdown(qtzSearchInput.value);
+            }
+            
+            try {
+                console.log('Demande de géolocalisation...');
+                const coords = await qtzGetCurrentLocation();
+                console.log('Coordonnées obtenues:', coords);
+                
+                const address = await qtzGetAddressFromCoords(coords.latitude, coords.longitude);
+                console.log('Adresse obtenue:', address);
+                
+                qtzGeolocationState.address = address;
+                qtzGeolocationState.isLoading = false;
+                
+                // Mettre l'adresse dans l'input et l'ajouter à l'historique
+                qtzSearchInput.value = address;
+                qtzAddRecentSearch(address);
+                qtzHideDropdown();
+                console.log('Géolocalisation terminée avec succès');
+                
+            } catch (error) {
+                console.log('Erreur géolocalisation:', error.message);
+                qtzGeolocationState.error = error.message;
+                qtzGeolocationState.isLoading = false;
+                
+                // Mettre à jour l'affichage pour montrer l'erreur
+                if (qtzDropdown.classList.contains('qtz-show')) {
+                    qtzShowDropdown(qtzSearchInput.value);
+                }
+            }
+        }
+
+        function qtzFormatTimeAgo(timestamp) {
+            const now = Date.now();
+            const diff = now - timestamp;
+            const minutes = Math.floor(diff / (1000 * 60));
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+            if (minutes < 1) return 'À l\'instant';
+            if (minutes < 60) return `${minutes}min`;
+            if (hours < 24) return `${hours}h`;
+            return `${days}j`;
+        }
+
+        function qtzFilterSuggestions(query) {
+            if (!query) return qtzSuggestions;
+            return qtzSuggestions.filter(item => 
+                item.toLowerCase().includes(query.toLowerCase())
+            );
+        }
+
+        function qtzShowDropdown(query = '') {
+            const recentSearches = qtzGetRecentSearches();
+            const filteredSuggestions = qtzFilterSuggestions(query);
+            let html = '';
+
+            // Section recherches récentes (seulement si pas de query ou si elle est vide)
+            if (!query.trim() && recentSearches.length > 0) {
+                html += `<div class="qtz-section-title">
+                    <span>Recherches récentes</span>
+                    <button class="qtz-clear-history-btn" onmousedown="event.preventDefault(); qtzClearRecentSearches();" title="Effacer l'historique">×</button>
+                </div>`;
+                recentSearches.forEach(item => {
+                    html += `<div class="qtz-dropdown-item qtz-recent-item" data-type="recent" data-value="${item.query}">
+                        <span>${item.query}</span>
+                        <span class="qtz-recent-time">${qtzFormatTimeAgo(item.timestamp)}</span>
+                    </div>`;
+                });
+                
+                if (filteredSuggestions.length > 0 || !query.trim()) {
+                    html += '<div class="qtz-section-separator"></div>';
+                }
+            }
+
+            // Section suggestions
+            if (filteredSuggestions.length > 0 || !query.trim()) {
+                html += '<div class="qtz-section-title">Suggestion de recherche</div>';
+                
+                // Ajouter "Recherche autour de moi" en premier
+                if (!query.trim()) {
+                    if (qtzGeolocationState.isLoading) {
+                        html += `<div class="qtz-dropdown-item qtz-geolocation-item">
+                            <span class="qtz-geolocation-icon">
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-current-location">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                    <path d="M12 12m-8 0a8 8 0 1 0 16 0a8 8 0 1 0 -16 0" />
+                                    <path d="M12 2l0 2" />
+                                    <path d="M12 20l0 2" />
+                                    <path d="M20 12l2 0" />
+                                    <path d="M2 12l2 0" />
+                                </svg>
+                            </span>
+                            <span class="qtz-loading-text">Localisation en cours...</span>
+                        </div>`;
+                    } else if (qtzGeolocationState.error) {
+                        html += `<div class="qtz-dropdown-item qtz-geolocation-item" data-type="geolocation">
+                            <span class="qtz-geolocation-icon">
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-current-location">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                    <path d="M12 12m-8 0a8 8 0 1 0 16 0a8 8 0 1 0 -16 0" />
+                                    <path d="M12 2l0 2" />
+                                    <path d="M12 20l0 2" />
+                                    <path d="M20 12l2 0" />
+                                    <path d="M2 12l2 0" />
+                                </svg>
+                            </span>
+                            <span>Recherche autour de moi (${qtzGeolocationState.error})</span>
+                        </div>`;
+                    } else {
+                        html += `<div class="qtz-dropdown-item qtz-geolocation-item" data-type="geolocation">
+                            <span class="qtz-geolocation-icon">
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-current-location">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                    <path d="M12 12m-8 0a8 8 0 1 0 16 0a8 8 0 1 0 -16 0" />
+                                    <path d="M12 2l0 2" />
+                                    <path d="M12 20l0 2" />
+                                    <path d="M20 12l2 0" />
+                                    <path d="M2 12l2 0" />
+                                </svg>
+                            </span>
+                            <span>Recherche autour de moi</span>
+                        </div>`;
+                    }
+                }
+                
+                // Ajouter les suggestions filtrées
+                filteredSuggestions.forEach(item => {
+                    html += `<div class="qtz-dropdown-item qtz-suggestion-item" data-type="suggestion" data-value="${item}">${item}</div>`;
+                });
+            }
+
+            // Afficher le dropdown seulement s'il y a du contenu
+            if (html.trim()) {
+                qtzDropdown.innerHTML = html;
+                qtzDropdown.classList.add('qtz-show');
+                
+                // Event listeners pour les clicks
+                qtzDropdown.querySelectorAll('.qtz-dropdown-item').forEach(item => {
+                    if (!item.querySelector('.qtz-loading-text')) {
+                        item.addEventListener('mousedown', (e) => {
+                            e.preventDefault();
+                            
+                            const type = item.getAttribute('data-type');
+                            
+                            if (type === 'geolocation') {
+                                // Gérer la géolocalisation
+                                qtzHandleGeolocationSearch();
+                            } else {
+                                // Gérer les autres sélections
+                                const value = item.getAttribute('data-value');
+                                qtzSearchInput.value = value;
+                                
+                                if (value && value.trim()) {
+                                    qtzAddRecentSearch(value.trim());
+                                }
+                                
+                                qtzHideDropdown();
+                            }
+                        });
+                    }
+                });
+            } else {
+                // Pas de contenu, cacher le dropdown
+                qtzHideDropdown();
+            }
+        }
+
+        function qtzHideDropdown() {
+            qtzDropdown.classList.remove('qtz-show');
+        }
+
+        // Events
+        qtzSearchInput.addEventListener('focus', () => {
+            qtzShowDropdown(qtzSearchInput.value);
+        });
+
+        qtzSearchInput.addEventListener('input', () => {
+            qtzShowDropdown(qtzSearchInput.value);
+        });
+
+        qtzSearchInput.addEventListener('blur', () => {
+            setTimeout(qtzHideDropdown, 150);
+        });
+
+        // Gestion de la touche Entrée
+        qtzSearchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && qtzSearchInput.value.trim()) {
+                qtzAddRecentSearch(qtzSearchInput.value.trim());
+                qtzHideDropdown();
+            }
+        });
+
+        // Click outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.qtz-search-container')) {
+                qtzHideDropdown();
+            }
+        });
+
+        // Rendre la fonction clearRecentSearches globale
+        window.qtzClearRecentSearches = qtzClearRecentSearches;
+    </script>
+</body>
+</html>

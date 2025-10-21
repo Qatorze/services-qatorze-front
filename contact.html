@@ -11,13 +11,62 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
 
-        <!-- IMPORT DU FAVICON -->
+    <!-- IMPORT DU FAVICON -->
     <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg" />
     <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Qatôrze Services" />
     <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+
+    <!-- SCRIPT CLOUDFLARE - ANALYSE DU TRAFFIC -->
+    <script>
+    (function () {
+        var webSdkScript = document.createElement("script");
+
+        // fetch the latest 1.x.x version of the Web-SDK from the CDN
+        webSdkScript.src =
+        "https://unpkg.com/@grafana/faro-web-sdk@1/dist/bundle/faro-web-sdk.iife.js";
+
+        webSdkScript.onload = () => {
+        window.GrafanaFaroWebSdk.initializeFaro({
+            url: "https://faro-collector-prod-us-west-0.grafana.net/collect/9e2bba2422402a0ce1dd8b3d95980327",
+            app: {
+            name: "services-qatorze-front",
+            version: "1.0.0",
+            environment: "production",
+            },
+            sessionTracking: {
+            samplingRate: 1,
+            persistent: true
+        },
+        });
+
+
+        // Load instrumentations at the onLoad event of the web-SDK and after the above configuration.
+        // This is important because we need to ensure that the Web-SDK has been loaded and initialized before we add further instruments!
+        var webTracingScript = document.createElement("script");
+
+        // fetch the latest 1.x.x version of the Web Tracing package from the CDN
+        webTracingScript.src =
+            "https://unpkg.com/@grafana/faro-web-tracing@1/dist/bundle/faro-web-tracing.iife.js";
+
+        // Initialize, configure (if necessary) and add the the new instrumentation to the already loaded and configured Web-SDK.
+        webTracingScript.onload = () => {
+            window.GrafanaFaroWebSdk.faro.instrumentations.add(
+            new window.GrafanaFaroWebTracing.TracingInstrumentation()
+            );
+        };
+
+        // Append the Web Tracing script script tag to the HTML page
+        document.head.appendChild(webTracingScript);
+        };
+
+        // Append the Web-SDK script script tag to the HTML page
+        document.head.appendChild(webSdkScript);
+    })();
+    </script>
+
 </head>
 <body>
 
