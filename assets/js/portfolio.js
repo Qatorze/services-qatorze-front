@@ -1,46 +1,9 @@
 
 // Données des case studies (à remplacer par vos propres données)
 const caseStudies = [
-    // PROJET N°1 - P2S-TDE
+    // PROJET N°1 - AFMAT - Africa Materials
     {
         id: 1,
-        title: "P2S-TDE - Agence Immobilière Africaine",
-        description: "P2S-TDE, une application web complète de promotion et gestion de biens immobiliers à la vente et à la location, avec des fonctionnalités et outils avancées pour gérer don parc immobilier le plus simplement possible et gagner en efficacité dans son activité d'agence immobilière.",
-        summary: "P2S-TDE, une application web complète de promotion et gestion de biens immobiliers à la vente et à la location, avec des fonctionnalités et outils avancées pour gérer don parc immobilier le plus simplement possible et gagner en efficacité dans son activité d'agence immobilière.",
-        about: [
-            "Le projet a commencé à la demande d'Ytu MOUKARA responsable au sein de l'agence Immobilière P2S-TDE basée au gabon. Ce dernier souhaitant l'entreprise familiale prenne le virage du numérique pour développer son activitée. Notre challenge était de proposer une solution complète pour qu'ils puisse piloter l'activité de promotion et de gestion immobilière en un seul endroit. L'interface se devait d'être visuellement attrayante et ergonomique pour faciliter le plus possible l'adoption de l'outil sur un marché n'ayant pas encore le reflex d'utilisation des interfaces telle que celle que nous avons développer pour eux lorsqu'ils recherchent un bien à louer/ acheter ou même en proposer un sur le marcher de la vente ou de la location",
-            "Notre approche a été de collaborer étroitement avec Ytu, ressponsable chez P2S-TDE pour créeer une interface propre et moderne et sobre qui favorise l'adoptabilité de l'outil et de l'ensemble des fonctionnalités qu'il propose",
-            "Our approach involved closely collaborating with Huly's team to create a clean, modern website that emphasized the user-friendliness of the extensive feature set, integrating smooth animations to boost user engagement. This agile, iterative process allowed for continuous refinement, aligning the design closely with Huly's product functionality.",
-            "The resulting website showcased Huly's promise of streamlined team collaboration, setting a new benchmark in design that supports complex functionalities in a user-friendly manner. Despite the challenges of integrating complex animations into a cohesive layout, the successful launch of the Huly website stands as a testament to our team's expertise in creating a landing page that is both impressive and intuitive for users to navigate."
-        ],
-        results: [
-            {
-                title: "Développement d'une identité de marque forte", 
-                description: "Fonforcement d'un branding et d'une identité visuelle, qui reflette l'aspect institutionnel mais aussi innovant de l'agence immobilière." 
-            },
-            {
-                title: "Création d'une interface d'interaction avec les clients en ligne", 
-                description: "Implémentation structurée des annonces pour digitaliser l'activitée de promotion immobilière" 
-            },
-            {
-                title: "Mise en place des outils de gestion pour complètement digitaliser la partie oppérationnelle du métier.",
-                description:"Déploiement de solutions logicielles (CRM, outils de gestion de mandats, etc.) pour automatiser les tâches, centraliser les informations et fluidifier les processus opérationnels quotidiens, de la prise de mandat au suivi client." 
-            },
-            {
-                title: "Developpement des fonctionnalités et implémentation des infrastructures rendant l'agence Immobilière souvenaine et autonome pour la gestion de la web App, des contenus ainsi que des données clients.",
-                description: "Conception d'une architecture technique solide et d'un système de gestion de contenu (CMS) intuitif, offrant à l'agence une autonomie complète pour administrer sa plateforme web, actualiser ses annonces et contenus, et gérer ses données clients en toute sécurité et indépendance." 
-            },
-        ],
-        image: "/assets/images/img-p2s-3.svg",
-        logo: "/assets/images/logo-p2s-1.png", // Chemin vers le logo
-        services: ["Web App", "UX/UI Design"],
-        tools: ["Angular", "Java", "Spring Boot", "TypeScript", "SCSS", "Figma"],
-        link: "https://p2s-tde.com",
-        // whatsappLink: "https://wa.me/33612345678", // Lien WhatsApp
-        // quoteForm: "/contact" // Lien vers le formulaire de devis
-    },
-    {
-        id: 2,
         title: "AFMAT - Centrale d'achat de pièces industrielles",
         description: "Refonte complète du site vitrine d'AFMAT - AFRICA MATERIALS, pour réinstaurer la présence en ligne de l'entreprise auprès de ses clients, fournisseurs et autres parties prenantes.",
         summary: "Refonte complète du site vitrine d'AFMAT - AFRICA MATERIALS, pour réinstaurer la présence en ligne de l'entreprise auprès de ses clients, fournisseurs et autres parties prenantes.",
@@ -69,7 +32,7 @@ const caseStudies = [
         link: "https://www.af-mat.com/"
     },
     {
-        id: 3,
+        id: 2,
         title: "Liftyparts - Plateforme E-commerce de pièces d'ascenseurs",
         description: "Développement d'une plateforme E-commerce de vente de pièces d'ascenseurs et d'escalators pour entretiens et maintenance.",
         summary: "Développement d'une plateforme E-commerce de vente de pièces d'ascenseurs et d'escalators pour entretiens et maintenance.",
@@ -98,9 +61,9 @@ const caseStudies = [
         tools: ["Zoho Commerce", "Stripe", "ERP", "CRM", "CSS", "Figma"],
         link: "https://www.liftyparts.com/"
     },
-    // PROJET N°4 - STE VITRINE WORDPRESS > INITIAL TARGET
+    // PROJET N°3 - STE VITRINE WORDPRESS > INITIAL TARGET
     {
-        id: 4,
+        id: 3,
         status: "nouveau",
         title: "INITIAL TARGET - Centre de formation en logistique",
         description: "Développement su site vitrine d'INITIAL TARGET, un centre de formation aux métiers de la logistique et de l'industrie, basé en France.",
@@ -118,6 +81,43 @@ const caseStudies = [
         services: ["Développement Web", "Développement Wordpress", "UI", "Charte graphique"],
         tools: ["Wordpress", "Elementor", "Slider Revolution", "Figma", "Hostinger"],
         link: "https://initial-target.com/"
+    },
+        {
+        id: 4,
+        title: "QTZ-IMMO",
+        description: "QTZ-IMMO, plateforme d'annonce immobilière à destination du marché africain. Un projet interne à QATÔRZE s'inscrivant dans notre stratégie de déploiement sectoriel.",
+        summary: "La plateforme QTZ-IMMO, permet de mettre en relation les différents acteurs du marché immobilier africain. De plus, notre objectif au travers de cette plateforme est de mettre à disposition des acteurs immobiliers africains, une panoplie de services et de fonctionnalités pour sécuriser, structurer, facilités les opérations immobilières et permettre à tout un chacun de gérer son patrimoine immobilier en un seul endroit.",
+        about: [
+            "L'outil et l'ensemble des fonctionnalités sont intégrés continuellement en suivant la roadmap que nous avons établie et itérée en recoquillant et prenant en compte les retours du marché et des utilisateurs.",
+            "De plus, les projets internes comme celui-ci, nous les mettons en place avec trois objectifs en tête. Le premier est bien sûr de répondre à l'un des problèmes que nous constatons en Afrique subsaharienne au bon moment avec la meilleure exécution possible. Deuxièmement, que cela vienne s'inscrit dans la trajectoire stratégique de QATÔRZE et dernièrement que ce soit un des projets que nous menons de bout en bout de manière à pouvoir mettre en évidence notre expertise et appétence en développement logiciel, aux yeux de nos clients sur notre segment ESN (QATÔRZE SERVICES).",
+            "QTZ-IMMO est lancé dans un premier temps au Gabon et sera progressivement implémenter dans d'autres pays de la zone subsaharienne (Côte d'Ivoire, Sénégal, Cameroun, Congo etc...). Pour les personnes recherchant des maisons/appartements à la louer et acheter et bien d'autres biens. De même pour les bailleurs, agences immobilières, promoteurs immobiliers et tout les autres acteurs de l'écosystème immobilier ",
+            "The resulting website showcased Huly's promise of streamlined team collaboration, setting a new benchmark in design that supports complex functionalities in a user-friendly manner. Despite the challenges of integrating complex animations into a cohesive layout, the successful launch of the Huly website stands as a testament to our team's expertise in creating a landing page that is both impressive and intuitive for users to navigate."
+        ],
+        results: [
+            {
+                title: "Développement d'une identité de marque forte", 
+                description: "Fonforcement d'un branding et d'une identité visuelle, qui reflette l'aspect institutionnel mais aussi innovant de l'agence immobilière." 
+            },
+            {
+                title: "Création d'une interface d'interaction avec les clients en ligne", 
+                description: "Implémentation structurée des annonces pour digitaliser l'activitée de promotion immobilière" 
+            },
+            {
+                title: "Mise en place des outils de gestion pour complètement digitaliser la partie oppérationnelle du métier.",
+                description:"Déploiement de solutions logicielles (CRM, outils de gestion de mandats, etc.) pour automatiser les tâches, centraliser les informations et fluidifier les processus opérationnels quotidiens, de la prise de mandat au suivi client." 
+            },
+            {
+                title: "Developpement des fonctionnalités et implémentation des infrastructures rendant l'agence Immobilière souvenaine et autonome pour la gestion de la web App, des contenus ainsi que des données clients.",
+                description: "Conception d'une architecture technique solide et d'un système de gestion de contenu (CMS) intuitif, offrant à l'agence une autonomie complète pour administrer sa plateforme web, actualiser ses annonces et contenus, et gérer ses données clients en toute sécurité et indépendance." 
+            },
+        ],
+        image: "/assets/images/img-p2s-3.svg",
+        logo: "/assets/images/logo-p2s-1.png", // Chemin vers le logo
+        services: ["Web App", "UX/UI Design"],
+        tools: ["Angular", "Java", "Spring Boot", "TypeScript", "SCSS", "Figma"],
+        link: "https://p2s-tde.com",
+        // whatsappLink: "https://wa.me/33612345678", // Lien WhatsApp
+        // quoteForm: "/contact" // Lien vers le formulaire de devis
     },
     // {
     //     id: 5,
